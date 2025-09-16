@@ -1,18 +1,19 @@
+Functional requirements:
+-Private chat between users (Textmessages)
+-Search for users by username
+-Hide private data from other users
+-Mobile site
+
 Non-functional requirements:
--User page
--Modern look to the page
 -Display the chat history 
 -Display the profile of users
-
-Functional requirements:
--Secure Passwords
--Chat
--Mobile site
--Search for users by username
--Hide privat data from other users
+-Fast transmission of textmessages
+-Secure passwords
+-Secure private data
 
 Use cases:
--Users can chat with other users
+-Users can chat with other users in private chatrooms
+-Users can search other users by username
 -Users create a profile 
 -Use the website on mobile devices
 
