@@ -1,0 +1,206 @@
+        body {
+          font-family: Verdana, sans-serif;
+          margin: 0;
+          background-color: #121212;
+          color: #f1f1f1;
+          padding-top: 70px;
+        }
+
+        .topbar {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          z-index: 1000;
+          background: #1e1e1e;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 10px 20px;
+          border-bottom: 1px solid #333;
+        }
+
+        .topbar img {
+          height: 40px;
+        }
+
+        .topbar search {
+          flex: 1;
+          margin: 0 20px;
+          display: flex;
+          align-items: center;
+          background: #2a2a2a;
+          border-radius: 20px;
+          padding: 5px 10px;
+        }
+
+        .topbar input {
+          border: none;
+          outline: none;
+          background: transparent;
+          color: #f1f1f1;
+          flex: 1;
+          padding: 5px;
+        }
+
+        .topbar button {
+          width: 24px;
+          height: 24px;
+          border: none;
+          background: transparent;
+          cursor: pointer;
+          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='2' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M21 21l-4.35-4.35m0 0A7.5 7.5 0 104.5 4.5a7.5 7.5 0 0012.15 12.15z'/%3E%3C/svg%3E");
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: contain;
+        }
+
+        .topbar nav {
+          display: flex;
+          align-items: center;
+        }
+
+        .topbar nav a {
+          margin-left: 15px;
+          text-decoration: none;
+          color: #fff;
+          background: #333;
+          padding: 8px 16px;
+          border-radius: 20px;
+          transition: background 0.2s;
+        }
+
+        .topbar nav a:hover {
+          background: #444;
+        }
+
+        .topbar nav img {
+          border-radius: 50%;
+          width: 40px;
+          height: 40px;
+          margin-left: 15px;
+        }
+
+        h1 {
+          margin: 20px;
+          color: #f1f1f1;
+        }
+
+        /* user profile card */
+        .userprofile {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          padding: 1rem;
+          margin: 1rem;
+          border: 1px solid #333;
+          border-radius: 1rem;
+          background: #1e1e1e;
+          max-width: 800px;
+        }
+
+        .userprofile .avatar img {
+          width: 196px;
+          height: 196px;
+          border-radius: 20%;
+          object-fit: cover;
+        }
+
+        .profile-info h2 {
+          margin: 0 0 .25rem;
+          font-size: 1.25rem;
+          color: #fff;
+        }
+
+        .profile-info .bio {
+          margin: 0 0 .5rem;
+          color: #ccc;
+        }
+
+        .stats {
+          display: flex;
+          gap: 1rem;
+          font-size: 0.9rem;
+          margin: 0 0 .5rem;
+        }
+
+        .stats dt {
+          font-weight: 600;
+          color: #ccc;
+        }
+
+        .stats dd {
+          margin: 0;
+          color: #f1f1f1;
+        }
+
+        .edit-profile {
+          padding: .4rem .8rem;
+          border-radius: .5rem;
+          border: 1px solid #444;
+          background: #2a2a2a;
+          color: #f1f1f1;
+          cursor: pointer;
+        }
+
+        .edit-profile:hover {
+          background: #3a3a3a;
+        }
+
+        /* profile posts */
+        .myposts {
+          position: sticky;
+          top: 60px;
+          z-index: 0;
+          margin: 20px;
+          padding: 1rem;
+          background-color: #121212;
+          color: #f1f1f1;
+        }
+
+        .posts {
+          max-width: 600px;
+          margin: 2rem auto;
+          display: flex;
+          flex-direction: column;
+          gap: 1.5rem;
+        }
+
+        .post {
+          background: #1e1e1e;
+          border: 1px solid #333;
+          border-radius: 1rem;
+          padding: 1rem;
+        }
+
+        .post-header {
+          display: flex;
+          align-items: center;
+          gap: .75rem;
+          margin-bottom: .5rem;
+        }
+
+        .post-header .avatar {
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+
+        .poster-username {
+          margin: 0;
+          font-size: 1rem;
+          color: #f1f1f1;
+        }
+
+        .post-time {
+          display: block;
+          font-size: 0.8rem;
+          color: #aaa;
+        }
+
+        .post-body {
+          margin: 0;
+          color: #ddd;
+          line-height: 1.4;
+        }
