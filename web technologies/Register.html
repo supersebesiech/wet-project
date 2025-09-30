@@ -8,18 +8,23 @@
     </head>
     <body>
         <h2>Make a new account</h2>
-        <div class="Login">
-            <label for="mail">Email:</label><br>
-            <input id="mail" type="email" name="mail"><br><br>
-            <label for="password">Password:</label><br>
-            <input id="password" type="password" name="password">
+        <div class="Register">
+            <label for="mailRegister">Email:</label><br>
+            <input id="mailRegister" type="email" name="mail"><br><br>
+            <label for="passwordRegister">Password:</label><br>
+            <input id="passwordRegister" type="password" name="password">
             <input type="checkbox" id="showPassword"> Show Password<br><br>
             <label for="confirmPassword">Repeat password:</label><br>
             <input id="confirmPassword" type="password" name="confirmPassword"><br><br>
             <label for="date">Date of birth:</label><br>
             <input id="date" type="date" name="date"><br><br>
             <input type="checkbox" id="accept">Accept user terms<br><br>
-            <button type="submit">Create an account</button>
+            <button type="submitRegister">Create an account</button><br><br>
+            <p id="errorAge" style="color:red; display:none;">You must be at least 18 years old.</p>
+            <p id="errorPassword" style="color:red; display:none;">Password must include at least one capital letter</p>
+            <p id="errorMail" style="color:red; display:none;">Email adress is already in use</p>
+            <p id="errorPasswordCheck" style="color:red; display:none;">Passwords do not match</p>
+            <p id="errorTerms" style="color:red; display:none;">You need to accept terms</p>
         </div>
         <script src="script.js"></script>
         <footer>

@@ -34,7 +34,8 @@ input[type="email"] {
   border-radius: 8px;         
   font-size: 14px;             
   outline: none;               
-  transition: 0.3s;            
+  transition: 0.3s;    
+  width: 200px;        
 }
 
 label {
