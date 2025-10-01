@@ -4,21 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <title>My Profile</title>
-    <link rel="stylesheet" href="ProfilePage.css">
+    <link rel="stylesheet" href="../Style/GlobalStyle.css">
+    <link rel="stylesheet" href="../Style/PostStyle.css">
+    <link rel="stylesheet" href="../Style/ProfileStyle.css">
 </head>
 
 <header class="topbar">
-    <img class="logo" src="Images/Logo.png" alt="Logo">
+    <img class="logo" src="../Images/Placeholder_Logo.png" alt="Logo">
 
-    <search>
-        <input type="text" placeholder="Search bar">
+    <form class="search-bar" role="search">
+        <input type="text" placeholder="Search Profile">
         <button aria-label="Search"></button>
-    </search>
+    </form>
 
     <nav>
-        <a href="">Home</a>
-        <a href="">My profile</a>
-        <img src="Images/Placeholder_ProfilePictures/Placeholder_ProfilePic1.jpeg" alt="User profile">
+        <a href="../ForYouPage/ForYouPage.html">Home</a>
+        <img src="../Images/Placeholder_ProfilePictures/Placeholder_ProfilePic1.jpeg" alt="User profile">
     </nav>
 </header>
 
@@ -28,7 +29,7 @@
     <aside class="userprofile" aria-labelledby="user-name">
         <!-- Avatar -->
         <figure class="avatar">
-            <img src="Images/Placeholder_ProfilePictures/Placeholder_ProfilePic1.jpeg" alt="Profile picture of User">
+            <img src="../Images/Placeholder_ProfilePictures/Placeholder_ProfilePic1.jpeg" alt="Profile picture of User">
         </figure>
 
         <!-- User Info -->
@@ -54,7 +55,7 @@
                 </div>
             </dl>
 
-            <button class="edit-profile" type="button">Edit Profile</button>
+            <button type="button">Edit Profile</button>
         </section>
     </aside>
 
