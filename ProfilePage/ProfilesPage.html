@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>My Profile</title>
+    <link rel = "stylesheet" href="ProfileStyle.css">
     <link rel="stylesheet" href="../Style/GlobalStyle.css">
     <link rel="stylesheet" href="../Style/PostStyle.css">
     <link rel="stylesheet" href="../Style/ProfileStyle.css">
@@ -60,140 +61,171 @@
     </aside>
 
     <h2 class="myposts">My Posts</h2>
-    <section class="posts" aria-label="Posts by Max Mustermann">
+    <div class="posts-container" id="postsContainer">
+        <!-- All these posts are placeholders and should be replaced with a script retrieving the posts from a database. Text has been generated via: https://www.blindtextgenerator.com/lorem-ipsum and images via: https://thispersondoesnotexist.com/ -->
+        <div class="post">
+            <div class="post-profile">
+            <img src="../Images/Placeholder_ProfilePictures/Placeholder_ProfilePic1.jpeg" alt="Profile picture of User">
+                <div class="poster-username">User</div>
+            </div>
+            <div class="post-content">
+                <div class="post-header">
+                    Title of post 1<span class="post-time"> - 12 seconds ago </span>
+                </div>
+                <div>
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean
+                    massa. Cum
+                    sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,
+                    ultricies
+                    nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo,
+                    fringilla vel,
+                    aliquet nec, vulputate eget, arcu.
+                </div>
+            </div>
+        </div>
 
-        <article class="post">
-            <header class="post-header">
-                <img src="Images/Placeholder_ProfilePictures/Placeholder_ProfilePic1.jpeg"
-                    alt="Profile picture of Max Mustermann" class="avatar">
-                <div>
-                    <h3 class="poster-username">Max Mustermann</h3>
-                    <time class="post-time" datetime="2025-09-29T08:45:00Z">2 hours ago</time>
+        <div class="post">
+            <div class="post-profile">
+            <img src="../Images/Placeholder_ProfilePictures/Placeholder_ProfilePic1.jpeg" alt="Profile picture of User">
+                <div class="poster-username">Username 2</div>
+            </div>
+            <div class="post-content">
+                <div class="post-header">
+                    Title of post 2<span class="post-time"> - 20 minutes ago </span>
                 </div>
-            </header>
-            <p class="post-body">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at leo vitae urna aliquet tincidunt.
-                Vivamus at feugiat ipsum.
-            </p>
-        </article>
+                <div>
+                    In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis
+                    pretium.
+                    Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.
+                    Aenean leo
+                    ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra
+                    quis,
+                    feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean
+                    imperdiet. Etiam
+                    ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus.
+                    Maecenas tempus,
+                    tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum.
+                    Nam quam
+                    nunc, blandit vel, luctus pulvinar, hendrerit id, lorem.
+                </div>
+            </div>
+        </div>
 
-        <article class="post">
-            <header class="post-header">
-                <img src="Images/Placeholder_ProfilePictures/Placeholder_ProfilePic1.jpeg"
-                    alt="Profile picture of Max Mustermann" class="avatar">
-                <div>
-                    <h3 class="poster-username">Max Mustermann</h3>
-                    <time class="post-time" datetime="2025-09-28T18:10:00Z">Yesterday</time>
+        <div class="post">
+            <div class="post-profile">
+            <img src="../Images/Placeholder_ProfilePictures/Placeholder_ProfilePic1.jpeg" alt="Profile picture of User">
+                <div class="poster-username">Long Username 3</div>
+            </div>
+            <div class="post-content">
+                <div class="post-header">
+                    Title of post 3<span class="post-time"> - 3 hours ago </span>
                 </div>
-            </header>
-            <p class="post-body">
-                Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur
-                sagittis lorem at ante gravida tempus.
-            </p>
-        </article>
+                <div>
+                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.
+                </div>
+            </div>
+        </div>
 
-        <article class="post">
-            <header class="post-header">
-                <img src="Images/Placeholder_ProfilePictures/Placeholder_ProfilePic1.jpeg"
-                    alt="Profile picture of Max Mustermann" class="avatar">
-                <div>
-                    <h3 class="poster-username">Max Mustermann</h3>
-                    <time class="post-time" datetime="2025-09-25T14:00:00Z">4 days ago</time>
+        <div class="post">
+            <div class="post-profile">
+            <img src="../Images/Placeholder_ProfilePictures/Placeholder_ProfilePic1.jpeg" alt="Profile picture of User">
+                <div class="poster-username">Username 4</div>
+            </div>
+            <div class="post-content">
+                <div class="post-header">
+                    Title of post 4<span class="post-time"> - 2 days ago </span>
                 </div>
-            </header>
-            <p class="post-body">
-                Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient
-                montes, nascetur ridiculus mus.
-            </p>
-        </article>
-        <article class="post">
-            <header class="post-header">
-                <img src="Images/Placeholder_ProfilePictures/Placeholder_ProfilePic1.jpeg"
-                    alt="Profile picture of Max Mustermann" class="avatar">
                 <div>
-                    <h3 class="poster-username">Max Mustermann</h3>
-                    <time class="post-time" datetime="2025-09-24T09:30:00Z">5 days ago</time>
+                    Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed
+                    quia non
+                    numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad
+                    minima
+                    veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea
+                    commodi
+                    consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil
+                    molestiae
+                    consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
                 </div>
-            </header>
-            <p class="post-body">
-                Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.
-            </p>
-        </article>
+            </div>
+        </div>
 
-        <article class="post">
-            <header class="post-header">
-                <img src="Images/Placeholder_ProfilePictures/Placeholder_ProfilePic1.jpeg"
-                    alt="Profile picture of Max Mustermann" class="avatar">
-                <div>
-                    <h3 class="poster-username">Max Mustermann</h3>
-                    <time class="post-time" datetime="2025-09-22T15:10:00Z">7 days ago</time>
+        <div class="post">
+            <div class="post-profile">
+            <img src="../Images/Placeholder_ProfilePictures/Placeholder_ProfilePic1.jpeg" alt="Profile picture of User">
+                <div class="poster-username">Username 5</div>
+            </div>
+            <div class="post-content">
+                <div class="post-header">
+                    Title of post 5<span class="post-time"> - 1 week ago </span>
                 </div>
-            </header>
-            <p class="post-body">
-                Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius
-                laoreet.
-            </p>
-        </article>
+                <div>
+                    But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was
+                    born and I
+                    will give you a complete account of the system, and expound the actual teachings of the great
+                    explorer of the
+                    truth, the master-builder of human happiness.
+                </div>
+            </div>
+        </div>
 
-        <article class="post">
-            <header class="post-header">
-                <img src="Images/Placeholder_ProfilePictures/Placeholder_ProfilePic1.jpeg"
-                    alt="Profile picture of Max Mustermann" class="avatar">
-                <div>
-                    <h3 class="poster-username">Max Mustermann</h3>
-                    <time class="post-time" datetime="2025-09-20T12:00:00Z">9 days ago</time>
+        <div class="post">
+            <div class="post-profile">
+            <img src="../Images/Placeholder_ProfilePictures/Placeholder_ProfilePic1.jpeg" alt="Profile picture of User">
+                <div class="poster-username">Username 6</div>
+            </div>
+            <div class="post-content">
+                <div class="post-header">
+                    Title of post 6<span class="post-time"> - 2 weeks ago </span>
                 </div>
-            </header>
-            <p class="post-body">
-                Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus.
-            </p>
-        </article>
+                <div>
+                    Li lingues differe solmen in li grammatica, li pronunciation e li plu commun vocabules.
+                </div>
+            </div>
+        </div>
 
-        <article class="post">
-            <header class="post-header">
-                <img src="Images/Placeholder_ProfilePictures/Placeholder_ProfilePic1.jpeg"
-                    alt="Profile picture of Max Mustermann" class="avatar">
-                <div>
-                    <h3 class="poster-username">Max Mustermann</h3>
-                    <time class="post-time" datetime="2025-09-18T20:00:00Z">11 days ago</time>
+        <div class="post">
+            <div class="post-profile">
+            <img src="../Images/Placeholder_ProfilePictures/Placeholder_ProfilePic1.jpeg" alt="Profile picture of User">
+                <div class="poster-username">Username 7</div>
+            </div>
+            <div class="post-content">
+                <div class="post-header">
+                    Title of post 7<span class="post-time"> - 2 months ago </span>
                 </div>
-            </header>
-            <p class="post-body">
-                Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque
-                sed ipsum.
-            </p>
-        </article>
+                <div>
+                    The European languages are members of the same family. Their separate existence is a myth. For
+                    science, music,
+                    sport, etc, Europe uses the same vocabulary. The languages only differ in their grammar, their
+                    pronunciation
+                    and their most common words. Everyone realizes why a new common language would be desirable: one
+                    could refuse
+                    to pay expensive translators.
+                </div>
+            </div>
+        </div>
 
-        <article class="post">
-            <header class="post-header">
-                <img src="Images/Placeholder_ProfilePictures/Placeholder_ProfilePic1.jpeg"
-                    alt="Profile picture of Max Mustermann" class="avatar">
-                <div>
-                    <h3 class="poster-username">Max Mustermann</h3>
-                    <time class="post-time" datetime="2025-09-15T17:30:00Z">2 weeks ago</time>
+        <div class="post">
+            <div class="post-profile">
+            <img src="../Images/Placeholder_ProfilePictures/Placeholder_ProfilePic1.jpeg" alt="Profile picture of User">
+                <div class="poster-username">Username 8</div>
+            </div>
+            <div class="post-content">
+                <div class="post-header">
+                    Title of post 8<span class="post-time"> - 1 year and 3 months ago </span>
                 </div>
-            </header>
-            <p class="post-body">
-                Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt
-                tempus.
-            </p>
-        </article>
+                <div>
+                    Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante
+                    tincidunt tempus.
+                    Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros
+                    faucibus
+                    tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed
+                    consequat, leo eget
+                    bibendum sodales, augue velit cursus nunc.
+                </div>
+            </div>
+        </div>
 
-        <article class="post">
-            <header class="post-header">
-                <img src="Images/Placeholder_ProfilePictures/Placeholder_ProfilePic1.jpeg"
-                    alt="Profile picture of Max Mustermann" class="avatar">
-                <div>
-                    <h3 class="poster-username">Max Mustermann</h3>
-                    <time class="post-time" datetime="2025-09-10T09:00:00Z">3 weeks ago</time>
-                </div>
-            </header>
-            <p class="post-body">
-                Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget
-                bibendum sodales.
-            </p>
-        </article>
-    </section>
+    </div>
 </body>
 
 </html>
