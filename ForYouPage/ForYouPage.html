@@ -1,200 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <title>For you page</title>
-    <link rel="stylesheet" href="ForYouPageBasicStyle.css">
+  <meta charset="UTF-8">
+  <title>For you page</title>
+  <link rel="stylesheet" href="ForYouPageBasicStyle.css">
 </head>
-
 <body>
-    <!-- Topbar -->
-    <div class="topbar">
-        <div class="logo">
-            <img src="Images/Placeholder_Logo.png" alt="Logo">
-        </div>
+  <!-- Topbar -->
+  <header class="topbar">
+    <figure class="logo">
+      <img src="Images/Placeholder_Logo.png" alt="Logo">
+    </figure>
 
-        <div class="search-bar">
-            <input type="text" placeholder="Search bar">
-            <button aria-label="Search"></button>
-        </div>
+    <search class="search-bar">
+      <input type="text" placeholder="Search bar">
+      <button aria-label="Search"></button>
+    </search>
 
-        <div class="nav-buttons">
-            <a href="Link to home page">Home</a>
-            <a href="Link to my profile">My profile</a>
-            <img src="Images/Placeholder_ProfilePictures/Placeholder_ProfilePic1.jpeg" alt="User profile">
-        </div>
-    </div>
+    <nav class="nav-buttons">
+      <a href="Link to home page">Home</a>
+      <a href="Link to my profile">My profile</a>
+      <img src="Images/Placeholder_ProfilePictures/Placeholder_ProfilePic1.jpeg" alt="User profile">
+    </nav>
+  </header>
 
-    <!-- Title -->
-    <h1>For you page</h1>
+  <!-- Title -->
+  <h1>For you page</h1>
 
-    <!-- Posts -->
-    <div class="posts-container" id="postsContainer">
-        <!-- All these posts are placeholders and should be replaced with a script retrieving the posts from a database. Text has been generated via: https://www.blindtextgenerator.com/lorem-ipsum and images via: https://thispersondoesnotexist.com/ -->
-        <div class="post">
-            <div class="post-profile">
-                <img src="Images/Placeholder_ProfilePictures/Placeholder_ProfilePic2.jpeg" alt="Poster profile">
-                <div class="poster-username">Username 1</div>
-            </div>
-            <div class="post-content">
-                <div class="post-header">
-                    Title of post 1<span class="post-time"> - 12 seconds ago </span>
-                </div>
-                <div>
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean
-                    massa. Cum
-                    sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,
-                    ultricies
-                    nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo,
-                    fringilla vel,
-                    aliquet nec, vulputate eget, arcu.
-                </div>
-            </div>
-        </div>
+  <!-- Posts -->
+  <section class="posts-container" id="postsContainer">
+    <!-- All these posts are placeholders and should be replaced with a script retrieving the posts from a database. Text has been generated via: https://www.blindtextgenerator.com/lorem-ipsum and images via: https://thispersondoesnotexist.com/ -->
+    <article class="post">
+      <figure class="post-profile">
+        <img src="Images/Placeholder_ProfilePictures/Placeholder_ProfilePic2.jpeg" alt="Poster profile">
+        <figcaption class="poster-username">Username 1</figcaption>
+      </figure>
+      <section class="post-content">
+        <h2 class="post-header">
+          Title of post 1<span class="post-time"> - 12 seconds ago </span>
+        </h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.
+        </p>
+      </section>
+    </article>
 
-        <div class="post">
-            <div class="post-profile">
-                <img src="Images/Placeholder_ProfilePictures/Placeholder_ProfilePic3.jpeg" alt="Poster profile">
-                <div class="poster-username">Username 2</div>
-            </div>
-            <div class="post-content">
-                <div class="post-header">
-                    Title of post 2<span class="post-time"> - 20 minutes ago </span>
-                </div>
-                <div>
-                    In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis
-                    pretium.
-                    Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.
-                    Aenean leo
-                    ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra
-                    quis,
-                    feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean
-                    imperdiet. Etiam
-                    ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus.
-                    Maecenas tempus,
-                    tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum.
-                    Nam quam
-                    nunc, blandit vel, luctus pulvinar, hendrerit id, lorem.
-                </div>
-            </div>
-        </div>
-
-        <div class="post">
-            <div class="post-profile">
-                <img src="Images/Placeholder_ProfilePictures/Placeholder_ProfilePic4.jpeg" alt="Poster profile">
-                <div class="poster-username">Username 3</div>
-            </div>
-            <div class="post-content">
-                <div class="post-header">
-                    Title of post 3<span class="post-time"> - 3 hours ago </span>
-                </div>
-                <div>
-                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.
-                </div>
-            </div>
-        </div>
-
-        <div class="post">
-            <div class="post-profile">
-                <img src="Images/Placeholder_ProfilePictures/Placeholder_ProfilePic5.jpeg" alt="Poster profile">
-                <div class="poster-username">Username 4</div>
-            </div>
-            <div class="post-content">
-                <div class="post-header">
-                    Title of post 4<span class="post-time"> - 2 days ago </span>
-                </div>
-                <div>
-                    Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed
-                    quia non
-                    numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad
-                    minima
-                    veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea
-                    commodi
-                    consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil
-                    molestiae
-                    consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
-                </div>
-            </div>
-        </div>
-
-        <div class="post">
-            <div class="post-profile">
-                <img src="Images/Placeholder_ProfilePictures/Placeholder_ProfilePic6.jpeg" alt="Poster profile">
-                <div class="poster-username">Username 5</div>
-            </div>
-            <div class="post-content">
-                <div class="post-header">
-                    Title of post 5<span class="post-time"> - 1 week ago </span>
-                </div>
-                <div>
-                    But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was
-                    born and I
-                    will give you a complete account of the system, and expound the actual teachings of the great
-                    explorer of the
-                    truth, the master-builder of human happiness.
-                </div>
-            </div>
-        </div>
-
-        <div class="post">
-            <div class="post-profile">
-                <img src="Images/Placeholder_ProfilePictures/Placeholder_ProfilePic7.jpeg" alt="Poster profile">
-                <div class="poster-username">Username 6</div>
-            </div>
-            <div class="post-content">
-                <div class="post-header">
-                    Title of post 6<span class="post-time"> - 2 weeks ago </span>
-                </div>
-                <div>
-                    Li lingues differe solmen in li grammatica, li pronunciation e li plu commun vocabules.
-                </div>
-            </div>
-        </div>
-
-        <div class="post">
-            <div class="post-profile">
-                <img src="Images/Placeholder_ProfilePictures/Placeholder_ProfilePic8.jpeg" alt="Poster profile">
-                <div class="poster-username">Username 7</div>
-            </div>
-            <div class="post-content">
-                <div class="post-header">
-                    Title of post 7<span class="post-time"> - 2 months ago </span>
-                </div>
-                <div>
-                    The European languages are members of the same family. Their separate existence is a myth. For
-                    science, music,
-                    sport, etc, Europe uses the same vocabulary. The languages only differ in their grammar, their
-                    pronunciation
-                    and their most common words. Everyone realizes why a new common language would be desirable: one
-                    could refuse
-                    to pay expensive translators.
-                </div>
-            </div>
-        </div>
-
-        <div class="post">
-            <div class="post-profile">
-                <img src="Images/Placeholder_ProfilePictures/Placeholder_ProfilePic9.jpeg" alt="Poster profile">
-                <div class="poster-username">Username 8</div>
-            </div>
-            <div class="post-content">
-                <div class="post-header">
-                    Title of post 8<span class="post-time"> - 1 year and 3 months ago </span>
-                </div>
-                <div>
-                    Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante
-                    tincidunt tempus.
-                    Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros
-                    faucibus
-                    tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed
-                    consequat, leo eget
-                    bibendum sodales, augue velit cursus nunc.
-                </div>
-            </div>
-        </div>
-
-    </div>
+    <article class="post">
+      <figure class="post-profile">
+        <img src="Images/Placeholder_ProfilePictures/Placeholder_ProfilePic3.jpeg" alt="Poster profile">
+        <figcaption class="poster-username">Username 2</figcaption>
+      </figure>
+      <section class="post-content">
+        <h2 class="post-header">
+          Title of post 2<span class="post-time"> - 20 minutes ago </span>
+        </h2>
+        <p>
+          In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem.
+        </p>
+      </section>
+    </article>
+    
+    <article class="post">
+      <figure class="post-profile">
+        <img src="Images/Placeholder_ProfilePictures/Placeholder_ProfilePic4.jpeg" alt="Poster profile">
+        <figcaption class="poster-username">Username 3</figcaption>
+      </figure>
+      <section class="post-content">
+        <h2 class="post-header">
+          Title of post 3<span class="post-time"> - 3 hours ago </span>
+        </h2>
+        <p>
+          Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.
+        </p>
+      </section>
+    </article>
+    
+    <article class="post">
+      <figure class="post-profile">
+        <img src="Images/Placeholder_ProfilePictures/Placeholder_ProfilePic5.jpeg" alt="Poster profile">
+        <figcaption class="poster-username">Username 4</figcaption>
+      </figure>
+      <section class="post-content">
+        <h2 class="post-header">
+          Title of post 4<span class="post-time"> - 2 days ago </span>
+        </h2>
+        <p>
+          Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
+        </p>
+      </section>
+    </article>
+    
+    <article class="post">
+      <figure class="post-profile">
+        <img src="Images/Placeholder_ProfilePictures/Placeholder_ProfilePic6.jpeg" alt="Poster profile">
+        <figcaption class="poster-username">Username 5</figcaption>
+      </figure>
+      <section class="post-content">
+        <h2 class="post-header">
+          Title of post 5<span class="post-time"> - 1 week ago </span>
+        </h2>
+        <p>
+          But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.
+        </p>
+      </section>
+    </article>
+    
+    <article class="post">
+      <figure class="post-profile">
+        <img src="Images/Placeholder_ProfilePictures/Placeholder_ProfilePic7.jpeg" alt="Poster profile">
+        <figcaption class="poster-username">Username 6</figcaption>
+      </figure>
+      <section class="post-content">
+        <h2 class="post-header">
+          Title of post 6<span class="post-time"> - 2 weeks ago </span>
+        </h2>
+        <p>
+          Li lingues differe solmen in li grammatica, li pronunciation e li plu commun vocabules.
+        </p>
+      </section>
+    </article>
+    
+    <article class="post">
+      <figure class="post-profile">
+        <img src="Images/Placeholder_ProfilePictures/Placeholder_ProfilePic8.jpeg" alt="Poster profile">
+        <figcaption class="poster-username">Username 7</figcaption>
+      </figure>
+      <section class="post-content">
+        <h2 class="post-header">
+          Title of post 7<span class="post-time"> - 2 months ago </span>
+        </h2>
+        <p>
+          The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ in their grammar, their pronunciation and their most common words. Everyone realizes why a new common language would be desirable: one could refuse to pay expensive translators.
+        </p>
+      </section>
+    </article>
+    
+    <article class="post">
+      <figure class="post-profile">
+        <img src="Images/Placeholder_ProfilePictures/Placeholder_ProfilePic9.jpeg" alt="Poster profile">
+        <figcaption class="poster-username">Username 8</figcaption>
+      </figure>
+      <section class="post-content">
+        <h2 class="post-header">
+          Title of post 8<span class="post-time"> - 1 year and 3 months ago </span>
+        </h2>
+        <p>
+          Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc.
+        </p>
+      </section>
+    </article>
+    </section>
 </body>
-
 </html>
