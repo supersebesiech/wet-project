@@ -186,6 +186,10 @@ button:hover {
     background-color: #333;
 }
 
+button:active {
+  transform: translateY(2px);       /*pushing down button*/
+}
+
 
 
 h1 {
