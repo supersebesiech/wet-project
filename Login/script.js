@@ -1,5 +1,6 @@
 const passwordInput = document.getElementById('password'); //getting all elements
-const showPasswordCheckbox = document.getElementById('showPassword');
+
+const showPasswordCheckboxalt = document.getElementById('togglePassword');
 const errorAge = document.getElementById('errorAge');
 const errorPassword = document.getElementById('errorPassword');
 const errorMail = document.getElementById('errorMail');
@@ -16,11 +17,18 @@ const password = document.getElementById('password');
 const confirmPassword = document.getElementById('confirmPassword');
 const accept = document.getElementById('accept');
 
-showPasswordCheckbox.addEventListener('change', function() { //event listener for checkbox
-  if (this.checked) {
-    passwordInput.type = 'text';  //type text
-  } else {
-    passwordInput.type = 'password'; //type password
+
+
+
+showPasswordCheckboxalt.addEventListener('click', ()=>{
+  if(passwordInput.type === "password"){
+    passwordInput.type = "text";
+    showPasswordCheckboxalt.classList.replace("fa-eye", "fa-eye-slash");
+    console.log(showPasswordCheckboxalt);
+  }else{
+    passwordInput.type = "password";
+    showPasswordCheckboxalt.classList.replace("fa-eye-slash", "fa-eye");
+    console.log(showPasswordCheckboxalt);
   }
 });
 
