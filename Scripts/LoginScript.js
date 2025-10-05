@@ -32,6 +32,7 @@ showPasswordCheckboxalt.addEventListener('click', ()=>{
   }
 });
 
+if (submitRegister){
 submitRegister.addEventListener('click', function(e) {
   e.preventDefault();
     const password1 = password.value;
@@ -80,7 +81,10 @@ submitRegister.addEventListener('click', function(e) {
       errorTerms.style.display = "block";
     }
 });
+};
 
+if (submitLogin){
 submitLogin.addEventListener('click', function(e) {
   e.preventDefault();
-});
+})
+};

@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>For you page</title>
+    <link rel="icon" type="image/x-icon" href="../Images/Logo2.png">
    <link rel="stylesheet" href="../Style/GlobalStyle.css">
     <link rel="stylesheet" href="../Style/PostStyle.css">
-    <!-- <link rel="stylesheet" href="ForYouPageBasicStyle.css">-->
+    <link rel="stylesheet" href="../Style/LogoutPopupStyle.css">
 </head>
 
 <header class="topbar">
-    <img class="logo" src="../Images/Placeholder_Logo.png" alt="Logo">
-
+    <img class="logo" src="../Images/Logo2.png" alt="Logo">
     <form class="search-bar" role="search">
         <input type="text" placeholder="Search Profile">
         <button aria-label="Search"></button>
@@ -21,12 +21,19 @@
         <img src="../Images/Placeholder_ProfilePictures/Placeholder_ProfilePic1.jpeg" alt="User profile">
     </nav>
 </header>
-
+<script src="../Scripts/LogoutPopup.js"></script>
 <body>
     
 
   <!-- Title -->
   <h1>For you page</h1>
+
+  <div id="logout-popup" class="logout-popup" style="display:none;">
+    <div class="logout-popup-content">
+        <button id="logout-btn" onclick="window.location.href='../Login/Login.html'; return false;">Logout</button>
+        <button id="close-popup-btn">Cancel</button>
+    </div>
+    </div>
 
     <!-- Posts -->
     <div class="posts-container" id="postsContainer">

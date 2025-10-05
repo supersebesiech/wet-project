@@ -48,9 +48,7 @@ body {
   border-bottom: 1px solid #ccc;
 }
 
-.logo img {
-  height: 40px;
-}
+
 
 .search-bar {
   flex: 1;
@@ -97,13 +95,11 @@ body {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 10px 20px;
+          padding: 0px 20px;
           border-bottom: 1px solid #333;
         }
 
-.topbar img {
-        height: 40px;
-        }
+
 
 .search-bar {
   display: flex;
@@ -166,6 +162,13 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
           width: 40px;
           height: 40px;
           margin-left: 15px;
+        }
+
+.topbar nav img:hover {
+          transform: scale(1.05);
+          transition: transform 0.2s;
+          cursor: pointer;
+
         }
 
 
@@ -240,5 +243,12 @@ input[type="checkbox"] {
 
 
 
+.logo {
+    width: 50px;
+    object-fit: contain;
+    margin-top: 20px;      /* Move logo down */
+    margin-bottom: 0px;   /* Move logo up */
+    align-self: center;   /* Center vertically in flex container */
+}
 
 

@@ -1,8 +1,10 @@
-.Login {
+.Login, .Register, .passwordReset {
     border-radius: 25px;
     backdrop-filter: blur(20px);
     margin: 10px;
     padding: 20px;
+    width: 320px;
+    word-break: break-word;
 }
 
 body {
@@ -29,13 +31,13 @@ input[type="password"],input[type="text"], input[type="email"]{
 
 .password_field .fa-eye{
   position: absolute;
-  right: 8px;
+  right: 40px;
   cursor: pointer;
   color: #000000;
 }
 .password_field .fa-eye-slash{
   position: absolute;
-  right: 8px;
+  right: 39px;
   cursor: pointer;
   color: #000000;
 }
