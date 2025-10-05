@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../Style/LogoutPopupStyle.css">
     
     <link rel="stylesheet" href="../Style/ProfileStyle.css">
+
 </head>
 
 <header class="topbar">
@@ -82,12 +83,16 @@
             </div>
             <div class="newpost-content">
                 <form action="" method="post">
+                    <div class="error-messages"></div>
+
                     <input class="newpost-header" type="text" placeholder="Post Title"><br>
                     <textarea class="newpost-textarea" name="" id=""
                         placeholder="What do you wanna post about?"></textarea><br>
                     <input class="newpost-submit" type="submit" value="Post">
                 </form>
             </div>
+
+            <script src="../Scripts/PostScript.js"></script>
         </div>
 
         <div class="post">

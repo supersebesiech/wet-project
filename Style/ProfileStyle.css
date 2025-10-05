@@ -64,3 +64,10 @@
 .edit-profile:hover {
   background: #3a3a3a;
 }
+
+
+.error-messages {
+ color: red;
+ font-size: 14px;
+ margin-top: 10px;
+}
