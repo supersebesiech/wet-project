@@ -8,8 +8,9 @@
     <link rel="stylesheet" href="../Style/GlobalStyle.css">
     <link rel="stylesheet" href="../Style/PostStyle.css">
     <link rel="stylesheet" href="../Style/NewPostStyle.css">
-    <link rel="stylesheet" href="../Style/ProfileStyle.css">
     <link rel="stylesheet" href="../Style/LogoutPopupStyle.css">
+    
+    <link rel="stylesheet" href="../Style/ProfileStyle.css">
 </head>
 
 <header class="topbar">
@@ -24,24 +25,27 @@
         <a href="../ForYouPage/ForYouPage.html">Home</a>
         <img src="../Images/Placeholder_ProfilePictures/Placeholder_ProfilePic1.jpeg" alt="User profile">
     </nav>
-    
+
 </header>
 <script src="../Scripts/LogoutPopup.js"></script>
+
 <body>
     <h1>My Profile</h1>
 
     <aside class="userprofile" aria-labelledby="user-name">
-        <!-- Avatar -->
 
-        <img class="avatar" src="../Images/Placeholder_ProfilePictures/Placeholder_ProfilePic1.jpeg" alt="Profile picture of User">
+        <img class="avatar" src="../Images/Placeholder_ProfilePictures/Placeholder_ProfilePic1.jpeg"
+            alt="Profile picture of User">
 
-        <!-- User Info -->
+
         <section class="profile-info">
-            <!-- <h2 id="user-name">Max Mustermann</h2> -->
+
             <input id="user-name" type="text" value="Max Mustermann"><br>
-            <!-- <p class="bio"> </p> 
-            <textarea name="bio" id="bio" class="bio"></textarea> -->
-            <div class="bio" contenteditable="true">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet justo et vestibulum pharetra. Morbi semper tincidunt risus nec scelerisque. Cras mattis lobortis pharetra. Mauris faucibus libero velit, eu gravida nunc pellentesque nec. Phasellus mollis enim vitae ultrices mattis. Quisque lacinia nibh ac laoreet egestas. Vestibulum ante ipsum primis in.</div>
+
+            <div class="bio" contenteditable="true">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet
+                justo et vestibulum pharetra. Morbi semper tincidunt risus nec scelerisque. Cras mattis lobortis
+                pharetra. Mauris faucibus libero velit, eu gravida nunc pellentesque nec. Phasellus mollis enim vitae
+                ultrices mattis. Quisque lacinia nibh ac laoreet egestas. Vestibulum ante ipsum primis in.</div>
 
             <dl class="stats">
                 <div>
@@ -62,10 +66,10 @@
         </section>
     </aside>
     <div id="logout-popup" class="logout-popup" style="display:none;">
-    <div class="logout-popup-content">
-        <button id="logout-btn" onclick="window.location.href='../Login/Login.html'; return false;">Logout</button>
-        <button id="close-popup-btn">Cancel</button>
-    </div>
+        <div class="logout-popup-content">
+            <button id="logout-btn" onclick="window.location.href='../Login/Login.html'; return false;">Logout</button>
+            <button id="close-popup-btn">Cancel</button>
+        </div>
     </div>
     <h2 class="myposts">My Posts</h2>
     <div class="posts-container" id="postsContainer">
@@ -79,13 +83,13 @@
             <div class="newpost-content">
                 <form action="" method="post">
                     <input class="newpost-header" type="text" placeholder="Post Title"><br>
-                    <textarea class="newpost-textarea" name="" id="" placeholder="What do you wanna post about?"></textarea><br>
+                    <textarea class="newpost-textarea" name="" id=""
+                        placeholder="What do you wanna post about?"></textarea><br>
                     <input class="newpost-submit" type="submit" value="Post">
                 </form>
             </div>
         </div>
 
-        <!-- All these posts are placeholders and should be replaced with a script retrieving the posts from a database. Text has been generated via: https://www.blindtextgenerator.com/lorem-ipsum and images via: https://thispersondoesnotexist.com/ -->
         <div class="post">
             <div class="post-profile">
                 <img src="../Images/Placeholder_ProfilePictures/Placeholder_ProfilePic1.jpeg"

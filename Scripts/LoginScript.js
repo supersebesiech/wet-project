@@ -1,4 +1,4 @@
-const passwordInput = document.getElementById('password'); //getting all elements
+const passwordInput = document.getElementById('password');
 
 const showPasswordCheckboxalt = document.getElementById('togglePassword');
 const errorAge = document.getElementById('errorAge');
@@ -20,71 +20,63 @@ const accept = document.getElementById('accept');
 
 
 
-showPasswordCheckboxalt.addEventListener('click', ()=>{
-  if(passwordInput.type === "password"){
+showPasswordCheckboxalt.addEventListener('click', () => {
+  if (passwordInput.type === "password") {
     passwordInput.type = "text";
     showPasswordCheckboxalt.classList.replace("fa-eye", "fa-eye-slash");
     console.log(showPasswordCheckboxalt);
-  }else{
+  } else {
     passwordInput.type = "password";
     showPasswordCheckboxalt.classList.replace("fa-eye-slash", "fa-eye");
     console.log(showPasswordCheckboxalt);
   }
 });
 
-if (submitRegister){
-submitRegister.addEventListener('click', function(e) {
-  e.preventDefault();
+if (submitRegister) {
+  submitRegister.addEventListener('click', function (e) {
+    e.preventDefault();
     const password1 = password.value;
     const password2 = confirmPassword.value;
     const terms = accept.checked;
     const dateOfBirth = new Date(date.value);
     const now = new Date();
     const eighteen = new Date(
-        now.getFullYear() - 18,
-        now.getMonth(),
-        now.getDate()
+      now.getFullYear() - 18,
+      now.getMonth(),
+      now.getDate()
     );
-    if (dateOfBirth > eighteen) 
-    {
-      errorAge.style.display = "block";  
-    } 
-    else 
-    {
-      errorAge.style.display = "none";   
+    if (dateOfBirth > eighteen) {
+      errorAge.style.display = "block";
+    }
+    else {
+      errorAge.style.display = "none";
     }
 
-    if (password1 === password2)
-    {
+    if (password1 === password2) {
       errorPasswordCheck.style.display = "none";
     }
-    else 
-    {
+    else {
       errorPasswordCheck.style.display = "block";
     }
 
-    if (/[A-Z]/.test(password1) && /[A-Z]/.test(password2))
-    {
+    if (/[A-Z]/.test(password1) && /[A-Z]/.test(password2)) {
       errorPassword.style.display = "none";
     }
-    else 
-    {
+    else {
       errorPassword.style.display = "block";
     }
 
-    if (terms)
-    {
+    if (terms) {
       errorTerms.style.display = "none";
     }
-    else
-    {
+    else {
       errorTerms.style.display = "block";
     }
-});
+  });
 };
 
-if (submitLogin){
-submitLogin.addEventListener('click', function(e) {
-  e.preventDefault();
-})
+if (submitLogin) {
+  submitLogin.addEventListener('click', function (e) {
+    e.preventDefault();
+  })
 };

@@ -1,35 +1,39 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Login page</title>
-        <link rel="icon" type="image/x-icon" href="../Images/Logo2.png">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-        <link rel="stylesheet" href="../Style/GlobalStyle.css">
-        <link rel="stylesheet" href="../Style/LoginStyle.css">
-    </head>
-    <body>
-        <h1>Ynetwork</h1>
-        <h2>Login into your account</h2>
-        <div class="Login">
-            <label for="email">Email:</label>
-            <input id="email" type="email" name="email"><br><br>
-            <label for="password">Password:</label>
-            <div class="password_field">
-                <input id="password" type="password" name="password">
-                <i class="fa-regular fa-eye" id="togglePassword"></i>
-            </div><br>
-            <button type="submit" id="submitLogin" onclick="window.location.href='../ForYouPage/ForYouPage.html'; return false;">Login</button><br><br>
 
-            <small>Forgot password: </small>
-            <a href="PasswordReset.html">click here</a><br>
-            <small>Don't have a account:  </small>
-            <a href="Register.html">Register</a><br><br>
-        </div>
-        <script src="../Scripts/LoginScript.js"></script>
-        <footer>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login page</title>
+    <link rel="icon" type="image/x-icon" href="../Images/Logo2.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../Style/GlobalStyle.css">
+    <link rel="stylesheet" href="../Style/LoginStyle.css">
+</head>
+
+<body>
+    <h1>Ynetwork</h1>
+    <h2>Login into your account</h2>
+    <div class="Login">
+        <label for="email">Email:</label>
+        <input id="email" type="email" name="email"><br><br>
+        <label for="password">Password:</label>
+        <div class="password_field">
+            <input id="password" type="password" name="password">
+            <i class="fa-regular fa-eye" id="togglePassword"></i>
+        </div><br>
+        <button type="submit" id="submitLogin"
+            onclick="window.location.href='../ForYouPage/ForYouPage.html'; return false;">Login</button><br><br>
+
+        <small>Forgot password: </small>
+        <a href="PasswordReset.html">click here</a><br>
+        <small>Don't have a account: </small>
+        <a href="Register.html">Register</a><br><br>
+    </div>
+    <script src="../Scripts/LoginScript.js"></script>
+    <footer>
         <p>&copy;2025 Ynetwork | Contact: y@network.com</p>
     </footer>
-    </body>
+</body>
+
 </html>

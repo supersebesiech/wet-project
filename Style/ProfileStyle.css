@@ -3,7 +3,7 @@
   align-items: center;
   gap: 1rem;
   padding: 1rem;
-  margin: 55px;
+  width: 90%;
   border: 1px solid #000000;
   border-radius: 1rem;
   background: #f2f2f2;
@@ -31,7 +31,7 @@
   color: #000;
   font: inherit;
   outline: none;
-  white-space: pre-wrap; /* keep line breaks */
+  white-space: pre-wrap;
   word-break: break-word;
 }
 

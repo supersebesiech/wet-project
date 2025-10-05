@@ -1,4 +1,3 @@
-/* Posts */
 .posts-container {
   margin: 40px;
 }
@@ -19,7 +18,6 @@
   flex-direction: column;
   align-items: center;
   width: 100px;
-  /* keeps the space for the profile column */
   margin-right: 15px;
 }
 
@@ -37,7 +35,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: min(14px, 4vw); /* Shrinks if needed */
+  font-size: min(14px, 4vw);
 }
 
 .post-content {
