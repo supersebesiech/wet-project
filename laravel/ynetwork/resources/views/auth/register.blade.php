@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register page</title>
+    <link rel="icon" type="image/x-icon" href="../Images/Logo2.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('css/GlobalStyle.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/LoginStyle.css') }}">
+</head>
+
+<body>
+    <h1>Ynetwork</h1>
+    <h2>Make a new account</h2>
+    <div class="Register">
+        <label for="mail">Email:</label>
+        <input id="mail" type="email" name="mail"><br><br>
+        <label for="password">Password:</label>
+        <div class="password_field">
+            <input id="password" type="password" name="password">
+            <i class="fa-regular fa-eye" id="togglePassword"></i>
+        </div><br>
+        <label for="confirmPassword">Repeat password:</label>
+        <input id="confirmPassword" type="password" name="confirmPassword"><br><br>
+        <label for="date">Date of birth:</label>
+        <input id="date" type="date" name="date"><br><br>
+        <input type="checkbox" id="accept">Accept user terms<br><br>
+        <button type="submitRegister" id="submitRegister">Create an account</button><br><br>
+        <p id="errorAge" style="color:red; display:none;">You must be at least 18 years old.</p>
+        <p id="errorPassword" style="color:red; display:none;">Password must include at least one capital letter</p>
+        <p id="errorMail" style="color:red; display:none;">Email adress is already in use</p>
+        <p id="errorPasswordCheck" style="color:red; display:none;">Passwords do not match</p>
+        <p id="errorTerms" style="color:red; display:none;">You need to accept terms</p>
+    </div>
+    <script src="../Scripts/LoginScript.js"></script>
+    <footer>
+        <p>&copy;2025 Ynetwork | Contact: y@network.com</p>
+    </footer>
+</body>
+
+</html>
