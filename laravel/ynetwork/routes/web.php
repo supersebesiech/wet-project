@@ -15,14 +15,11 @@ Route::get('/passwordreset', function () {
     return view('auth.passwordreset');
 })->name('passwordreset');
 
-Route::get('/foryou', function () {
-    return view('pages.foryou');
-})->name('foryou');
+Route::get('/foryou', [PostController::class, 'foryou']
+)->name('foryou');
 
-Route::get('/profile', function () {
-    return view('pages.profile');
-})->name('profile');
-
+Route::get('/profile',[PostController::class, 'profile']
+)->name('profile');
 
 Route::get('/test', [PostController::class, 'index'])->name('posts.index');
 // returns the form for adding a post

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ asset('css/PostStyle.css') }}">
     <link rel="stylesheet" href="{{ asset('css/NewPostStyle.css') }}">
     <link rel="stylesheet" href="{{ asset('css/LogoutPopupStyle.css') }}">
-    
+
     <link rel="stylesheet" href="{{ asset('css/ProfileStyle.css') }}">
 
 </head>
@@ -82,11 +82,11 @@
                 <div class="newposter-username">My Name</div>
             </div>
             <div class="newpost-content">
-                <form action="" method="post">
-                    <div class="error-messages"></div>
+                <form action = "{{ route('posts.store') }}" method="post">
+                    @csrf
 
-                    <input class="newpost-header" type="text" placeholder="Post Title"><br>
-                    <textarea class="newpost-textarea" name="" id=""
+                    <input class="newpost-header" type="text" placeholder="Post Title" id="title" name="title" required><br>
+                    <textarea class="newpost-textarea" name="content" id="content" rows="3" required
                         placeholder="What do you wanna post about?"></textarea><br>
                     <input class="newpost-submit" type="submit" value="Post">
                 </form>
@@ -95,7 +95,43 @@
             <script src="../Scripts/PostScript.js"></script>
         </div>
 
-        
+        <div class="posts-container" id="postsContainer">
+            @foreach ($posts as $post)
+                <div class="post">
+                    <div class="post-profile">
+                        <img src="../Images/Placeholder_ProfilePictures/Placeholder_ProfilePic2.jpeg" alt="Poster profile">
+                        <div class="poster-username">User</div>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-header">
+                            {{ $post->title }}<span class="post-time"> - {{ $post->created_at->diffForHumans() }}</span>
+
+                        </div>
+                        <div>
+                            {{ $post->content }}
+                        </div>
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col-sm">
+                                    <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                </div>
+                                <div class="col-sm">
+                                    <form action="{{ route('posts.destroy', $post->id) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            @endforeach
+        </div>
+    </div>
+
 
     </div>
 

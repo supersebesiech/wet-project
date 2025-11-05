@@ -16,7 +16,30 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
-        return view('posts.index', compact('posts'));
+        return view('foryou', compact('posts'));
+    }
+
+    /**
+     * Display posts for "For You" page.
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function foryou()
+    {
+        $posts = Post::all()->sortByDesc('updated_at');
+        return view('pages.foryou', compact('posts'));
+    }
+
+    /**
+     * Display posts for "Profile" page.
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function profile()
+    {
+        // SORT POSTS DESCENDING BY CREATED_AT
+        $posts = Post::all()->sortByDesc('created_at');
+        return view('pages.profile', compact('posts'));
     }
 
     /**
@@ -38,7 +61,7 @@ class PostController extends Controller
             'content' => $validated['content'],
         ]);
 
-        return redirect()->route('posts.index')
+        return redirect()->route('profile')
         ->with('success','Post created successfully.');
     }
     
@@ -58,7 +81,7 @@ class PostController extends Controller
         ]);
         $post = Post::find($id);
         $post->update($request->all());
-        return redirect()->route('posts.index')
+        return redirect()->route('profile')
         ->with('success','Post updated successfully.');
     }
 
@@ -72,7 +95,7 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         $post->delete();
-        return redirect()->route('posts.index')
+        return redirect()->route('profile')
         ->with('success','Post deleted successfully.');
     }
     // routes functions

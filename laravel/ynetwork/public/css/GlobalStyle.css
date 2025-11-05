@@ -20,6 +20,7 @@ svg {
 input,
 button,
 textarea,
+a,
 select {
   font: inherit;
 }
@@ -166,7 +167,7 @@ body {
 
 }
 
-button {
+button, a {
   display: inline-block;
   padding: 0.5rem 1rem;
   border-radius: 20px;
@@ -175,13 +176,14 @@ button {
   color: #fff;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  text-decoration: none;  /* This removes the underline */
 }
 
-button:hover {
+button:hover, a:hover {
   background-color: #333;
 }
 
-button:active {
+button:active, a:active {
   transform: translateY(2px);
 }
 

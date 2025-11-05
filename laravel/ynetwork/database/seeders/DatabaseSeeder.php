@@ -17,16 +17,18 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        // $user = User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-
+        //$user = User::factory()->create([
+        //    'firstname' => 'Test',
+        //    'lastname' => 'User',
+        //    'email' => 'test@example.com',
+        //]);
         // get user with id1
         $user = User::find(1);
         $user->posts()->createMany([
-            ['content' => 'This is the first test post.'],
-            ['content' => 'This is the second test post.'],
+            ['title' => 'Post 1',
+            'content' => 'This is the first test post.'],
+            ['title' => 'Post 2',
+            'content' => 'This is the second test post.'],
         ]);
 
     }
