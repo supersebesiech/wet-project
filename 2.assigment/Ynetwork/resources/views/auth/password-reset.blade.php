@@ -23,8 +23,8 @@
                 <input id="email" name="email" required type="email" placeholder="Email">
                 <x-form-error name="email"></x-form-error>
             </div>
-            <div class="">
-                <button type="submit">Login</button>
+            <div class="flex flex-col">
+                <button type="submit">Send email</button>
             </div>
         </div>
     </form>

@@ -14,5 +14,5 @@ Route::post('register', [RegisteredUserController::class, 'store']);
 
 Route::view('/for-you', 'user.for-you');
 
-Route:get('/reset', [PasswordResetController::class, 'create']);
-Route::post('/reset', [PasswordResetController::class, 'store']);
+Route::get('reset', [PasswordResetController::class, 'create']);
+Route::post('/reset', [PasswordResetController::class, 'send']);
