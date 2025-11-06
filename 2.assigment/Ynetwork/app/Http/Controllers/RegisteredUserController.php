@@ -19,7 +19,7 @@ class RegisteredUserController extends Controller
         if(!$attributes = request()->validate([
             'first_name' => 'required',
             'last_name' => 'required',
-            'email' => ['required', 'email', 'unique:users'],
+            'email' => ['required', 'email', 'unique:users', 'confirmed'],
             'password' => ['required', 'min:8', 'confirmed'],
         ]))
         {

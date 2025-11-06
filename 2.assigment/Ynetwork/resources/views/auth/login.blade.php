@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <div>
+    <div class="gap-3">
         {{-- Title --}}
         <div class="flex flex-col items-center">
             <h1>Ynetwork</h1>
@@ -18,7 +18,7 @@
         {{-- Form --}}
         <form method="POST" action="/login">
             @csrf
-            <div class="">
+            <div class="flex flex-col">
                 <div class="">
                     <input id="email" name="email" required type="email" placeholder="Email">
                     <x-form-error name="email"></x-form-error>
