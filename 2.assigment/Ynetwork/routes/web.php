@@ -4,6 +4,7 @@ use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 
 Route::get('/', [SessionController::class, 'create']);
 Route::post('/login', [SessionController::class, 'create']);
@@ -12,7 +13,23 @@ Route::post('/logout', [SessionController::class, 'create']);
 Route::get('/register', [RegisteredUserController::class, 'create']);
 Route::post('register', [RegisteredUserController::class, 'store']);
 
-Route::view('/for-you', 'user.for-you');
+Route::get('/for-you', [PostController::class, 'foryou']
+)->name('user.for-you');
+
+Route::get('/profile',[PostController::class, 'profile']
+)->name('user.profile');
 
 Route::get('reset', [PasswordResetController::class, 'create']);
 Route::post('/reset', [PasswordResetController::class, 'send']);
+
+Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
+// adds a post to the database
+Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
+// returns a page that shows a full post
+Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
+// returns the form for editing a post
+Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
+// updates a post
+Route::put('/posts/{post}', [PostController::class, 'update'])->name('posts.update');
+// deletes a post
+Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');

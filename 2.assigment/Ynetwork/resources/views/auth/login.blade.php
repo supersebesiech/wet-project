@@ -1,4 +1,4 @@
-<x-login-layout type="Log In to you profile">
+<x-login-layout type="Log in to you profile">
     {{-- Form --}}
     <form method="POST" action="/login" class="pt-14  ">
         @csrf
