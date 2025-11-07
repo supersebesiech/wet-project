@@ -1,37 +1,22 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Document</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-
-<body>
-    <div>
-        {{-- Title --}}
-        <div class="flex flex-col items-center">
-            <h1>Ynetwork</h1>
-            <h2>Log In to your account</h2>
-        </div>
-
-        {{-- Form --}}
-        <form method="POST" action="/register">
-            @csrf
-            <div class="">
-                <div class="">
-                    <input id="email" name="email" required type="email" placeholder="Email">
-                    <input id="email_confirmation" name="email_confirmation" required type="email" placeholder="Confirm email">
-                    <x-form-error name="email"></x-form-error>
-                    <input id="password" name="password" required type="password" placeholder="Create password">
-                    <input id="password_confirmation" name="password_confirmation" required type="password" placeholder="Confirm password">
-                    <x-form-error name="password"></x-form-error>
-                </div>
-                <div class="">
-                    <button type="submit">Register</button>
-                </div>
+<x-login-layout type="Create new profile">
+    {{-- Form --}}
+    <form method="POST" action="/login" class="pt-14  ">
+        @csrf
+        <div class="flex flex-col items-center gap-5">
+            <div class="flex flex-col gap-5">
+                <x-form-input id="first_name" name="first_name" type="text" required placeholder="First name"></x-form-input>
+                <x-form-input id="last_name" name="last_name" type="text" required placeholder="Last name"></x-form-input>
+                <x-form-input  id="email" name="email" required type="email" placeholder="Email"></x-form-input>
+                <x-form-input id="email_confirmation" name="email_confirmation" required type="email" placeholder="Confirm email"></x-form-input>
+                <x-form-error name="email"></x-form-error>
+                <x-form-input  id="password" name="password" required type="password" placeholder="Password"></x-form-input>
+                <x-form-input id="password_confirmation" name="password_confirmation" required type="password" placeholder="Confirm password"></x-form-input>
+                <x-form-error name="password"></x-form-error>
+                <x-form-input type="date"></x-form-input>
             </div>
-        </form>
-    </div>
-</body>
-</html>
+            <div class="flex flex-col gap-0.5">
+                <button class="bg-black text-white rounded-lg py-2 px-4" type="submit">Register</button>
+            </div>
+        </div>
+    </form>
+</x-login-layout>
