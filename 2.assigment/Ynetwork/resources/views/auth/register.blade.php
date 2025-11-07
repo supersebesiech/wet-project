@@ -15,7 +15,7 @@
                 <x-form-input type="date"></x-form-input>
             </div>
             <div class="flex flex-col gap-0.5">
-                <button class="bg-black text-white rounded-lg py-2 px-4" type="submit">Register</button>
+                <button class="bg-black text-white rounded-full py-2 px-4" type="submit">Register</button>
             </div>
         </div>
     </form>

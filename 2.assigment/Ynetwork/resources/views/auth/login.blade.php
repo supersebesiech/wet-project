@@ -10,7 +10,7 @@
                 <x-form-error name="password"></x-form-error>
             </div>
             <div class="flex flex-col gap-0.5">
-                <button class="bg-black text-white rounded-lg p-1" type="submit">Login</button>
+                <button class="bg-black text-white rounded-full py-2 px-4" type="submit">Login</button>
                 <a class="text-white" href="/reset" class="">Reset Password</a>
                 <a class="text-white" href="/register" class="">Register</a>
             </div>
