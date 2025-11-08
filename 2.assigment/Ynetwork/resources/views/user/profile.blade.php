@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{ asset('css/LogoutPopupStyle.css') }}">
 
     <link rel="stylesheet" href="{{ asset('css/ProfileStyle.css') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
 </head>
 
@@ -136,5 +137,7 @@
     </div>
 
 </body>
+
+@include('components.chat-bar')
 
 </html>

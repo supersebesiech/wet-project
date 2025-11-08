@@ -5,6 +5,7 @@ use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\MessageController;
 
 Route::get('/', [SessionController::class, 'create']);
 Route::post('/login', [SessionController::class, 'store']);
@@ -33,3 +34,9 @@ Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.e
 Route::put('/posts/{post}', [PostController::class, 'update'])->name('posts.update');
 // deletes a post
 Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
+//msgs
+Route::middleware(['auth'])->group(function () {
+    Route::get('/messages', [MessageController::class, 'fetchMessages']);
+    Route::post('/messages/send', [MessageController::class, 'sendMessage']);
+    Route::get('/api/chat/history', [MessageController::class, 'getChatHistory']);
+});

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{ asset('css/GlobalStyle.css') }}">
     <link rel="stylesheet" href="{{ asset('css/PostStyle.css') }}">
     <link rel="stylesheet" href="{{ asset('css/LogoutPopupStyle.css') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
 <header class="topbar">
@@ -51,7 +52,7 @@
                     <div>
                         {{ $post->body }}
                     </div>
-                    
+
                 </div>
             </div>
 
@@ -59,6 +60,9 @@
         @endforeach
     </div>
 </body>
+
+@include('components.chat-bar')
+
 <footer>
     <p>&copy;2025 Ynetwork | Contact: y@network.com</p>
 </footer>
