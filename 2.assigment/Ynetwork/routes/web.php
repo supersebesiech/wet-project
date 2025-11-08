@@ -6,6 +6,7 @@ use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', [SessionController::class, 'create']);
 Route::post('/login', [SessionController::class, 'store']);
@@ -17,7 +18,7 @@ Route::post('/register', [RegisteredUserController::class, 'store']);
 Route::get('/for-you', [PostController::class, 'foryou']
 )->name('user.for-you');
 
-Route::get('/profile',[PostController::class, 'profile']
+Route::get('/profile',[ProfileController::class, 'profile']
 )->name('user.profile');
 
 Route::get('reset', [PasswordResetController::class, 'create']);

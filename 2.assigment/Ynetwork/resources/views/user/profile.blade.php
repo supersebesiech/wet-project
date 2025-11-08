@@ -42,25 +42,22 @@
 
         <section class="profile-info">
 
-            <input id="user-name" type="text" value="Max Mustermann"><br>
+            <input id="user-name" type="text" value="{{$profiledata->first_name}} {{$profiledata->last_name}}" disabled><br>
 
-            <div class="bio" contenteditable="true">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet
-                justo et vestibulum pharetra. Morbi semper tincidunt risus nec scelerisque. Cras mattis lobortis
-                pharetra. Mauris faucibus libero velit, eu gravida nunc pellentesque nec. Phasellus mollis enim vitae
-                ultrices mattis. Quisque lacinia nibh ac laoreet egestas. Vestibulum ante ipsum primis in.</div>
+            <div class="bio" contenteditable="true" disabled>{{$profiledata->bio}}</div>
 
             <dl class="stats">
                 <div>
                     <dt>Birthday</dt>
-                    <dd>January 1, 1990</dd>
+                    <dd>{{$profiledata->birthdate->format('d. F Y')}}</dd>
                 </div>
                 <div>
                     <dt>Email:</dt>
-                    <dd>maxmuster@gmail.com</dd>
+                    <dd>{{$profiledata->email}}</dd>
                 </div>
                 <div>
                     <dt>Joined on:</dt>
-                    <dd>May 6, 1984</dd>
+                    <dd>{{$profiledata->created_at->format('d. F Y')}}</dd>
                 </div>
             </dl>
 

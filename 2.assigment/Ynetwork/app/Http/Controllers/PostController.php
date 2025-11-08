@@ -21,18 +21,7 @@ class PostController extends Controller
         return view('user.for-you', compact('posts'));
     }
 
-    /**
-     * Display posts for "Profile" page.
-     * 
-     * @return \Illuminate\Http\Response
-     */
-    public function profile()
-    {
-        // SORT POSTS DESCENDING BY CREATED_AT
-        $posts = Post::all()->sortByDesc('created_at');
-        return view('user.profile', compact('posts'));
-    }
-
+    
     /**
      * Store a newly created resource in storage.
      * 
