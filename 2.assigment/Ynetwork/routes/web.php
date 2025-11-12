@@ -15,17 +15,20 @@ Route::post('/logout', [SessionController::class, 'destroy']);
 Route::get('/register', [RegisteredUserController::class, 'create']);
 Route::post('/register', [RegisteredUserController::class, 'store']);
 
-Route::get('/reset-request', [PasswordResetController::class, 'resetRequest']);
-Route::post('/send', [PasswordResetController::class, 'send']);
-Route::get('/resetPassword', [PasswordResetController::class, 'reset']);
-Route::post('/reset', [PasswordResetController::class, 'resetPassword']);
-
+//search bar
+Route::get('/search-users', [RegisteredUserController::class, 'search'])->name('search.users');
 
 Route::get('/for-you', [PostController::class, 'foryou']
 )->name('user.for-you');
 
 Route::get('/profile',[ProfileController::class, 'profile']
 )->name('user.profile');
+
+// searched users profile page
+Route::get('/users/{id}', [RegisteredUserController::class, 'show'])->name('users.show');
+
+Route::get('reset', [PasswordResetController::class, 'create']);
+Route::post('/reset', [PasswordResetController::class, 'send']);
 
 Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
 // adds a post to the database
@@ -44,3 +47,4 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/messages/send', [MessageController::class, 'sendMessage']);
     Route::get('/api/chat/history', [MessageController::class, 'getChatHistory']);
 });
+

@@ -8,22 +8,21 @@
     <link rel="stylesheet" href="{{ asset('css/GlobalStyle.css') }}">
     <link rel="stylesheet" href="{{ asset('css/PostStyle.css') }}">
     <link rel="stylesheet" href="{{ asset('css/LogoutPopupStyle.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/SearchStyle.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
 <header class="topbar">
     <img class="logo" src="../Images/Logo2.png" alt="Logo">
-    <form class="search-bar" role="search">
-        @csrf
-        <input type="text" placeholder="Search Profile">
-        <button aria-label="Search"></button>
-    </form>
+
+    <!-- Search bar -->
+    <div style="position: relative;">
+        <input type="text" id="search" placeholder="Search users..." autocomplete="off" class="form-control">
+        <div id="search-results" class="dropdown-menu show" style="width: 100%; display: none;"></div>
+    </div>
+    <script src="{{ asset('js/search-users.js') }}"></script>
 
     <nav>
-        <form method="POST" action="/logout">
-            @csrf
-            <button type="submit">Log out</button>
-        </form>
         <a href="{{ route('user.profile') }}">My Profile</a>
         <img src="../Images/Placeholder_ProfilePictures/Placeholder_ProfilePic1.jpeg" alt="User profile">
     </nav>
