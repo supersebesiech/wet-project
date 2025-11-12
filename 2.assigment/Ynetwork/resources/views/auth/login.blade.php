@@ -11,9 +11,11 @@
             </div>
             <div class="flex flex-col gap-0.5">
                 <button class="bg-black text-white rounded-full py-2 px-4" type="submit">Login</button>
-                <a class="text-white" href="/reset" class="">Reset Password</a>
-                <a class="text-white" href="/register" class="">Register</a>
             </div>
         </div>
     </form>
+    <div class="flex flex-col items-center">
+        <a class="text-white" href="/reset-request" class="">Reset Password</a>
+        <a class="text-white" href="/register" class="">Register</a>
+    </div>
 </x-login-layout>

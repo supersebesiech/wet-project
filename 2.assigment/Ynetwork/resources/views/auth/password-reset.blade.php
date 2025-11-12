@@ -1,5 +1,5 @@
 <x-login-layout type="Reset password">
-    <form method="POST" action="/login" class="pt-14  ">
+    <form method="POST" action="/send" class="pt-14  ">
         @csrf
         <div class="flex flex-col items-center gap-5">
             <div class="flex flex-col gap-5">
