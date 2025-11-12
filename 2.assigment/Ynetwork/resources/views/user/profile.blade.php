@@ -42,7 +42,8 @@
 
         <section class="profile-info">
 
-            <input id="user-name" type="text" value="{{$profiledata->first_name}} {{$profiledata->last_name}}" disabled><br>
+            <input id="user-name" type="text" value="{{$profiledata->first_name}} {{$profiledata->last_name}}"
+                disabled><br>
 
             <div class="bio" contenteditable="true" disabled>{{$profiledata->bio}}</div>
 
@@ -70,20 +71,22 @@
             <button id="close-popup-btn">Cancel</button>
         </div>
     </div>
-    <h2 class="myposts">My Posts</h2>
+    <h2 class="myposts">My+
+     Posts</h2>
     <div class="posts-container" id="postsContainer">
 
         <div class="newpost">
             <div class="newpost-profile">
                 <img src="../Images/Placeholder_ProfilePictures/Placeholder_ProfilePic1.jpeg"
                     alt="Profile picture of User">
-                <div class="newposter-username">My Name</div>
+                <div class="newposter-username">{{$profiledata->first_name}} {{$profiledata->last_name}}</div>
             </div>
             <div class="newpost-content">
-                <form action = "{{ route('posts.store') }}" method="post">
+                <form action="{{ route('posts.store') }}" method="post">
                     @csrf
 
-                    <input class="newpost-header" type="text" placeholder="Post Title" id="title" name="title" required><br>
+                    <input class="newpost-header" type="text" placeholder="Post Title" id="title" name="title"
+                        required><br>
                     <textarea class="newpost-textarea" name="body" id="body" rows="3" required
                         placeholder="What do you wanna post about?"></textarea><br>
                     <input class="newpost-submit" type="submit" value="Post">
@@ -98,7 +101,7 @@
                 <div class="post">
                     <div class="post-profile">
                         <img src="../Images/Placeholder_ProfilePictures/Placeholder_ProfilePic2.jpeg" alt="Poster profile">
-                        <div class="poster-username">User</div>
+                        <div class="poster-username">{{$profiledata->first_name}} {{$profiledata->last_name}}</div>
                     </div>
                     <div class="post-content">
                         <div class="post-header">
@@ -124,8 +127,6 @@
                         </div>
                     </div>
                 </div>
-
-
             @endforeach
         </div>
     </div>

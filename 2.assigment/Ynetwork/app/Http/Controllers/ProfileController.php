@@ -18,7 +18,10 @@ class ProfileController extends Controller
     {
         $profiledata = auth()->user();
         // SORT POSTS DESCENDING BY CREATED_AT
-        $posts = Post::all()->sortByDesc('created_at');
+        //$posts = Post::all()->sortByDesc('created_at');
+        $posts = Post::where('user_id', $profiledata->id)
+             ->orderByDesc('created_at')
+             ->get();
         return view('user.profile', compact('posts'), compact('profiledata'));
     }
 }

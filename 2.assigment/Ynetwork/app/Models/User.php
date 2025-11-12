@@ -29,7 +29,22 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-  
+    /** For "friendships" table in database.
+     * Handels accepted friends status and pending friend request respectively
+     */ 
+    public function friends()
+    {
+        return $this->belongsToMany(User::class, 'friendships', 'user_id', 'friend_id')
+            ->wherePivot('status', 'accepted')
+            ->withTimestamps();
+    }
+
+    public function friendRequests()
+    {
+        return $this->belongsToMany(User::class, 'friendships', 'friend_id', 'user_id')
+            ->wherePivot('status', 'pending')
+            ->withTimestamps();
+    }
 
     /**
      * Get the attributes that should be cast.
