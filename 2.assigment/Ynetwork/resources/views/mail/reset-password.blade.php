@@ -27,6 +27,11 @@
                 ">Click Here</a>
         </td>
     </tr>
+    <tr>
+        <td align="center" style="padding:30px;font-size:14px;color:#777;">
+            © {{ date('Y') }} Ynetwork. All rights reserved.
+        </td>
+    </tr>
 </table>
 </body>
 </html>
