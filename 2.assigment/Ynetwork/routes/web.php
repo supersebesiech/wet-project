@@ -15,11 +15,17 @@ Route::post('/logout', [SessionController::class, 'destroy']);
 Route::get('/register', [RegisteredUserController::class, 'create']);
 Route::post('/register', [RegisteredUserController::class, 'store']);
 
+//search bar
+Route::get('/search-users', [RegisteredUserController::class, 'search'])->name('search.users');
+
 Route::get('/for-you', [PostController::class, 'foryou']
 )->name('user.for-you');
 
 Route::get('/profile',[ProfileController::class, 'profile']
 )->name('user.profile');
+
+// searched users profile page
+Route::get('/users/{id}', [RegisteredUserController::class, 'show'])->name('users.show');
 
 Route::get('reset', [PasswordResetController::class, 'create']);
 Route::post('/reset', [PasswordResetController::class, 'send']);
@@ -41,3 +47,4 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/messages/send', [MessageController::class, 'sendMessage']);
     Route::get('/api/chat/history', [MessageController::class, 'getChatHistory']);
 });
+

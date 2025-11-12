@@ -18,10 +18,17 @@
 <header class="topbar">
     <img class="logo" src="../Images/Logo2.png" alt="Logo">
 
-    <form class="search-bar" role="search">
+    <!--<form class="search-bar" role="search">
         <input type="text" placeholder="Search Profile">
         <button aria-label="Search"></button>
-    </form>
+    </form>-->
+
+    <!-- Search bar -->
+    <div style="position: relative;">
+        <input type="text" id="search" placeholder="Search users..." autocomplete="off" class="form-control">
+        <div id="search-results" class="dropdown-menu show" style="width: 100%; display: none;"></div>
+    </div>
+    <script src="{{ asset('js/search-users.js') }}"></script>
 
     <nav>
         <a href="{{ route('user.for-you') }}">Home</a>
