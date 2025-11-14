@@ -1,5 +1,5 @@
 <x-login-layout type="Reset password">
-    <form method="POST" action="/login" class="pt-14  ">
+    <form method="POST" action="/send" class="pt-14  ">
         @csrf
         <div class="w3-container w3-center" style="max-width:400px; margin:auto;">
             <div class="w3-padding-large">
