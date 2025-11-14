@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Validation\ValidationException;
 use Carbon\Carbon;
+use App\Models\Post;
 
 class RegisteredUserController extends Controller
 {
@@ -55,8 +56,15 @@ class RegisteredUserController extends Controller
     //Function to show the searched user's profile page
     public function show($id)
     {
-        $user = User::findOrFail($id);
-        return view('user.searchedprofile', compact('user'));
+        $profiledata = User::findOrFail($id);
+
+        $posts = Post::with('user')
+                 ->where('user_id', $profiledata->id)
+                 ->latest()
+                 ->get();
+        
+
+        return view('user.profile', compact('profiledata', 'posts'));
     }
 
 

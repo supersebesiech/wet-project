@@ -68,7 +68,7 @@
 
         <div class="w3-cell w3-cell-middle w3-right-align" style="width:25%;">
             <div class="w3-dropdown-hover w3-right w3-transparent">
-                  <img data-user-id="{{ auth()->user()->id }}" src="/profilePictures/{{ auth()->user()->id }}.png" alt="User profile"
+                  <img data-user-id="{{ auth()->user()->id }}" src="{{ auth()->user()->profile_picture }}" alt="User profile"
                 class="w3-image w3-circle" style="height:60px; object-fit:cover; vertical-align:middle;">
                 <div class="w3-dropdown-content w3-bar-block w3-border w3-border-black w3-round-xxlarge w3-animate-zoom" style="right:0">
                 <a href="{{ route('user.profile') }}" class="w3-bar-item w3-button w3-transparent w3-round-xxlarge">Profile</a>
@@ -100,33 +100,43 @@
 
                     <div class="w3-container w3-padding-small">
 
-
-                        <div class="w3-container w3-card w3-white w3-round-xlarge w3-margin"><br>
-                            <img src="../Images/Placeholder_ProfilePictures/Placeholder_ProfilePic2.jpeg" alt="Avatar"
-                                class="w3-left w3-circle   w3-margin-right" style="width:60px">
-                            <h4 class="w3-left ">{{ $profiledata->first_name }} {{ $profiledata->last_name }}</h4>
-                            <br><br>
-                            <hr class="w3-clear">
-                            <form action="{{ route('posts.store') }}" method="post">
-                                @csrf
-
-                                <input class="w3-input w3-round-xxlarge w3-padding-large w3-border-black w3-border"
-                                    type="text" placeholder="Post Title" id="title" name="title" required><br>
-                                <textarea class="w3-input w3-round-xxlarge w3-padding-large w3-border-black w3-border"
-                                    name="body" id="body" rows="3" required
-                                    placeholder="What do you wanna post about?"></textarea><br>
-                                <button
-                                    class="w3-button w3-black w3-round-xxlarge w3-padding-large w3-block w3-margin-bottom"
-                                    type="submit">Post</button>
-
-                            </form>
+                        @if (auth()->user()->id === $profiledata->id)
 
 
-                        </div><br>
-                        <h1 class="w3-xxxlarge w3-bold">My Posts</h1>
+                            <div class="w3-container w3-card w3-white w3-round-xlarge w3-margin"><br>
+                                <img src="{{ auth()->user()->profile_picture }}" alt="Avatar"
+                                    class="w3-left w3-circle   w3-margin-right" style="width:60px">
+                                <h4 class="w3-left ">{{ $profiledata->first_name }} {{ $profiledata->last_name }}</h4>
+                                <br><br>
+                                <hr class="w3-clear">
+                                <form action="{{ route('posts.store') }}" method="post">
+                                    @csrf
+
+                                    <input class="w3-input w3-bold w3-round-xxlarge w3-padding-large w3-border-black w3-border"
+                                        type="text" placeholder="Post Title" id="title" name="title" required><br>
+                                    <textarea class="w3-input w3-round-xxlarge w3-padding-large w3-border-black w3-border"
+                                        name="body" id="body" rows="3" required
+                                        placeholder="What do you wanna post about?"></textarea><br>
+                                    <button
+                                        class="w3-button w3-black w3-round-xxlarge w3-padding-large w3-block w3-margin-bottom"
+                                        type="submit">Post</button>
+
+                                </form>
+
+
+                            </div><br>
+
+                        @endif
+
+                        @if (auth()->user()->id === $profiledata->id)
+                            <h1 class="w3-xxxlarge w3-bold">Your Posts</h1>
+                        @else
+                        <h1 class="w3-xxxlarge w3-bold">{{ $profiledata->first_name }}'s Posts</h1>
+                        @endif
+
 
                         @foreach ($posts as $post)
-                            <x-post-structure :post="$post"></x-post-structure>
+                            <x-post-structure :post="$post" :showActions=" auth()->user()->id === $profiledata->id "/>
                         @endforeach
 
                     </div>

@@ -94,9 +94,9 @@
 <div class="w3-container w3-card w3-white w3-round-xlarge" 
      style="max-width:800px; margin:40px auto;"><br>
                             
-    <form action="{{ route('posts.store') }}" method="post">
-        @csrf
-
+    <form action="{{ route('posts.update', $post->id) }}" method="post">
+                    @csrf
+                    @method('PUT')
         <input class="w3-input w3-round-xxlarge w3-padding-large w3-border-black w3-border w3-bold"
             type="text" value="{{ $post->title }}" id="title" name="title" required><br>
         <textarea class="w3-input w3-round-xxlarge w3-padding-large w3-border-black w3-border"

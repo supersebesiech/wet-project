@@ -12,9 +12,10 @@ class PostStructure extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(public Post $post,)
+   
+    public function __construct(public Post $post, public bool $showActions = true)
     {
-        
+        $this->showActions = $showActions;
     }
 
     /**

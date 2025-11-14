@@ -4,7 +4,7 @@
                     <h3 class="w3-xxlarge w3-bold">My Profile</h3>
                     <!-- Profile Picture -->
                     <img class="w3-circle w3-border w3-margin-bottom "
-                         src="/profilePictures/{{ auth()->user()->id }}.png"
+                         src="{{ $profiledata->profile_picture }}"
                         alt="Profile picture of User" style="width:150px; height:150px; object-fit:cover;">
 
                     <!-- Profile Info -->

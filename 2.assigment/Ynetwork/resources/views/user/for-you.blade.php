@@ -69,11 +69,11 @@
 
         <div class="w3-cell w3-cell-middle w3-right-align" style="width:25%;">
             <div class="w3-dropdown-hover w3-right w3-transparent">
-                  <img data-user-id="{{ auth()->user()->id }}" src="/profilePictures/{{ auth()->user()->id }}.png" alt="User profile"
+                  <img data-user-id="{{ auth()->user()->id }}" src="{{ auth()->user()->profile_picture }}" alt="User profile"
                 class="w3-image w3-circle" style="height:60px; object-fit:cover; vertical-align:middle;">
                 <div class="w3-dropdown-content w3-bar-block w3-border w3-border-black w3-round-xxlarge w3-animate-zoom" style="right:0">
                 <a href="{{ route('user.profile') }}" class="w3-bar-item w3-button w3-transparent w3-round-xxlarge">Profile</a>
-                <a href="#" class="w3-bar-item w3-button w3-transparent w3-round-xxlarge">Logout</a>
+                <a href="{{ route('logout') }}" class="w3-bar-item w3-button w3-transparent w3-round-xxlarge">Logout</a>
                 </div>
             </div>
             <div class="w3-clear"></div>
@@ -97,7 +97,7 @@
 
             <div class="w3-container">
                 @foreach ($posts as $post)
-                    <x-post-structure :post="$post"></x-post-structure>
+                    <x-post-structure :post="$post" :showActions="false" />
                 @endforeach
             </div>
         </div>
