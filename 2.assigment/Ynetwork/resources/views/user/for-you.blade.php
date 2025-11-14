@@ -92,7 +92,7 @@
 
     <!-- Main Content -->
     <div class="main-content w3-animate-opacity">
-        <div class="w3-col w3-center">
+        <div class="w3-container w3-center" style="max-width:800px; margin:auto;">
             <h1 class="w3-xxxlarge w3-bold">For you page</h1>
 
             <div class="w3-container">

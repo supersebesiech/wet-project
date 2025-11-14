@@ -89,7 +89,7 @@
 
     <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
 
-        <div class="w3-row w3-margin-top">
+        <div class="w3-row w3-margin-top ">
 
             <div class="w3-col m3 ">
                 <x-profile-structure :profiledata="$profiledata"></x-profile-structure>
@@ -98,7 +98,7 @@
                 <div class="w3-col w3-center">
 
 
-                    <div class="w3-container">
+                    <div class="w3-container w3-padding-small">
 
 
                         <div class="w3-container w3-card w3-white w3-round-xlarge w3-margin"><br>
@@ -133,7 +133,24 @@
 
                 </div>
             </div>
+
             <div class="w3-col m2">
+                <div class="w3-col w3-center">
+
+
+                    <div class="w3-container w3-padding-small">
+
+                        <div class="w3-container w3-card w3-white w3-round-xlarge w3-margin"><br>
+                        <h4 class="w3-bold">Chats</h4>
+
+                        </div>
+                        <div class="w3-container w3-card w3-white w3-round-xlarge w3-margin"><br>
+                        <h4 class="w3-bold">Friend requests</h4>
+
+                        </div>
+                    </div>
+
+                    </div>
 
             </div>
 
