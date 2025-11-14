@@ -32,7 +32,7 @@
 <script src="../Scripts/LogoutPopup.js"></script>
 
 <body>
-    <h1>My Profile</h1>
+    <h1>{{ $profiledata->first_name }}'s Profile</h1>
 
     <aside class="userprofile" aria-labelledby="user-name">
 
@@ -63,6 +63,7 @@
             </dl>
 
             <button type="button">Save Profile</button>
+            <button type="button">Add as Friend</button>
         </section>
     </aside>
     <div id="logout-popup" class="logout-popup" style="display:none;">
@@ -71,7 +72,7 @@
             <button id="close-popup-btn">Cancel</button>
         </div>
     </div>
-    <h2 class="myposts">My Posts</h2>
+    <h2 class="myposts">{{ $profiledata->first_name }}'s Posts</h2>
     <div class="posts-container" id="postsContainer">
 
         <div class="newpost">
