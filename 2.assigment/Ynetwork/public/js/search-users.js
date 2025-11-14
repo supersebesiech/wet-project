@@ -15,7 +15,23 @@ document.getElementById('search').addEventListener('input', function () {
                     item.href = `/users/${user.id}`;
 
                     let img = document.createElement('img');
-                    img.src = user.profile_picture || '/images/default-avatar.jpg'; //Currently gets profile_picture from non-existend location. Default image is used to replace it
+                    // mark as search result avatar for optional auto-init
+                    img.classList.add('user-avatar');
+                    img.setAttribute('data-user-id', user.id);
+                    // If the helper is available use it; otherwise fall back to direct src
+                    if (window.setUserAvatar) {
+                        window.setUserAvatar(img, user.id);
+                    } else {
+                        img.src = `/profilePictures/${user.id}.png`;
+                        img.onerror = function() {
+                            if (this.dataset.attempted !== 'true') {
+                                this.dataset.attempted = 'true';
+                                this.src = `/profilePictures/${user.id}.jpg`;
+                            } else if (this.src !== '/images/default-avatar.jpg') {
+                                this.src = '/images/default-avatar.jpg';
+                            }
+                        };
+                    }
 
                     let name = document.createElement('span');
                     name.textContent = `${user.first_name} ${user.last_name}`

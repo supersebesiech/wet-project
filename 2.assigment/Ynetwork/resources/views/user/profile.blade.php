@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ asset('css/PostStyle.css') }}">
     <link rel="stylesheet" href="{{ asset('css/NewPostStyle.css') }}">
     <link rel="stylesheet" href="{{ asset('css/LogoutPopupStyle.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('css/SearchStyle.css') }}">
     <link rel="stylesheet" href="{{ asset('css/ProfileStyle.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -18,21 +18,19 @@
 <header class="topbar">
     <img class="logo" src="../Images/Logo2.png" alt="Logo">
 
-    <!--<form class="search-bar" role="search">
-        <input type="text" placeholder="Search Profile">
-        <button aria-label="Search"></button>
-    </form>-->
-
     <!-- Search bar -->
     <div style="position: relative;">
         <input type="text" id="search" placeholder="Search users..." autocomplete="off" class="form-control">
         <div id="search-results" class="dropdown-menu show" style="width: 100%; display: none;"></div>
     </div>
+    <script src="{{ asset('js/get-user-avatar.js') }}"></script>
     <script src="{{ asset('js/search-users.js') }}"></script>
-
+    <!-- Search bar end -->
+    
     <nav>
         <a href="{{ route('user.for-you') }}">Home</a>
-        <img src="../Images/Placeholder_ProfilePictures/Placeholder_ProfilePic1.jpeg" alt="User profile">
+        <img class="avatar user-avatar" data-user-id="{{ $profiledata->id }}" src="/profilePictures/{{ $profiledata->id }}.png"
+            alt="Profile picture of User"> <!-- Get user profile picture -->
     </nav>
 
 </header>
@@ -43,9 +41,8 @@
 
     <aside class="userprofile" aria-labelledby="user-name">
 
-        <img class="avatar" src="../Images/Placeholder_ProfilePictures/Placeholder_ProfilePic1.jpeg"
+        <img class="avatar user-avatar" id="user-avatar" data-user-id="{{ $profiledata->id }}" src="/profilePictures/{{ $profiledata->id }}.png"
             alt="Profile picture of User">
-
 
         <section class="profile-info">
 
@@ -82,8 +79,8 @@
 
         <div class="newpost">
             <div class="newpost-profile">
-                <img src="../Images/Placeholder_ProfilePictures/Placeholder_ProfilePic1.jpeg"
-                    alt="Profile picture of User">
+                <img class="avatar user-avatar" data-user-id="{{ $profiledata->id }}" src="/profilePictures/{{ $profiledata->id }}.png"
+                    alt="Profile picture of User"> <!-- Get user profile picture -->
                 <div class="newposter-username">My Name</div>
             </div>
             <div class="newpost-content">

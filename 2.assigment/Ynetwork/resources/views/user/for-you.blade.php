@@ -20,11 +20,14 @@
         <input type="text" id="search" placeholder="Search users..." autocomplete="off" class="form-control">
         <div id="search-results" class="dropdown-menu show" style="width: 100%; display: none;"></div>
     </div>
+    <script src="{{ asset('js/get-user-avatar.js') }}"></script>
     <script src="{{ asset('js/search-users.js') }}"></script>
+    <!-- Search bar end -->
 
     <nav>
         <a href="{{ route('user.profile') }}">My Profile</a>
-        <img src="../Images/Placeholder_ProfilePictures/Placeholder_ProfilePic1.jpeg" alt="User profile">
+        <img class="avatar user-avatar" data-user-id="{{ auth()->user()->id }}" src="/profilePictures/{{ auth()->user()->id }}.png"
+            alt="Profile picture of User"> <!-- Get user profile picture -->
     </nav>
 </header>
 <script src="../Scripts/LogoutPopup.js"></script>
