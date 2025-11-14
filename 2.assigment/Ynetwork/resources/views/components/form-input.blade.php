@@ -1,1 +1,1 @@
-<input {{ $attributes->merge(['class' => 'border-2 border-black rounded-full bg-white h-10 w-60 text-xl text-center']) }}>
+<input {{ $attributes->merge(['class' => 'w3-border w3-border-black w3-round-xlarge w3-white w3-large w3-center', 'style' => 'width:240px; height:40px;']) }}>
