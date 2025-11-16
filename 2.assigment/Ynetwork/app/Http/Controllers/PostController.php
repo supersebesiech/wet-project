@@ -74,6 +74,11 @@ class PostController extends Controller
     public function destroy(string $id)
     {
         $post = Post::find($id);
+        $user = auth()->user();
+        if (!$user->is_admin && $post->user_id !== $user->id) {
+            abort(403, 'Unauthorized');
+        }
+
         $post->delete();
         return redirect()->route('user.profile')
         ->with('success','Post deleted successfully.');

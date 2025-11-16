@@ -72,7 +72,7 @@
                 class="w3-image w3-circle" style="height:60px; object-fit:cover; vertical-align:middle;">
                 <div class="w3-dropdown-content w3-bar-block w3-border w3-border-black w3-round-xxlarge w3-animate-zoom" style="right:0">
                 <a href="{{ route('user.profile') }}" class="w3-bar-item w3-button w3-transparent w3-round-xxlarge">Profile</a>
-                <a href="#" class="w3-bar-item w3-button w3-transparent w3-round-xxlarge">Logout</a>
+                <a href="{{ route('logout') }}" class="w3-bar-item w3-button w3-transparent w3-round-xxlarge">Logout</a>
                 </div>
             </div>
             <div class="w3-clear"></div>

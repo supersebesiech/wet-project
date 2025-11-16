@@ -16,6 +16,11 @@ class ProfileController extends Controller
      */
     public function profile()
     {
+
+        if (!auth()->check()) {
+        return redirect('/'); // redirect guests to homepage
+    }
+
         $profiledata = auth()->user();
         // SORT POSTS DESCENDING BY CREATED_AT
         //$posts = Post::all()->sortByDesc('created_at');
@@ -25,6 +30,7 @@ class ProfileController extends Controller
                  ->latest()
                  ->get();
 
-        return view('user.profile', compact('posts'), compact('profiledata'));
+        return view('user.profile', compact('posts', 'profiledata'));
+
     }
 }
