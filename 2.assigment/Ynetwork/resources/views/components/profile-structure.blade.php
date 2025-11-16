@@ -9,39 +9,51 @@
 
                     <!-- Profile Info -->
                     <section class="w3-container w3-padding-small">
+                        <form method="POST" action="/edit">
+                            @csrf
+                            <!-- User Name -->
+                            <input id="user-name" class="w3-input w3-round-xxlarge w3-margin-bottom w3-center"
+                                type="text" value="{{ $profiledata->first_name }} {{ $profiledata->last_name }}" disabled>
 
-                        <!-- User Name -->
-                        <input id="user-name" class="w3-input w3-round-xxlarge w3-margin-bottom w3-center"
-                            type="text" value="{{ $profiledata->first_name }} {{ $profiledata->last_name }}" disabled>
+                            <!-- Bio -->
+                            @can('update', $profiledata)
+                                <textarea id="bio" name="bio" class="w3-border w3-round-large w3-padding-small w3-white w3-margin-bottom">
+                                    {{ $profiledata->bio }}
+                                </textarea>
+                            @else
+                                <textarea disabled id="bio" name="bio" class="w3-border w3-round-large w3-padding-small w3-white w3-margin-bottom">
+                                {{ $profiledata->bio }}
+                                </textarea>
+                            @endcan
 
-                        <!-- Bio -->
-                        <div class="w3-border w3-round-large w3-padding-small w3-white w3-margin-bottom"
-                            contenteditable="true" disabled style="min-height:60px;">
-                            {{ $profiledata->bio }}
-                        </div>
+                            <!-- Stats -->
+                            <dl class="w3-container w3-small w3-text-dark-grey w3-margin-bottom" style="text-align:left;">
+                                @can('update', $profiledata)
+                                    <div class="w3-row-padding w3-margin-bottom">
+                                        <dt class="w3-col s5 w3-text-black">Email:</dt>
+                                        <input id="email" name="email" class="w3-col s7" value="{{ $profiledata->email }}">
+                                    </div>
+                                @endcan
 
-                        <!-- Stats -->
-                        <dl class="w3-container w3-small w3-text-dark-grey w3-margin-bottom" style="text-align:left;">
-                            <div class="w3-row-padding w3-margin-bottom">
-                                <dt class="w3-col s5 w3-text-black">Birthday:</dt>
-                                <dd class="w3-col s7">{{ $profiledata->birthdate->format('d. F Y') }}</dd>
-                            </div>
+                            @can('update', $profiledata)
+                                <div class="w3-row-padding w3-margin-bottom">
+                                    <dt class="w3-col s5 w3-text-black">Birthday:</dt>
+                                    <dd class="w3-col s7">{{ $profiledata->birthdate->format('d. F Y') }}</dd>
+                                </div>
+                            @endcan
 
-                            <div class="w3-row-padding w3-margin-bottom">
-                                <dt class="w3-col s5 w3-text-black">Email:</dt>
-                                <dd class="w3-col s7">{{ $profiledata->email }}</dd>
-                            </div>
+                                <div class="w3-row-padding">
+                                    <dt class="w3-col s5 w3-text-black">Joined on:</dt>
+                                    <dd class="w3-col s7">{{ $profiledata->created_at->format('d. F Y') }}</dd>
+                                </div>
+                            </dl>
 
-                            <div class="w3-row-padding">
-                                <dt class="w3-col s5 w3-text-black">Joined on:</dt>
-                                <dd class="w3-col s7">{{ $profiledata->created_at->format('d. F Y') }}</dd>
-                            </div>
-                        </dl>
-
-                        <!-- Save Button -->
-                        <button type="button" class="w3-button w3-black w3-round-large w3-margin-top">
-                            Edit Profile
-                        </button>
+                            <!-- Save Button -->
+                            @can('update', $profiledata)
+                            <button type="submit" class="w3-button w3-black w3-round-large w3-margin-top">
+                                Save
+                            </button>
+                            @endcan
+                        </form>
                     </section>
                 </aside>
-           

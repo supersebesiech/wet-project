@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
+    /**
+     * Display posts for "Profile" page.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function profile()
     {
         $profiledata = auth()->user();
@@ -19,10 +24,28 @@ class ProfileController extends Controller
             ->where('status', 'pending')
             ->get();
 
-        $posts = Post::where('user_id', $profiledata->id)
+        $posts = Post::with('user')
+            ->where('user_id', $profiledata->id)
             ->latest()
             ->get();
 
         return view('user.profile', compact('posts', 'profiledata', 'incomingRequests'));
+    }
+
+    public function editUser(Request $request)
+    {
+        $user = Auth::user();
+
+        $validated = $request->validate([
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'bio' => ['nullable', 'string'],
+        ]);
+
+        $user->email = $validated['email'];
+        $user->bio   = $validated['bio'];
+
+        $user->save();
+
+        return redirect('/profile');
     }
 }

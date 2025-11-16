@@ -30,6 +30,7 @@ Route::get('/for-you', [PostController::class, 'foryou']
 
 Route::get('/profile',[ProfileController::class, 'profile']
 )->name('user.profile');
+Route::post('/edit',[ProfileController::class, 'editUser']);
 
 // searched users profile page
 Route::get('/users/{id}', [RegisteredUserController::class, 'show'])->name('users.show');
