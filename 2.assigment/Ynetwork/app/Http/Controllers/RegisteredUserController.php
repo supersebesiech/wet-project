@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Validation\ValidationException;
 use Carbon\Carbon;
+use App\Models\Post;
 
 class RegisteredUserController extends Controller
 {
@@ -39,4 +40,32 @@ class RegisteredUserController extends Controller
 
         return redirect('/for-you');
     }
+
+    //User search function for the search bar (Profile_picture is commented out for now as it is not something within the database and we wanted to do it differently)
+    public function search(Request $request)
+    {
+        $query = $request->get('query');
+
+        $users = User::whereRaw("CONCAT(first_name, ' ', last_name) LIKE ?", ["%{$query}%"])
+                    ->select('id', 'first_name', 'last_name'/*, 'profile_picture'*/)
+                    ->get();
+
+        return response()->json($users);
+    }
+
+    //Function to show the searched user's profile page
+    public function show($id)
+    {
+        $profiledata = User::findOrFail($id);
+
+        $posts = Post::with('user')
+                 ->where('user_id', $profiledata->id)
+                 ->latest()
+                 ->get();
+        
+
+        return view('user.profile', compact('profiledata', 'posts'));
+    }
+
+
 }

@@ -1,5 +1,5 @@
 @props(['name'])
 
 @error($name)
-<p class="text-red-500 text-sm font-semibold mt-2">{{ $message }}</p>
+<p class="w3-text-red w3-small" style="font-weight:600; margin-top:8px;">{{ $message }}</p>
 @enderror

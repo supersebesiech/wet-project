@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rules\Password;
 use Illuminate\Validation\ValidationException;
 
 class SessionController extends Controller
@@ -14,7 +15,7 @@ class SessionController extends Controller
     public function store(){
         $attributes = request()->validate([
             'email' => ['required', 'email'],
-            'password' => ['required']
+            'password' => ['required',Password::min(8)]
         ]);
 
         if(!Auth::attempt($attributes, true)){

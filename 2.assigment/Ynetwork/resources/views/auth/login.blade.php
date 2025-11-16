@@ -2,18 +2,31 @@
     {{-- Form --}}
     <form method="POST" action="/login" class="pt-14  ">
         @csrf
-        <div class="flex flex-col items-center gap-5">
-            <div class="flex flex-col gap-5">
-                <x-form-input  id="email" name="email" required type="email" placeholder="Email"></x-form-input>
-                <x-form-error name="email"></x-form-error>
-                <x-form-input  id="password" name="password" required type="password" placeholder="Password"></x-form-input>
-                <x-form-error name="password"></x-form-error>
-            </div>
-            <div class="flex flex-col gap-0.5">
-                <button class="bg-black text-white rounded-full py-2 px-4" type="submit">Login</button>
-                <a class="text-white" href="/reset" class="">Reset Password</a>
-                <a class="text-white" href="/register" class="">Register</a>
+        <div class="w3-container w3-center" style="max-width:400px; margin:auto;">
+            <div class="w3-padding-large">
+                <x-form-input class="w3-input w3-border w3-round-xxlarge w3-margin-bottom" id="email" name="email"
+                    required type="email" placeholder="Email"></x-form-input>
+
+                <x-form-error name="email" class="w3-margin-bottom"></x-form-error>
+
+                <x-form-input class="w3-input w3-border w3-round-xxlarge w3-margin-bottom" id="password" name="password"
+                    required type="password" placeholder="Password"></x-form-input>
+
+                <x-form-error name="password" class="w3-margin-bottom"></x-form-error>
+
+                <button class="w3-button w3-black w3-round-xxlarge w3-padding-large w3-block w3-margin-bottom">
+                    Login
+                </button>
+                <hr class="w3-border-black w3-margin" style="border-width:2px;">
+                <a class="w3-button w3-black w3-round-xxlarge w3-padding-large w3-block w3-margin-bottom" href="/reset">
+                    Reset Password
+                </a>
+
+                <a class="w3-button w3-black w3-round-xxlarge w3-padding-large w3-block" href="/register">
+                    Register
+                </a>
             </div>
         </div>
+
     </form>
 </x-login-layout>
