@@ -39,9 +39,11 @@
                             </dl>
 
                             <!-- Save Button -->
+                            @can('edit', $profiledata)
                             <button type="submit" class="w3-button w3-black w3-round-large w3-margin-top">
                                 Save
                             </button>
+                            @endcan
                         </form>
                     </section>
                 </aside>
