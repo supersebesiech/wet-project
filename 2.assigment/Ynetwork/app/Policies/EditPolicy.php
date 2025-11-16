@@ -6,8 +6,8 @@ use App\Models\User;
 
 class EditPolicy
 {
-    public function edit(User $user, User $profileUser): bool
+    public function update(User $user, User $profileUser): bool
     {
-        return $user->email === $profileUser->email;
+        return $user->id === $profileUser->id;
     }
 }
