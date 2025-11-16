@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\FriendshipController;
 
 Route::get('/', [SessionController::class, 'create']);
 Route::post('/login', [SessionController::class, 'store']);
