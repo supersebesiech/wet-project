@@ -47,7 +47,7 @@
     <div class="w3-cell-row" style="height:60px;">
         <div class="w3-cell w3-cell-middle w3-left-align">
             <a href="{{ route('user.for-you') }}" class="w3-hover-opacity">
-                <img src="{{ asset('Images/Logo2.png') }}" alt="Logo" class="w3-image w3-hover-opacity logo-hover"
+                <img src="{{ asset('images/Logo2.png') }}" alt="Logo" class="w3-image w3-hover-opacity logo-hover"
                     style="height:80px;">
             </a>
 
@@ -61,18 +61,21 @@
                     style="position:absolute; right:10px; background:none; border:none; cursor:pointer; color:#000;">
                     <i class="fa fa-search"></i>
                 </button>
-            <div id="search-results" class="dropdown-menu show" style=" display: none; "></div>
+                <div id="search-results" class="dropdown-menu show" style=" display: none; "></div>
 
             </form>
         </div>
 
         <div class="w3-cell w3-cell-middle w3-right-align" style="width:25%;">
             <div class="w3-dropdown-hover w3-right w3-transparent">
-                  <img data-user-id="{{ auth()->user()->id }}" src="{{ auth()->user()->profile_picture }}" alt="User profile"
-                class="w3-image w3-circle" style="height:60px; object-fit:cover; vertical-align:middle;">
-                <div class="w3-dropdown-content w3-bar-block w3-border w3-border-black w3-round-xxlarge w3-animate-zoom" style="right:0">
-                <a href="{{ route('user.profile') }}" class="w3-bar-item w3-button w3-transparent w3-round-xxlarge">Profile</a>
-                <a href="#" class="w3-bar-item w3-button w3-transparent w3-round-xxlarge">Logout</a>
+                <img data-user-id="{{ auth()->user()->id }}" src="{{ auth()->user()->profile_picture }}"
+                    alt="User profile" class="w3-image w3-circle"
+                    style="height:60px; object-fit:cover; vertical-align:middle;">
+                <div class="w3-dropdown-content w3-bar-block w3-border w3-border-black w3-round-xxlarge w3-animate-zoom"
+                    style="right:0">
+                    <a href="{{ route('user.profile') }}"
+                        class="w3-bar-item w3-button w3-transparent w3-round-xxlarge">Profile</a>
+                    <a href="#" class="w3-bar-item w3-button w3-transparent w3-round-xxlarge">Logout</a>
                 </div>
             </div>
             <div class="w3-clear"></div>
@@ -86,7 +89,6 @@
 
 <body>
 
-
     <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
 
         <div class="w3-row w3-margin-top ">
@@ -95,13 +97,12 @@
                 <x-profile-structure :profiledata="$profiledata"></x-profile-structure>
             </div>
             <div class="w3-col m7">
-                <div class="w3-col w3-center">
 
+                <div class="w3-col w3-center">
 
                     <div class="w3-container w3-padding-small">
 
                         @if (auth()->user()->id === $profiledata->id)
-
 
                             <div class="w3-container w3-card w3-white w3-round-xlarge w3-margin"><br>
                                 <img src="{{ auth()->user()->profile_picture }}" alt="Avatar"
@@ -112,7 +113,8 @@
                                 <form action="{{ route('posts.store') }}" method="post">
                                     @csrf
 
-                                    <input class="w3-input w3-bold w3-round-xxlarge w3-padding-large w3-border-black w3-border"
+                                    <input
+                                        class="w3-input w3-bold w3-round-xxlarge w3-padding-large w3-border-black w3-border"
                                         type="text" placeholder="Post Title" id="title" name="title" required><br>
                                     <textarea class="w3-input w3-round-xxlarge w3-padding-large w3-border-black w3-border"
                                         name="body" id="body" rows="3" required
@@ -120,9 +122,7 @@
                                     <button
                                         class="w3-button w3-black w3-round-xxlarge w3-padding-large w3-block w3-margin-bottom"
                                         type="submit">Post</button>
-
                                 </form>
-
 
                             </div><br>
 
@@ -131,46 +131,97 @@
                         @if (auth()->user()->id === $profiledata->id)
                             <h1 class="w3-xxxlarge w3-bold">Your Posts</h1>
                         @else
-                        <h1 class="w3-xxxlarge w3-bold">{{ $profiledata->first_name }}'s Posts</h1>
+                            <h1 class="w3-xxxlarge w3-bold">{{ $profiledata->first_name }}'s Posts</h1>
                         @endif
 
 
                         @foreach ($posts as $post)
-                            <x-post-structure :post="$post" :showActions=" auth()->user()->id === $profiledata->id "/>
+                            <x-post-structure :post="$post" :showActions=" auth()->user()->id === $profiledata->id " />
                         @endforeach
 
                     </div>
 
                 </div>
+
             </div>
 
             <div class="w3-col m2">
                 <div class="w3-col w3-center">
 
-
                     <div class="w3-container w3-padding-small">
 
                         <div class="w3-container w3-card w3-white w3-round-xlarge w3-margin"><br>
-                        <h4 class="w3-bold">Chats</h4>
+                            <h4 class="w3-bold">Chats</h4>
 
                         </div>
-                        <div class="w3-container w3-card w3-white w3-round-xlarge w3-margin"><br>
-                        <h4 class="w3-bold">Friend requests</h4>
 
-                        </div>
+                        @if (auth()->id() === $profiledata->id)
+
+                            <div class="w3-container w3-card w3-white w3-round-xlarge w3-margin">
+                                <h4 class="w3-bold">Friend Requests</h4>
+
+                                @forelse ($incomingRequests as $req)
+                                    <div class="w3-margin-bottom">
+                                        {{ $req->sender->name }} wants to be your friend
+
+                                        <form action="{{ route('friend.accept', $req->id) }}" method="POST"
+                                            class="w3-margin-top">
+                                            @csrf
+                                            <button type="submit" class="w3-button w3-green w3-round">Accept</button>
+                                        </form>
+
+                                        <form action="{{ route('friend.remove', $req->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="w3-button w3-red w3-round">Decline</button>
+                                        </form>
+                                    </div>
+                                @empty
+                                    <p>No friend requests</p>
+                                @endforelse
+                            </div>
+                        @else
+                            <div class="w3-container w3-card w3-white w3-round-xlarge w3-margin">
+                                <h4 class="w3-bold">Friendship Status</h4>
+
+                                @if (!$friendship)
+                                    <!-- No relationship yet -->
+                                    <form action="{{ route('friend.send', $profiledata->id) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="w3-button w3-blue w3-round">Add Friend</button>
+                                    </form>
+
+                                @elseif ($friendship->status === 'pending')
+                                    @if ($friendship->user_id === auth()->id())
+                                        <!-- YOU sent the request -->
+                                        <button disabled class="w3-button w3-gray w3-round">Request Sent</button>
+                                    @else
+                                        <!-- THEY sent you the request -->
+                                        <p>This user sent you a friend request.</p>
+                                    @endif
+
+                                @elseif ($friendship->status === 'accepted')
+                                    <button disabled class="w3-button w3-green w3-round">Friends</button>
+
+                                    <form action="{{ route('friend.remove', $friendship->id) }}" method="POST"
+                                        class="w3-margin-top">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="w3-button w3-red w3-round">Remove Friend</button>
+                                    </form>
+                                @endif
+                            </div>
+                        @endif
+
                     </div>
 
-                    </div>
+                </div>
 
             </div>
 
         </div>
+
     </div>
-
-
-
-  
-
 
 </body>
 

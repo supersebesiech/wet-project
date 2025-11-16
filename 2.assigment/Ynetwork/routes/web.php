@@ -50,3 +50,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/messages/send', [MessageController::class, 'sendMessage']);
     Route::get('/api/chat/history', [MessageController::class, 'getChatHistory']);
 });
+Route::middleware('auth')->group(function () {
+    Route::post('/friend/send/{id}', [FriendshipController::class, 'send'])->name('friend.send');
+    Route::post('/friend/accept/{id}', [FriendshipController::class, 'accept'])->name('friend.accept');
+    Route::delete('/friend/remove/{id}', [FriendshipController::class, 'remove'])->name('friend.remove');
+});

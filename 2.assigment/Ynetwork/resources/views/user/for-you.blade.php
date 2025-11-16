@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>For you page</title>
-    <link rel="icon" type="image/x-icon" href="../Images/Logo2.png">
+    <link rel="icon" type="image/x-icon" href="../images/Logo2.png">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('css/SearchStyle.css') }}">
@@ -47,7 +47,7 @@
     <div class="w3-cell-row" style="height:60px;">
         <div class="w3-cell w3-cell-middle w3-left-align">
             <a href="{{ route('user.for-you') }}" class="w3-hover-opacity">
-                <img src="{{ asset('Images/Logo2.png') }}" alt="Logo" class="w3-image w3-hover-opacity logo-hover"
+                <img src="{{ asset('images/Logo2.png') }}" alt="Logo" class="w3-image w3-hover-opacity logo-hover"
                     style="height:80px;">
             </a>
 
@@ -66,7 +66,6 @@
             </form>
         </div>
         
-
         <div class="w3-cell w3-cell-middle w3-right-align" style="width:25%;">
             <div class="w3-dropdown-hover w3-right w3-transparent">
                   <img data-user-id="{{ auth()->user()->id }}" src="{{ auth()->user()->profile_picture }}" alt="User profile"

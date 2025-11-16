@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Friendship;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Validation\ValidationException;
 use Carbon\Carbon;
-use App\Models\Post;
 
 class RegisteredUserController extends Controller
 {
@@ -20,19 +21,24 @@ class RegisteredUserController extends Controller
 
     public function store()
     {
-        
-        if(!$attributes = request()->validate([
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'email' => ['required', 'email', 'unique:users', 'confirmed'],
-            'password' => ['required', 'confirmed', Password::min(8)],
-            'birthdate' => ['required', 'date', 'before_or_equal:' . Carbon::now()->subYears(18)->toDateString(),
-    ],
-        ]))
-        {
+
+        if (
+            !$attributes = request()->validate([
+                'first_name' => 'required',
+                'last_name' => 'required',
+                'email' => ['required', 'email', 'unique:users', 'confirmed'],
+                'password' => ['required', 'confirmed', Password::min(8)],
+                'birthdate' => [
+                    'required',
+                    'date',
+                    'before_or_equal:' . Carbon::now()->subYears(18)->toDateString(),
+                ],
+            ])
+        ) {
             throw ValidationException::withMessages([
             ]);
-        };
+        }
+        ;
 
         $user = User::create($attributes);
 
@@ -47,8 +53,8 @@ class RegisteredUserController extends Controller
         $query = $request->get('query');
 
         $users = User::whereRaw("CONCAT(first_name, ' ', last_name) LIKE ?", ["%{$query}%"])
-                    ->select('id', 'first_name', 'last_name'/*, 'profile_picture'*/)
-                    ->get();
+            ->select('id', 'first_name', 'last_name'/*, 'profile_picture'*/)
+            ->get();
 
         return response()->json($users);
     }
@@ -57,15 +63,31 @@ class RegisteredUserController extends Controller
     public function show($id)
     {
         $profiledata = User::findOrFail($id);
+        $user = auth()->user();
 
         $posts = Post::with('user')
-                 ->where('user_id', $profiledata->id)
-                 ->latest()
-                 ->get();
-        
+            ->where('user_id', $profiledata->id)
+            ->latest()
+            ->get();
 
-        return view('user.profile', compact('profiledata', 'posts'));
+        $incomingRequests = Friendship::where('friend_id', $user->id)
+            ->where('status', 'pending')
+            ->get();
+
+        $friendship = Friendship::where(function ($q) use ($user, $profiledata) {
+            $q->where('user_id', $user->id)
+                ->where('friend_id', $profiledata->id);
+        })->orWhere(function ($q) use ($user, $profiledata) {
+            $q->where('user_id', $profiledata->id)
+                ->where('friend_id', $user->id);
+        })->first();
+
+        return view('user.profile', compact(
+            'profiledata',
+            'posts',
+            'incomingRequests',
+            'friendship'
+        ));
     }
-
 
 }
