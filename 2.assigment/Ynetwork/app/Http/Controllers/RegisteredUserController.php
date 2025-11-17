@@ -82,11 +82,14 @@ class RegisteredUserController extends Controller
                 ->where('friend_id', $user->id);
         })->first();
 
+        $friends = $profiledata->all_friends;
+
         return view('user.profile', compact(
             'profiledata',
             'posts',
             'incomingRequests',
-            'friendship'
+            'friendship',
+            'friends'
         ));
     }
 

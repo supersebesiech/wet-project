@@ -32,13 +32,29 @@ class User extends Authenticatable
 
     /** For "friendships" table in database.
      * Handels accepted friends status and pending friend request respectively
-     */ 
+     */
     public function friends()
     {
         return $this->belongsToMany(User::class, 'friendships', 'user_id', 'friend_id')
             ->wherePivot('status', 'accepted')
-            ->withTimestamps();
+            ->withTimestamps()
+            ->withPivot('status');
     }
+
+    public function friendsOf()
+    {
+        return $this->belongsToMany(User::class, 'friendships', 'friend_id', 'user_id')
+            ->wherePivot('status', 'accepted')
+            ->withTimestamps()
+            ->withPivot('status');
+    }
+
+    public function getAllFriendsAttribute()
+    {
+        return $this->friends->merge($this->friendsOf);
+    }
+
+
 
     public function friendRequests()
     {

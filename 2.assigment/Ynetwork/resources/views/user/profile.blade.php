@@ -162,7 +162,7 @@
 
                                 @forelse ($incomingRequests as $req)
                                     <div class="w3-margin-bottom">
-                                        {{ $req->sender->name }} wants to be your friend
+                                        {{ $req->sender->first_name }} {{ $req->sender->last_name }} wants to be your friend
 
                                         <form action="{{ route('friend.accept', $req->id) }}" method="POST"
                                             class="w3-margin-top">
@@ -188,30 +188,45 @@
                                     <!-- No relationship yet -->
                                     <form action="{{ route('friend.send', $profiledata->id) }}" method="POST">
                                         @csrf
-                                        <button type="submit" class="w3-button w3-blue w3-round">Add Friend</button>
+                                        <button type="submit" class="w3-button w3-margin-bottom w3-black w3-round">Add
+                                            Friend</button>
                                     </form>
 
                                 @elseif ($friendship->status === 'pending')
                                     @if ($friendship->user_id === auth()->id())
                                         <!-- YOU sent the request -->
-                                        <button disabled class="w3-button w3-gray w3-round">Request Sent</button>
+                                        <button disabled class="w3-button w3-margin-bottom w3-gray w3-round">Request Sent</button>
                                     @else
                                         <!-- THEY sent you the request -->
                                         <p>This user sent you a friend request.</p>
                                     @endif
 
                                 @elseif ($friendship->status === 'accepted')
-                                    <button disabled class="w3-button w3-green w3-round">Friends</button>
+                                    <p class="w3-text-green w3-margin-bottom">Friends</p>
 
                                     <form action="{{ route('friend.remove', $friendship->id) }}" method="POST"
-                                        class="w3-margin-top">
+                                        class="w3-margin-top w3-margin-bottom">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="w3-button w3-red w3-round">Remove Friend</button>
+                                        <button type="submit" class="w3-button w3-black w3-round">Remove Friend</button>
                                     </form>
                                 @endif
                             </div>
                         @endif
+
+                        <div class="w3-container w3-card w3-white w3-round-xlarge w3-margin">
+                                <h4 class="w3-bold">{{ $profiledata->first_name }} {{ $profiledata->last_name }}'s Friends</h4>
+
+                                @forelse ($friends as $friend)
+                                    <div class="w3-margin-bottom">
+                                        <a href="{{ route('users.show', $friend->id) }}">
+                                            {{ $friend->first_name }} {{ $friend->last_name }}
+                                        </a>
+                                    </div>
+                                @empty
+                                    <p>No friends yet</p>
+                                @endforelse
+                            </div>
 
                     </div>
 

@@ -14,11 +14,12 @@ class ProfileController extends Controller
     /**
      * Display posts for "Profile" page.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function profile()
     {
         $profiledata = auth()->user();
+        $friends = $profiledata->friends()->get();
 
         $incomingRequests = Friendship::where('friend_id', $profiledata->id)
             ->where('status', 'pending')
@@ -29,7 +30,7 @@ class ProfileController extends Controller
             ->latest()
             ->get();
 
-        return view('user.profile', compact('posts', 'profiledata', 'incomingRequests'));
+        return view('user.profile', compact('posts', 'profiledata', 'incomingRequests', 'friends'));
     }
 
     public function editUser(Request $request)
