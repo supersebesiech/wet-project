@@ -1,5 +1,4 @@
-<aside class="w3-card w3-round-large w3-padding w3-light-grey w3-margin w3-center" aria-labelledby="user-name"
-    style="max-width:400px; margin:auto;">
+<aside class="w3-card w3-round-large w3-padding w3-light-grey w3-margin w3-center" aria-labelledby="user-name">
     <h3 class="w3-xxlarge w3-bold">My Profile</h3>
     <!-- Profile Picture -->
     <img class="w3-circle w3-border w3-margin-bottom " src="{{ $profiledata->profile_picture }}"
@@ -15,14 +14,11 @@
 
             <!-- Bio -->
             @can('update', $profiledata)
-                <textarea id="bio" name="bio" class="w3-border w3-round-large w3-padding-small w3-white w3-margin-bottom">
-                                        {{ $profiledata->bio }}
-                                    </textarea>
+                <textarea id="bio" name="bio" class="w3-border w3-round-large w3-padding-small w3-white w3-margin-bottom"
+                    style="resize:none; width:100%; box-sizing:border-box;">{{ $profiledata->bio }}</textarea>
             @else
                 <textarea disabled id="bio" name="bio"
-                    class="w3-border w3-round-large w3-padding-small w3-white w3-margin-bottom">
-                                    {{ $profiledata->bio }}
-                                    </textarea>
+                    class="w3-border w3-round-large w3-padding-small w3-white w3-margin-bottom" style="resize:none; width:100%; box-sizing:border-box;">{{ $profiledata->bio }}</textarea>
             @endcan
 
             <!-- Stats -->
@@ -56,14 +52,14 @@
         </form>
         @if (auth()->user()->is_admin)
             <form action="{{ route('users.destroy', $profiledata) }}" method="post" style="display:inline;">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="w3-button w3-black w3-round-xxlarge w3-margin-top"
-                        onclick="return confirm('Are you sure you want to delete this profile?');">
-                        Delete this profile <i class="fa fa-trash"></i>
-                    </button>
-                </form>
-        </button>
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="w3-button w3-black w3-round-xxlarge w3-margin-top"
+                    onclick="return confirm('Are you sure you want to delete this profile?');">
+                    Delete this profile <i class="fa fa-trash"></i>
+                </button>
+            </form>
+            
         @endif
     </section>
 </aside>

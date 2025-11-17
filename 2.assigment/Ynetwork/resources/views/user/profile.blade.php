@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="../Images/Logo2.png">
+    <link rel="stylesheet" href="{{ asset('css/Utils.css') }}">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('css/SearchStyle.css') }}">
@@ -48,7 +50,7 @@
         <div class="w3-cell w3-cell-middle w3-left-align">
             <a href="{{ route('user.for-you') }}" class="w3-hover-opacity">
                 <img src="{{ asset('Images/Logo2.png') }}" alt="Logo" class="w3-image w3-hover-opacity logo-hover"
-                    style="height:80px;">
+                    style="height:80px; object-fit:cover; vertical-align:middle;">
             </a>
 
         </div>
@@ -61,18 +63,22 @@
                     style="position:absolute; right:10px; background:none; border:none; cursor:pointer; color:#000;">
                     <i class="fa fa-search"></i>
                 </button>
-            <div id="search-results" class="dropdown-menu show" style=" display: none; "></div>
+                <div id="search-results" class="dropdown-menu show" style=" display: none; "></div>
 
             </form>
         </div>
 
         <div class="w3-cell w3-cell-middle w3-right-align" style="width:25%;">
             <div class="w3-dropdown-hover w3-right w3-transparent">
-                  <img data-user-id="{{ auth()->user()->id }}" src="{{ auth()->user()->profile_picture }}" alt="User profile"
-                class="w3-image w3-circle" style="height:60px; object-fit:cover; vertical-align:middle;">
-                <div class="w3-dropdown-content w3-bar-block w3-border w3-border-black w3-round-xxlarge w3-animate-zoom" style="right:0">
-                <a href="{{ route('user.profile') }}" class="w3-bar-item w3-button w3-transparent w3-round-xxlarge">Profile</a>
-                <a href="{{ route('logout') }}" class="w3-bar-item w3-button w3-transparent w3-round-xxlarge">Logout</a>
+                <img data-user-id="{{ auth()->user()->id }}" src="{{ auth()->user()->profile_picture }}"
+                    alt="User profile" class="w3-image w3-circle"
+                    style="height:60px; object-fit:cover; vertical-align:middle;">
+                <div class="w3-dropdown-content w3-bar-block w3-border w3-border-black w3-round-xxlarge w3-animate-zoom"
+                    style="right:0">
+                    <a href="{{ route('user.profile') }}"
+                        class="w3-bar-item w3-button w3-transparent w3-round-xxlarge">Profile</a>
+                    <a href="{{ route('logout') }}"
+                        class="w3-bar-item w3-button w3-transparent w3-round-xxlarge">Logout</a>
                 </div>
             </div>
             <div class="w3-clear"></div>
@@ -91,18 +97,19 @@
 
         <div class="w3-row w3-margin-top ">
 
-            <div class="w3-col m3 ">
+        @if (auth()->user()->id === $profiledata->id)
+            <div class="w3-col l3 m6 s12">
+        @else
+            <div class="w3-col l12 m12 s12 center" style="margin: auto;">
+         @endif
+      
                 <x-profile-structure :profiledata="$profiledata"></x-profile-structure>
+                
             </div>
-            <div class="w3-col m7">
-                <div class="w3-col w3-center">
-
-
-                    <div class="w3-container w3-padding-small">
-
-                        @if (auth()->user()->id === $profiledata->id)
-
-
+            @if (auth()->user()->id === $profiledata->id)
+                <div class="w3-col l6 m6 s12">
+                    <div class="w3-col w3-center">
+                        <div class="w3-container w3-padding-small">
                             <div class="w3-container w3-card w3-white w3-round-xlarge w3-margin"><br>
                                 <img src="{{ auth()->user()->profile_picture }}" alt="Avatar"
                                     class="w3-left w3-circle   w3-margin-right" style="width:60px">
@@ -112,7 +119,8 @@
                                 <form action="{{ route('posts.store') }}" method="post">
                                     @csrf
 
-                                    <input class="w3-input w3-bold w3-round-xxlarge w3-padding-large w3-border-black w3-border"
+                                    <input
+                                        class="w3-input w3-bold w3-round-xxlarge w3-padding-large w3-border-black w3-border"
                                         type="text" placeholder="Post Title" id="title" name="title" required><br>
                                     <textarea class="w3-input w3-round-xxlarge w3-padding-large w3-border-black w3-border"
                                         name="body" id="body" rows="3" required
@@ -120,58 +128,48 @@
                                     <button
                                         class="w3-button w3-black w3-round-xxlarge w3-padding-large w3-block w3-margin-bottom"
                                         type="submit">Post</button>
-
                                 </form>
-
-
                             </div><br>
-
-                        @endif
-
-                        @if (auth()->user()->id === $profiledata->id)
-                            <h1 class="w3-xxxlarge w3-bold">Your Posts</h1>
-                        @else
-                        <h1 class="w3-xxxlarge w3-bold">{{ $profiledata->first_name }}'s Posts</h1>
-                        @endif
-
-
-                        @foreach ($posts as $post)
-                            <x-post-structure :post="$post" :showActions=" auth()->user()->id === $profiledata->id "/>
-                        @endforeach
-
+                        </div>
                     </div>
+                </div>
+            @endif
 
+            @if (auth()->user()->id === $profiledata->id)
+                <div class="w3-col l3 m12 s12">
+                    <div class="w3-col w3-center">
+                        <div class="w3-container w3-padding-small">
+                            <div class="w3-container w3-card w3-white w3-round-xlarge w3-margin"><br>
+                                <h4 class="w3-bold">Chats</h4>
+                            </div>
+                            <div class="w3-container w3-card w3-white w3-round-xlarge w3-margin"><br>
+                                <h4 class="w3-bold">Friend requests</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+            @if (auth()->user()->id === $profiledata->id)
+                <div class="w3-col l12 m12 s12 center" >
+            @else
+                    <div class="w3-col l12 m12 s12 center" >
+                    
+                @endif
+                <div class="w3-col w3-center" style="max-width:800px; margin:auto;">
+                    <div class="w3-container w3-padding-small"></div>
+                    @if (auth()->user()->id === $profiledata->id)
+                        <h1 class="w3-xxxlarge w3-bold">Your Posts</h1>
+                    @else
+                        <h1 class="w3-xxxlarge w3-bold">{{ $profiledata->first_name }}'s Posts</h1>
+                    @endif
+                    @foreach ($posts as $post)
+                        <x-post-structure :post="$post" :showActions="auth()->user()->id === $profiledata->id" />
+                    @endforeach
                 </div>
             </div>
-
-            <div class="w3-col m2">
-                <div class="w3-col w3-center">
-
-
-                    <div class="w3-container w3-padding-small">
-
-                        <div class="w3-container w3-card w3-white w3-round-xlarge w3-margin"><br>
-                        <h4 class="w3-bold">Chats</h4>
-
-                        </div>
-                        <div class="w3-container w3-card w3-white w3-round-xlarge w3-margin"><br>
-                        <h4 class="w3-bold">Friend requests</h4>
-
-                        </div>
-                    </div>
-
-                    </div>
-
-            </div>
-
         </div>
     </div>
-
-
-
-  
-
-
+    </div>
 </body>
 
 <footer>
