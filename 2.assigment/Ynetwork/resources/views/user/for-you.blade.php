@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>For you page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="../Images/Logo2.png">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -48,7 +49,7 @@
         <div class="w3-cell w3-cell-middle w3-left-align">
             <a href="{{ route('user.for-you') }}" class="w3-hover-opacity">
                 <img src="{{ asset('Images/Logo2.png') }}" alt="Logo" class="w3-image w3-hover-opacity logo-hover"
-                    style="height:80px;">
+                   style="height:80px; object-fit:cover; vertical-align:middle;">
             </a>
 
         </div>
@@ -61,19 +62,23 @@
                     style="position:absolute; right:10px; background:none; border:none; cursor:pointer; color:#000;">
                     <i class="fa fa-search"></i>
                 </button>
-                         <div id="search-results" class="dropdown-menu show" style="width: 100%; display: none;"></div>
-    
+                <div id="search-results" class="dropdown-menu show" style="width: 100%; display: none;"></div>
+
             </form>
         </div>
-        
+
 
         <div class="w3-cell w3-cell-middle w3-right-align" style="width:25%;">
             <div class="w3-dropdown-hover w3-right w3-transparent">
-                  <img data-user-id="{{ auth()->user()->id }}" src="{{ auth()->user()->profile_picture }}" alt="User profile"
-                class="w3-image w3-circle" style="height:60px; object-fit:cover; vertical-align:middle;">
-                <div class="w3-dropdown-content w3-bar-block w3-border w3-border-black w3-round-xxlarge w3-animate-zoom" style="right:0">
-                <a href="{{ route('user.profile') }}" class="w3-bar-item w3-button w3-transparent w3-round-xxlarge">Profile</a>
-                <a href="{{ route('logout') }}" class="w3-bar-item w3-button w3-transparent w3-round-xxlarge">Logout</a>
+                <img data-user-id="{{ auth()->user()->id }}" src="{{ auth()->user()->profile_picture }}"
+                    alt="User profile" class="w3-image w3-circle"
+                    style="height:60px; object-fit:cover; vertical-align:middle;">
+                <div class="w3-dropdown-content w3-bar-block w3-border w3-border-black w3-round-xxlarge w3-animate-zoom"
+                    style="right:0">
+                    <a href="{{ route('user.profile') }}"
+                        class="w3-bar-item w3-button w3-transparent w3-round-xxlarge">Profile</a>
+                    <a href="{{ route('logout') }}"
+                        class="w3-bar-item w3-button w3-transparent w3-round-xxlarge">Logout</a>
                 </div>
             </div>
             <div class="w3-clear"></div>
@@ -103,7 +108,7 @@
         </div>
     </div>
 
- 
+
 
     @include('components.chat-bar')
 

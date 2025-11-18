@@ -35,6 +35,8 @@ Route::post('/upload',[ProfileController::class, 'upload']);
 // searched users profile page
 Route::get('/users/{id}', [RegisteredUserController::class, 'show'])->name('users.show');
 
+Route::delete('/users/{user}', [RegisteredUserController::class, 'destroy'])->name('users.destroy');
+
 Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
 // adds a post to the database
 Route::post('/posts', [PostController::class, 'store'])->name('posts.store');

@@ -17,6 +17,11 @@ class ProfileController extends Controller
      */
     public function profile()
     {
+
+        if (!auth()->check()) {
+        return redirect('/'); // redirect guests to homepage
+    }
+
         $profiledata = auth()->user();
 
         $posts = Post::with('user')
