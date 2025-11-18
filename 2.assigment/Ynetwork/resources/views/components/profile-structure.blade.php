@@ -9,6 +9,13 @@
 
                     <!-- Profile Info -->
                     <section class="w3-container w3-padding-small">
+                        @can('update', $profiledata)
+                        <form action="/upload" method="POST" enctype="multipart/form-data" class="w3-margin-bottom">
+                            @csrf
+                            <input type="file" name="picture" accept="image/*">
+                            <button type="submit">Upload Picture</button>
+                        </form>
+                        @endcan
                         <form method="POST" action="/edit">
                             @csrf
                             <!-- User Name -->

@@ -51,22 +51,22 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
 
-    public function getProfilePictureAttribute()
-    {
-        $id = $this->id;
-
-        $png = public_path("profilePictures/{$id}.png");
-        $jpg = public_path("profilePictures/{$id}.jpg");
-
-        if (File::exists($png)) {
-            return "/profilePictures/{$id}.png";
-        }
-
-        if (File::exists($jpg)) {
-            return "/profilePictures/{$id}.jpg";
-        }
-
-        return "/profilePictures/default.jpg";
-    }
+//    public function getProfilePictureAttribute()
+//    {
+//        $id = $this->id;
+//
+//        $png = public_path("profilePictures/{$id}.png");
+//        $jpg = public_path("profilePictures/{$id}.jpg");
+//
+//        if (File::exists($png)) {
+//            return "/profilePictures/{$id}.png";
+//        }
+//
+//        if (File::exists($jpg)) {
+//            return "/profilePictures/{$id}.jpg";
+//        }
+//
+//        return "/profilePictures/default.jpg";
+//    }
 
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 
 class ProfileController extends Controller
@@ -42,4 +43,32 @@ class ProfileController extends Controller
 
         return redirect('/profile');
     }
+
+    public function upload(Request $request)
+    {
+        $request->validate([
+            'picture' => 'required|image|mimes:jpg,jpeg,png|max:2048'
+        ]);
+
+        $user = auth()->user();
+
+        if ($user->profile_picture && $user->profile_picture !== 'profilePictures/default.jpg') {
+            $oldPath = public_path($user->profile_picture);
+
+            if (file_exists($oldPath)) {
+                unlink($oldPath);
+            }
+        }
+
+        $filename = $user->id . '.' . $request->picture->extension();
+        $path = 'profilePictures/' . $filename;
+
+        $request->picture->move(public_path('profilePictures'), $filename);
+
+        $user->profile_picture = $path;
+        $user->save();
+
+        return back()->with('success', 'Profile picture updated.');
+    }
+
 }
