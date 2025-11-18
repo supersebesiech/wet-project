@@ -18,6 +18,11 @@ class ProfileController extends Controller
      */
     public function profile()
     {
+
+        if (!auth()->check()) {
+        return redirect('/'); // redirect guests to homepage
+    }
+
         $profiledata = auth()->user();
         $friends = $profiledata->friends()->get();
 

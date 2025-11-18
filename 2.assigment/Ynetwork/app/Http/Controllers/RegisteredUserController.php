@@ -93,4 +93,15 @@ class RegisteredUserController extends Controller
         ));
     }
 
+    public function destroy(User $user)
+    {
+        if (!auth()->user()->is_admin || auth()->id() === $user->id) {
+            return redirect()->back()->with('error', 'You are not authorized to delete this user.');
+        }
+
+        $user->delete();
+
+        return redirect()->route('user.for-you')->with('message', 'User deleted successfully.');
+    }
+
 }
