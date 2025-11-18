@@ -91,59 +91,53 @@
 
 
 <body>
-
     <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
 
         <div class="w3-row w3-margin-top ">
 
-        @if (auth()->user()->id === $profiledata->id)
-            <div class="w3-col l3 m6 s12">
-        @else
-            <div class="w3-col l12 m12 s12 center" style="margin: auto;">
-         @endif
-      
-                <x-profile-structure :profiledata="$profiledata"></x-profile-structure>
-                
-            </div>
             @if (auth()->user()->id === $profiledata->id)
-                <div class="w3-col l6 m6 s12">
-                    <div class="w3-col w3-center">
-                        <div class="w3-container w3-padding-small">
-                            <div class="w3-container w3-card w3-white w3-round-xlarge w3-margin"><br>
-                                <img src="{{ auth()->user()->profile_picture }}" alt="Avatar"
-                                    class="w3-left w3-circle   w3-margin-right" style="width:60px">
-                                <h4 class="w3-left ">{{ $profiledata->first_name }} {{ $profiledata->last_name }}</h4>
-                                <br><br>
-                                <hr class="w3-clear">
-                                <form action="{{ route('posts.store') }}" method="post">
-                                    @csrf
+                <div class="w3-col l3 m6 s12">
+            @else
+                <div class="w3-col l12 m12 s12 center" style="margin: auto;">
+            @endif
+        
+            <x-profile-structure :profiledata="$profiledata"></x-profile-structure>
+                    
+            </div>
+                @if (auth()->user()->id === $profiledata->id)
+                    <div class="w3-col l6 m6 s12">
+                        <div class="w3-col w3-center">
+                            <div class="w3-container w3-padding-small">
+                                <div class="w3-container w3-card w3-white w3-round-xlarge w3-margin"><br>
+                                    <img src="{{ auth()->user()->profile_picture }}" alt="Avatar"
+                                        class="w3-left w3-circle   w3-margin-right" style="width:60px">
+                                    <h4 class="w3-left ">{{ $profiledata->first_name }} {{ $profiledata->last_name }}</h4>
+                                    <br><br>
+                                    <hr class="w3-clear">
+                                    <form action="{{ route('posts.store') }}" method="post">
+                                        @csrf
 
-                                    <input
-                                        class="w3-input w3-bold w3-round-xxlarge w3-padding-large w3-border-black w3-border"
-                                        type="text" placeholder="Post Title" id="title" name="title" required><br>
-                                    <textarea class="w3-input w3-round-xxlarge w3-padding-large w3-border-black w3-border"
-                                        name="body" id="body" rows="3" required
-                                        placeholder="What do you wanna post about?"></textarea><br>
-                                    <button
-                                        class="w3-button w3-black w3-round-xxlarge w3-padding-large w3-block w3-margin-bottom"
-                                        type="submit">Post</button>
-                                </form>
-
-                            </div><br>
+                                        <input
+                                            class="w3-input w3-bold w3-round-xxlarge w3-padding-large w3-border-black w3-border"
+                                            type="text" placeholder="Post Title" id="title" name="title" required><br>
+                                        <textarea class="w3-input w3-round-xxlarge w3-padding-large w3-border-black w3-border"
+                                            name="body" id="body" rows="3" required
+                                            placeholder="What do you wanna post about?"></textarea><br>
+                                        <button
+                                            class="w3-button w3-black w3-round-xxlarge w3-padding-large w3-block w3-margin-bottom"
+                                            type="submit">Post</button>
+                                    </form>
+                                </div><br>
+                            </div>
                         </div>
                     </div>
-                </div>
-            @endif
-
-            @if (auth()->user()->id === $profiledata->id)
-                <div class="w3-col l3 m12 s12">
-                    <div class="w3-col w3-center">
-                        <div class="w3-container w3-padding-small">
-                            <div class="w3-container w3-card w3-white w3-round-xlarge w3-margin"><br>
-                                <h4 class="w3-bold">Chats</h4>
-                            </div>
-                            @if (auth()->id() === $profiledata->id)
-
+                    
+                    <div class="w3-col l3 m12 s12">
+                        <div class="w3-col w3-center">
+                            <div class="w3-container w3-padding-small">
+                                <div class="w3-container w3-card w3-white w3-round-xlarge w3-margin"><br>
+                                    <h4 class="w3-bold">Chats</h4>
+                                </div>
                                 <div class="w3-container w3-card w3-white w3-round-xlarge w3-margin">
                                     <h4 class="w3-bold">Friend Requests</h4>
 
@@ -167,63 +161,28 @@
                                         <p>No friend requests</p>
                                     @endforelse
                                 </div>
-                            @else
                                 <div class="w3-container w3-card w3-white w3-round-xlarge w3-margin">
-                                    <h4 class="w3-bold">Friendship Status</h4>
+                                    <h4 class="w3-bold">{{ $profiledata->first_name }} {{ $profiledata->last_name }}'s Friends</h4>
 
-                                    @if (!$friendship)
-                                        <!-- No relationship yet -->
-                                        <form action="{{ route('friend.send', $profiledata->id) }}" method="POST">
-                                            @csrf
-                                            <button type="submit" class="w3-button w3-margin-bottom w3-black w3-round">Add
-                                                Friend</button>
-                                        </form>
-
-                                    @elseif ($friendship->status === 'pending')
-                                        @if ($friendship->user_id === auth()->id())
-                                            <!-- YOU sent the request -->
-                                            <button disabled class="w3-button w3-margin-bottom w3-gray w3-round">Request Sent</button>
-                                        @else
-                                            <!-- THEY sent you the request -->
-                                            <p>This user sent you a friend request.</p>
-                                        @endif
-
-                                    @elseif ($friendship->status === 'accepted')
-                                        <p class="w3-text-green w3-margin-bottom">Friends</p>
-
-                                        <form action="{{ route('friend.remove', $friendship->id) }}" method="POST"
-                                            class="w3-margin-top w3-margin-bottom">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="w3-button w3-black w3-round">Remove Friend</button>
-                                        </form>
-                                    @endif
+                                    @forelse ($friends as $friend)
+                                        <div class="w3-margin-bottom">
+                                            <a href="{{ route('users.show', $friend->id) }}">
+                                                {{ $friend->first_name }} {{ $friend->last_name }}
+                                            </a>
+                                        </div>
+                                    @empty
+                                        <p>No friends yet</p>
+                                    @endforelse
                                 </div>
-                            @endif
-                        </div>
-
-                        <div class="w3-container w3-card w3-white w3-round-xlarge w3-margin">
-                                <h4 class="w3-bold">{{ $profiledata->first_name }} {{ $profiledata->last_name }}'s Friends</h4>
-
-                                @forelse ($friends as $friend)
-                                    <div class="w3-margin-bottom">
-                                        <a href="{{ route('users.show', $friend->id) }}">
-                                            {{ $friend->first_name }} {{ $friend->last_name }}
-                                        </a>
-                                    </div>
-                                @empty
-                                    <p>No friends yet</p>
-                                @endforelse
                             </div>
-
+                        </div>
                     </div>
-                </div>
-            @endif
-            @if (auth()->user()->id === $profiledata->id)
-                <div class="w3-col l12 m12 s12 center" >
-            @else
+                @endif
+                @if (auth()->user()->id === $profiledata->id)
                     <div class="w3-col l12 m12 s12 center" >
-                    
+                @else
+                    <div class="w3-col l12 m12 s12 center" >
+                        
                 @endif
                 <div class="w3-col w3-center" style="max-width:800px; margin:auto;">
                     <div class="w3-container w3-padding-small"></div>
@@ -238,8 +197,6 @@
                 </div>
             </div>
         </div>
-
-    </div>
     </div>
 </body>
 
