@@ -9,9 +9,32 @@
         <form method="POST" action="/edit">
             @csrf
             <!-- User Name -->
-            <input id="user-name" class="w3-input w3-round-xxlarge w3-margin-bottom w3-center" type="text"
+            <input id="user-name" class="w3-input w3-round-xxlarge w3-center" type="text"
                 value="{{ $profiledata->first_name }} {{ $profiledata->last_name }}" disabled>
 
+
+            <!-- Add Friend -->
+            @if (auth()->user()->id !== $profiledata->id)
+                @if (auth()->user()->isFriendWith($profiledata))
+                    @php
+                        $friendship = auth()->user()->friendshipWith($profiledata);
+                    @endphp
+                    <form action="{{ route('friend.remove', $profiledata->id) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="w3-button w3-black w3-round-xxlarge w3-margin-top w3-margin-bottom">
+                            Remove Friend <i class="fa fa-user-times"></i>
+                        </button>
+                    </form>
+                @else
+                    <form action="{{ route('friend.send', $profiledata->id) }}" method="POST" style="display:inline;">
+                        @csrf
+                        <button type="submit" class="w3-button w3-black w3-round-xxlarge w3-margin-top w3-margin-bottom">
+                            Add Friend <i class="fa fa-user-plus"></i>
+                        </button>
+                    </form>
+                @endif
+            @endif
             <!-- Bio -->
             @can('update', $profiledata)
                 <textarea id="bio" name="bio" class="w3-border w3-round-large w3-padding-small w3-white w3-margin-bottom"

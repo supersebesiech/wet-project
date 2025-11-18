@@ -27,7 +27,6 @@ class FriendshipController extends Controller
         return back()->with('success', 'Friend request sent');
     }
 
-
     // Accept friend request
     public function accept($relationId)
     {
@@ -41,7 +40,6 @@ class FriendshipController extends Controller
 
         return back()->with('success', 'Friend request accepted');
     }
-
 
     // Remove or unfriend
     public function remove($relationId)

@@ -48,13 +48,33 @@ class User extends Authenticatable
             ->withTimestamps()
             ->withPivot('status');
     }
-
     public function getAllFriendsAttribute()
     {
         return $this->friends->merge($this->friendsOf);
     }
+    public function isFriendWith(User $other): bool
+    {
+        if (! $other) return false;
 
+        // fast DB check (two queries), avoids loading all friends
+        $sent = $this->friends()->where('friend_id', $other->id)->exists();
+        if ($sent) return true;
 
+        $received = $this->friendsOf()->where('user_id', $other->id)->exists();
+        return $received;
+    }
+    public function friendshipWith(User $other)
+    {
+        return Friendship::where(function ($q) use ($other) {
+                $q->where('user_id', $this->id)
+                ->where('friend_id', $other->id);
+            })
+            ->orWhere(function ($q) use ($other) {
+                $q->where('user_id', $other->id)
+                ->where('friend_id', $this->id);
+            })
+            ->first();
+    }
 
     public function friendRequests()
     {

@@ -164,12 +164,14 @@
                                 <div class="w3-container w3-card w3-white w3-round-xlarge w3-margin">
                                     <h4 class="w3-bold">{{ $profiledata->first_name }} {{ $profiledata->last_name }}'s Friends</h4>
 
-                                    @forelse ($friends as $friend)
+                                    @forelse (auth()->user()->allFriends as $friend)
                                         <div class="w3-margin-bottom">
+                                            <img src="{{ $friend->profile_picture }}" alt="Avatar"
+                                            class="w3-left w3-circle w3-margin-bottom" style="width:40px">
                                             <a href="{{ route('users.show', $friend->id) }}">
                                                 {{ $friend->first_name }} {{ $friend->last_name }}
                                             </a>
-                                        </div>
+                                        </div><br>
                                     @empty
                                         <p>No friends yet</p>
                                     @endforelse
