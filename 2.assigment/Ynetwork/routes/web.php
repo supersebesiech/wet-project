@@ -1,9 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\SessionController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProfileController;
@@ -54,6 +54,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/messages/send', [MessageController::class, 'sendMessage']);
     Route::get('/api/chat/history', [MessageController::class, 'getChatHistory']);
 });
+//friendship routes
 Route::middleware('auth')->group(function () {
     Route::post('/friend/send/{id}', [FriendshipController::class, 'send'])->name('friend.send');
     Route::post('/friend/accept/{id}', [FriendshipController::class, 'accept'])->name('friend.accept');

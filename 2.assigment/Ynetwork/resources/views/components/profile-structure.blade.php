@@ -19,7 +19,7 @@
                     @php
                         $friendship = auth()->user()->friendshipWith($profiledata);
                     @endphp
-                    <form action="{{ route('friend.remove', $profiledata->id) }}" method="POST" style="display:inline;">
+                    <form action="{{ route('friend.remove', $friendship) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="w3-button w3-black w3-round-xxlarge w3-margin-top w3-margin-bottom">
