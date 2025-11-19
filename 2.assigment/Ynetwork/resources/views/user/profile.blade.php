@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Profile</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="../Images/Logo2.png">
+    <link rel="icon" type="image/x-icon" href="../images/Logo2.png">
     <link rel="stylesheet" href="{{ asset('css/Utils.css') }}">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -49,7 +49,7 @@
     <div class="w3-cell-row" style="height:60px;">
         <div class="w3-cell w3-cell-middle w3-left-align">
             <a href="{{ route('user.for-you') }}" class="w3-hover-opacity">
-                <img src="{{ asset('Images/Logo2.png') }}" alt="Logo" class="w3-image w3-hover-opacity logo-hover"
+                <img src="{{ asset('images/Logo2.png') }}" alt="Logo" class="w3-image w3-hover-opacity logo-hover"
                     style="height:80px; object-fit:cover; vertical-align:middle;">
             </a>
 
@@ -103,7 +103,7 @@
             <div class="w3-col l12 m12 s12 center" style="margin: auto;">
          @endif
       
-                <x-profile-structure :profiledata="$profiledata"></x-profile-structure>
+            <x-profile-structure :profiledata="$profiledata"></x-profile-structure>
                 
             </div>
             @if (auth()->user()->id === $profiledata->id)
@@ -139,16 +139,76 @@
                 <div class="w3-col l3 m12 s12">
                     <div class="w3-col w3-center">
                         <div class="w3-container w3-padding-small">
+                            <!-- Chats Card -->
                             <div class="w3-container w3-card w3-white w3-round-xlarge w3-margin"><br>
                                 <h4 class="w3-bold">Chats</h4>
                             </div>
+
+                            <!-- Friend Requests Card -->
                             <div class="w3-container w3-card w3-white w3-round-xlarge w3-margin"><br>
-                                <h4 class="w3-bold">Friend requests</h4>
+                                <h4 class="w3-bold">Friend Requests</h4>
+                                
+                                @php
+                                    $friendRequests = \App\Models\Friendship::where('friend_id', auth()->user()->id)
+                                                    ->where('status', 'pending')
+                                                    ->with('sender')
+                                                    ->get();
+                                @endphp
+
+                                @forelse($friendRequests as $request)
+                                    <div class="w3-card w3-light-grey w3-round w3-margin-bottom w3-padding-small">
+                                        <span>{{ $request->sender->first_name }} {{ $request->sender->last_name }}</span>
+                                        <div class="w3-margin-top">
+                                            <img src="{{ $request->sender->profile_picture }}" alt="Avatar" class="w3-circle w3-margin-right"
+                                                style="width:48px; height:48px; object-fit:cover;">
+                                            <form action="{{ route('friend.accept', $request->sender->id) }}" method="POST" style="display:inline;">
+                                                @csrf
+                                                <button class="w3-button w3-green w3-round-xxlarge w3-small">Accept</button>
+                                            </form>
+                                            <form action="{{ route('friend.remove', $request->sender->id) }}" method="POST" style="display:inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="w3-button w3-red w3-round-xxlarge w3-small">Deny</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                @empty
+                                    <p>No friend requests at the moment.</p>
+                                @endforelse
+                            </div>
+
+                            <!-- Friends Card -->
+                            <div class="w3-container w3-card w3-white w3-round-xlarge w3-margin"><br>
+                                <h4 class="w3-bold">Friends</h4>
+
+                                @foreach (auth()->user()->friends() as $friend)
+                                    <div class="w3-container w3-card w3-round-xlarge w3-padding-small w3-border-bottom w3-flex w3-margin-bottom" style="display:flex; align-items:center; gap:12px;">
+                                        
+                                        <!-- Avatar -->
+                                        <img src="{{ $friend->profile_picture }}" 
+                                            alt="Avatar"
+                                            class="w3-circle"
+                                            style="width:48px; height:48px; object-fit:cover;">
+
+                                        <!-- Name -->
+                                        <a href="{{ route('users.show', ['id' => $friend->id]) }}" 
+                                        class="w3-text-black"
+                                        style="text-decoration:none; font-weight:600; font-size:15px;">
+                                            {{ $friend->first_name }} {{ $friend->last_name }}
+                                        </a>
+
+                                    </div>
+                                @endforeach
+
+                                @if ($profiledata->friends()->count() === 0)
+                                    <p class="w3-small w3-text-grey">No friends yet.</p>
+                                @endif
                             </div>
                         </div>
                     </div>
                 </div>
             @endif
+
             @if (auth()->user()->id === $profiledata->id)
                 <div class="w3-col l12 m12 s12 center" >
             @else

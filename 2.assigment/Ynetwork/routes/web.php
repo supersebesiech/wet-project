@@ -1,12 +1,14 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\SessionController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\FriendshipController;
+
 
 Route::get('/', [SessionController::class, 'create']);
 Route::post('/login', [SessionController::class, 'store']);
@@ -53,4 +55,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/messages', [MessageController::class, 'fetchMessages']);
     Route::post('/messages/send', [MessageController::class, 'sendMessage']);
     Route::get('/api/chat/history', [MessageController::class, 'getChatHistory']);
+});
+//friendship routes
+Route::middleware('auth')->group(function () {
+    Route::post('/friend/send/{id}', [FriendshipController::class, 'send'])->name('friend.send');
+    Route::post('/friend/accept/{id}', [FriendshipController::class, 'accept'])->name('friend.accept');
+    Route::post('/friend/deny/{id}', [FriendshipController::class, 'deny'])->name('friend.deny');
+    Route::delete('/friend/remove/{id}', [FriendshipController::class, 'remove'])->name('friend.remove');
 });
