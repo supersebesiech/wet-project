@@ -70,9 +70,9 @@
 
         <div class="w3-cell w3-cell-middle w3-right-align" style="width:25%;">
             <div class="w3-dropdown-hover w3-right w3-transparent">
-                <img data-user-id="{{ auth()->user()->id }}" src="{{ auth()->user()->profile_picture }}"
-                    alt="User profile" class="w3-image w3-circle"
-                    style="height:60px; object-fit:cover; vertical-align:middle;">
+                <img data-user-id="{{ auth()->user()->id }}" src="{{ asset(auth()->user()->profile_picture) }}"
+                     alt="User profile" class="w3-image w3-circle"
+                     style="height:60px; object-fit:cover; vertical-align:middle;">
                 <div class="w3-dropdown-content w3-bar-block w3-border w3-border-black w3-round-xxlarge w3-animate-zoom"
                     style="right:0">
                     <a href="{{ route('user.profile') }}"
@@ -102,16 +102,16 @@
         @else
             <div class="w3-col l12 m12 s12 center" style="margin: auto;">
          @endif
-      
+
             <x-profile-structure :profiledata="$profiledata"></x-profile-structure>
-                
+
             </div>
             @if (auth()->user()->id === $profiledata->id)
                 <div class="w3-col l6 m6 s12">
                     <div class="w3-col w3-center">
                         <div class="w3-container w3-padding-small">
                             <div class="w3-container w3-card w3-white w3-round-xlarge w3-margin"><br>
-                                <img src="{{ auth()->user()->profile_picture }}" alt="Avatar"
+                                <img src="{{ asset(auth()->user()->profile_picture) }}" alt="Avatar"
                                     class="w3-left w3-circle   w3-margin-right" style="width:60px">
                                 <h4 class="w3-left ">{{ $profiledata->first_name }} {{ $profiledata->last_name }}</h4>
                                 <br><br>
@@ -147,7 +147,7 @@
                             <!-- Friend Requests Card -->
                             <div class="w3-container w3-card w3-white w3-round-xlarge w3-margin"><br>
                                 <h4 class="w3-bold">Friend Requests</h4>
-                                
+
                                 @php
                                     $friendRequests = \App\Models\Friendship::where('friend_id', auth()->user()->id)
                                                     ->where('status', 'pending')
@@ -159,7 +159,7 @@
                                     <div class="w3-card w3-light-grey w3-round w3-margin-bottom w3-padding-small">
                                         <span>{{ $request->sender->first_name }} {{ $request->sender->last_name }}</span>
                                         <div class="w3-margin-top">
-                                            <img src="{{ $request->sender->profile_picture }}" alt="Avatar" class="w3-circle w3-margin-right"
+                                            <img src="{{ asset($request->sender->profile_picture) }}" alt="Avatar" class="w3-circle w3-margin-right"
                                                 style="width:48px; height:48px; object-fit:cover;">
                                             <form action="{{ route('friend.accept', $request->sender->id) }}" method="POST" style="display:inline;">
                                                 @csrf
@@ -183,15 +183,15 @@
 
                                 @foreach (auth()->user()->friends() as $friend)
                                     <div class="w3-container w3-card w3-round-xlarge w3-padding-small w3-border-bottom w3-flex w3-margin-bottom" style="display:flex; align-items:center; gap:12px;">
-                                        
+
                                         <!-- Avatar -->
-                                        <img src="{{ $friend->profile_picture }}" 
+                                        <img src="{{ asset($friend->profile_picture) }}"
                                             alt="Avatar"
                                             class="w3-circle"
                                             style="width:48px; height:48px; object-fit:cover;">
 
                                         <!-- Name -->
-                                        <a href="{{ route('users.show', ['id' => $friend->id]) }}" 
+                                        <a href="{{ route('users.show', ['id' => $friend->id]) }}"
                                         class="w3-text-black"
                                         style="text-decoration:none; font-weight:600; font-size:15px;">
                                             {{ $friend->first_name }} {{ $friend->last_name }}
@@ -213,7 +213,7 @@
                 <div class="w3-col l12 m12 s12 center" >
             @else
                     <div class="w3-col l12 m12 s12 center" >
-                    
+
                 @endif
                 <div class="w3-col w3-center" style="max-width:800px; margin:auto;">
                     <div class="w3-container w3-padding-small"></div>

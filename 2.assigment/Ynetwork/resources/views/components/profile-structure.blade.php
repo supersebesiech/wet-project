@@ -1,8 +1,8 @@
 <aside class="w3-card w3-round-large w3-padding w3-light-grey w3-margin w3-center" aria-labelledby="user-name">
     <h3 class="w3-xxlarge w3-bold">My Profile</h3>
     <!-- Profile Picture -->
-    <img class="w3-circle w3-border w3-margin-bottom " src="{{ $profiledata->profile_picture }}"
-        alt="Profile picture of User" style="width:150px; height:150px; object-fit:cover;">
+    <img class="w3-circle w3-border w3-margin-bottom " src="{{ asset($profiledata->profile_picture) }}"
+         alt="Profile picture of User" style="width:150px; height:150px; object-fit:cover;">
 
     <!-- Friend Button (only show if viewing someone else's profile) -->
             @if(auth()->user()->id !== $profiledata->id)
