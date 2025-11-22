@@ -1,246 +1,225 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <title>Chat Sidebar</title>
-    <meta name="csrf-token" content="YOUR_CSRF_TOKEN_HERE" />
-    <style>
-        .chat-bar {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background: #333;
-            color: #fff;
-            text-align: center;
-            padding: 10px 0;
-            box-shadow: 0 -2px 5px rgba(0,0,0,.2);
-        }
-        .chat-bar button.move-left {
-            margin-right: 320px;
-            transition: margin-right .3s;
-        }
-        .chat-bar ul {
-            list-style: none;
-            margin: 0;
-            padding: 0 20px;
-            display: flex;
-            justify-content: flex-end;
-        }
-        .chat-bar button {
-            background: #444;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            transition: margin-right .3s;
-        }
-        .chat-bar button:hover { background: #555; }
+﻿<link rel="stylesheet" href="{{ asset('css/ChatBarStyle.css') }}">
 
-        .right-bar {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            position: fixed;
-            bottom: 0;
-            right: 0;
-            width: 300px;
-            max-height: 90%;
-            background: #ddd;
-            box-shadow: -2px 0 5px rgba(0,0,0,.2);
-            padding: 10px;
-            overflow-y: auto;
-            transition: transform .3s;
-            z-index: 9999;
-            transform: translateX(100%);
-        }
-        .hidden { transform: translateX(100%); }
-        .visible { transform: translateX(0); }
+<style>
+    #rightBar {
+        position: fixed;
+        bottom: 60px;
+        right: 0;
+        width: 340px;
+        height: auto;
+        max-height: calc(90vh - 60px);
+        background: white;
+        box-shadow: -10px 0 20px rgba(0,0,0,0.3);
+        transform: translateX(100%);
+        transition: transform 0.35s ease;
+        z-index: 99999;
+        display: flex;
+        flex-direction: column;
+        border-left: 2px solid #000;
+        border-top: 2px solid #000;
+        border-top-left-radius: 20px;
+        pointer-events: auto;
+    }
+    #rightBar.open {
+        transform: translateX(0);
+    }
+    #chatButton.move {
+        margin-right: 350px;
+        transition: margin-right 0.35s ease;
+    }
+    #chatInput, #msgInput, #sendBtn {
+        pointer-events: auto !important;
+    }
+</style>
 
-        .userButton {
-            display: block;
-            margin: 10px 0;
-            padding: 8px 12px;
-            width: 100%;
-            background: #fff;
-            color: #000;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,.1);
-            cursor: pointer;
-            transition: background .3s, transform .2s;
-        }
-        .userButton:hover {
-            background: #f0f0f0;
-            transform: scale(1.05);
-        }
-
-        .chat-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            background: #444;
-            color: #fff;
-        }
-        .chat-history {
-            flex: 1;
-            padding: 10px;
-            background: #f9f9f9;
-            overflow-y: auto;
-            max-height: 400px;
-        }
-        .chat-history div {
-            margin: 5px 0;
-            padding: 5px;
-            background: #e6e6e6;
-            border-radius: 5px;
-        }
-        #chatMessage {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin-right: 10px;
-        }
-        .send-button {
-            background: #44c767;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background .3s;
-        }
-        .send-button:hover { background: #3ca653; }
-    </style>
-</head>
-<body>
-
-<div class="chat-bar">
-    <ul><button id="chatButton">Chat</button></ul>
+<div class="w3-bar w3-light-blue w3-border-bottom w3-border-black"
+     style="position:fixed;bottom:0;width:100%;z-index:99998;height:60px">
+    <div class="w3-bar-item w3-right">
+        <button id="chatButton"
+                class="w3-button w3-black w3-round-xxlarge"
+                style="padding:12px 32px;margin-right:10px;margin-bottom:8px">
+            Chat
+        </button>
+    </div>
 </div>
 
-<div id="rightBar" class="right-bar hidden">
-    <div id="userList"></div>
+<div id="rightBar">
+    <div class="w3-light-blue w3-padding-large w3-border-bottom w3-border-black">
+        <h4 class="w3-margin-0">Messages</h4>
+    </div>
+
+    <div id="chatContent"
+         style="flex:1;overflow-y:auto;display:flex;flex-direction:column;
+                min-height:380px;max-height:78vh;background:#f8f8f8">
+    </div>
+
+    <div id="chatInput"
+         class="w3-padding w3-border-top w3-light-grey"
+         style="display:none;background:white">
+        <div class="w3-row">
+            <div class="w3-col s9 m9 l9">
+                <input id="msgInput"
+                       class="w3-input w3-border w3-round-xlarge"
+                       style="background:#f2f2f2;height:46px"
+                       placeholder="Type a message..."
+                       autocomplete="off">
+            </div>
+            <div class="w3-col s3 m3 l3">
+                <button id="sendBtn"
+                        class="w3-button w3-black w3-round-xlarge w3-block"
+                        style="height:46px">
+                    Send
+                </button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-        const chatButton   = document.getElementById("chatButton");
-        const rightBar     = document.getElementById("rightBar");
-        const userList     = document.getElementById("userList");
 
-        const populateUserList = async () => {
-            try {
-                const res = await fetch("/components/fetch_users.php");
-                const users = await res.json();
-                userList.innerHTML = "";
+        const btn       = document.getElementById("chatButton");
+        const bar       = document.getElementById("rightBar");
+        const content   = document.getElementById("chatContent");
+        const inputArea = document.getElementById("chatInput");
+        const msgInput  = document.getElementById("msgInput");
+        const sendBtn   = document.getElementById("sendBtn");
 
-                users.forEach(user => {
-                    const btn = document.createElement("button");
-                    btn.textContent = user.full_name || user.name || user.username || "Unknown User";
-                    btn.className   = "userButton";
-                    btn.dataset.userId = user.id;
-                    btn.onclick = () => fetchChatHistory(user.id, btn.textContent);
-                    userList.appendChild(btn);
-                });
-            } catch (err) {
-                userList.innerHTML = `<p>Error loading user list: ${err.message}</p>`;
+        let currentUserId = null;
+
+        btn.onclick = () => {
+            bar.classList.toggle("open");
+            if (bar.classList.contains("open")) {
+                btn.classList.add("move");
+                if (content.children.length === 0) loadUserList();
+            } else {
+                btn.classList.remove("move");
             }
         };
 
-        const fetchChatHistory = async (userId, userName) => {
+        const loadUserList = async () => {
+            content.innerHTML = "<p class='w3-center w3-text-grey'>Loading...</p>";
+            inputArea.style.display = "none";
+
             try {
-                const res = await fetch(`/api/chat/history?user=${userId}`);
+                const res   = await fetch("/components/fetch_users.php");
+                const users = await res.json();
+
+                content.innerHTML = "";
+
+                users.forEach(u => {
+                    const name = u.full_name || u.name || u.username || "User";
+                    const b = document.createElement("button");
+                    b.textContent = name;
+                    b.className =
+                        "w3-button w3-block w3-border w3-round-xlarge " +
+                        "w3-margin-bottom w3-hover-light-grey";
+                    b.style.padding = "16px";
+                    b.onclick = () => openChat(u.id, name);
+                    content.appendChild(b);
+                });
+
+            } catch (err) {
+                content.innerHTML =
+                    "<p class='w3-text-red'>Can't load users</p>";
+            }
+        };
+
+        const openChat = async (userId, userName) => {
+
+            currentUserId = userId;
+            inputArea.style.display = "block";
+
+            content.innerHTML = `
+            <div class="w3-bar w3-light-blue w3-border-bottom w3-border-black">
+                <button id="backBtn" class="w3-button">
+                    <i class="fa fa-arrow-left"></i>
+                </button>
+                <span class="w3-bar-item w3-large">${userName}</span>
+            </div>
+            <div id="msgHistory"
+                 style="flex:1;overflow-y:auto;padding:10px;background:#f8f8f8">
+            </div>
+        `;
+
+            document.getElementById("backBtn").onclick = loadUserList;
+
+            const history = document.getElementById("msgHistory");
+
+            try {
+                const res  = await fetch(`/api/chat/history?user=${userId}`);
                 const data = await res.json();
 
-                userList.innerHTML = "";
+                history.innerHTML = "";
 
-                // Header
-                const header = document.createElement("div");
-                header.className = "chat-header";
-                header.innerHTML = `<span>Chat with ${userName}</span>
-                          <button class="userButton" style="margin-left:auto;" id="backButton">Back</button>`;
-                header.querySelector("#backButton").onclick = populateUserList;
-                userList.appendChild(header);
+                (data.data || []).forEach(m => {
+                    addMessage(m.message, m.user_from != userId);
+                });
 
-                // History
-                const history = document.createElement("div");
-                history.className = "chat-history";
-                if (data.data && data.data.length) {
-                    data.data.forEach(msg => {
-                        const div = document.createElement("div");
-                        div.textContent = `${msg.user_from === userId ? userName : "You"}: ${msg.message}`;
-                        history.appendChild(div);
-                    });
-                } else {
-                    history.textContent = "No messages available.";
-                }
-                userList.appendChild(history);
+                scrollToBottom();
 
-                // Input
-                const inputWrap = document.createElement("div");
-                inputWrap.style.display = "flex";
-                inputWrap.style.marginTop = "10px";
-
-                const input = document.createElement("input");
-                input.type = "text";
-                input.id = "chatMessage";
-                input.placeholder = "Type your message...";
-                input.style.flex = "1";
-                inputWrap.appendChild(input);
-
-                const sendBtn = document.createElement("button");
-                sendBtn.className = "send-button";
-                sendBtn.textContent = "Send";
-                inputWrap.appendChild(sendBtn);
-
-                sendBtn.onclick = async () => {
-                    const message = input.value.trim();
-                    if (!message) return;
-
-                    try {
-                        const postRes = await fetch("/messages/send", {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json",
-                                "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content")
-                            },
-                            body: JSON.stringify({ user_to: userId, message })
-                        });
-
-                        if (!postRes.ok) throw new Error(`Send failed: ${postRes.status}`);
-
-                        const msgDiv = document.createElement("div");
-                        msgDiv.textContent = `You: ${message}`;
-                        history.appendChild(msgDiv);
-                        input.value = "";
-                    } catch (err) {
-                        console.error("Send error:", err.message);
-                    }
-                };
-
-                userList.appendChild(inputWrap);
-            } catch (err) {
-                userList.innerHTML = `<p>Error loading chat: ${err.message}</p>`;
+            } catch (e) {
+                console.error(e);
             }
+
+            const send = async () => {
+                const text = msgInput.value.trim();
+                if (!text) return;
+
+                addMessage(text, true);
+                msgInput.value = "";
+                scrollToBottom();
+
+                try {
+                    await fetch("/messages/send", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "X-CSRF-TOKEN":
+                                document.querySelector('meta[name="csrf-token"]')
+                                    .getAttribute("content")
+                        },
+                        body: JSON.stringify({
+                            user_to: userId,
+                            message: text
+                        })
+                    });
+                } catch (e) {
+                    console.error("Send failed", e);
+                }
+            };
+
+            sendBtn.onclick = send;
+
+            msgInput.onkeydown = e => {
+                if (e.key === "Enter") {
+                    e.preventDefault();
+                    send();
+                }
+            };
+
+            setTimeout(() => msgInput.focus(), 150);
         };
 
-        chatButton.addEventListener("click", () => {
-            if (rightBar.classList.contains("visible")) {
-                rightBar.classList.remove("visible");
-                rightBar.classList.add("hidden");
-                chatButton.classList.remove("move-left");
-            } else {
-                rightBar.classList.remove("hidden");
-                rightBar.classList.add("visible");
-                chatButton.classList.add("move-left");
-                populateUserList();
-            }
-        });
+        const addMessage = (text, isMine) => {
+            const div = document.createElement("div");
+            div.textContent = text;
+            div.className =
+                `w3-padding w3-round-xlarge w3-margin-bottom ${
+                    isMine
+                        ? "w3-black w3-text-white w3-right"
+                        : "w3-light-grey"
+                }`;
+            div.style.maxWidth = "80%";
+            div.style.clear = "both";
+
+            document.getElementById("msgHistory").appendChild(div);
+        };
+
+        const scrollToBottom = () => {
+            const h = document.getElementById("msgHistory");
+            if (h) h.scrollTop = h.scrollHeight;
+        };
+
     });
 </script>
-
-</body>
-
-</html>
