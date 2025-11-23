@@ -102,7 +102,7 @@
             inputArea.style.display = "none";
 
             try {
-                const res   = await fetch("/components/fetch_users.php");
+                const res   = await fetch("/api/friends/list");
                 const users = await res.json();
 
                 content.innerHTML = "";

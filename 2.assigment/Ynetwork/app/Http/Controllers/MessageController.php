@@ -45,4 +45,29 @@ class MessageController extends Controller
             'data' => $messages
         ]);
     }
+
+    public function getFriends()
+    {
+        $authId = Auth::id();
+
+        $friends = \DB::table('friendships as f')   // ← FIXED HERE
+        ->join('users as u', function ($join) use ($authId) {
+            $join->on(function ($q) use ($authId) {
+                $q->where('f.user_id', $authId)
+                    ->whereColumn('f.friend_id', 'u.id');
+            })
+                ->orOn(function ($q) use ($authId) {
+                    $q->where('f.friend_id', $authId)
+                        ->whereColumn('f.user_id', 'u.id');
+                });
+        })
+            ->where('f.status', 'accepted')
+            ->select('u.id', \DB::raw("u.first_name || ' ' || u.last_name AS full_name"))
+            ->get();
+
+        return response()->json($friends);
+    }
+
+
+
 }
