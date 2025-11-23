@@ -1,2 +1,2 @@
 import './bootstrap';
-import './search.js';
+import './playground.js';

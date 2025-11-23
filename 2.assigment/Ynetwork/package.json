@@ -15,6 +15,7 @@
         "vite": "^7.0.7"
     },
     "dependencies": {
+        "animejs": "^4.2.2",
         "flatpickr": "^4.6.13"
     }
 }

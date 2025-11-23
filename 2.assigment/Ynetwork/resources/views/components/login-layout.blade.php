@@ -1,4 +1,6 @@
 @props(['type'])
+
+
 <!doctype html>
 <html lang="en">
 
@@ -17,19 +19,20 @@
             height: 100vh;
         }
     </style>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
 </head>
 
 <body class="bg-cover-section w3-display-container w3-center"> {{-- Title --}} <div
         class="w3-container w3-display-middle w3-animate-opacity">
         <div class="w3-col w3-center">
-            <h1 class="w3-row w3-xxxlarge w3-bold s12 m12 l12">Ynetwork</h1>
-            <h2 class="w3-row w3-xxlarge w3-bold s12 m12 l12">{{ $type }}</h2> {{$slot}}
+            <h1 class="ramon w3-row w3-xxxlarge w3-bold s12 m12 l12 ">Ynetwork</h1>
+            <h2 class="roman w3-row w3-xxlarge w3-bold s12 m12 l12 funky-animation-text">{{ $type }}</h2> {{$slot}}
         </div>
     </div>
     <footer class="w3-display-bottomleft w3-text-white w3-small">
         <p>&copy;2025 Ynetwork | Contact: y@network.com</p>
     </footer>
-
 </body>
 
 </html>
