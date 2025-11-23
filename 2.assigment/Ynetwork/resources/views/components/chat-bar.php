@@ -17,7 +17,6 @@
         flex-direction: column;
         border-left: 2px solid #000;
         border-top: 2px solid #000;
-        border-top-left-radius: 20px;
         pointer-events: auto;
     }
     #rightBar.open {

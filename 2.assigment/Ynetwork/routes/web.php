@@ -56,6 +56,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/messages/send', [MessageController::class, 'sendMessage']);
     Route::get('/api/chat/history', [MessageController::class, 'getChatHistory']);
     Route::get('/api/friends/list', [MessageController::class, 'getFriends']);
+    Route::get('/api/chat/unread-summary', [MessageController::class, 'getUnreadSummary']);
 });
 
 //friendship routes
