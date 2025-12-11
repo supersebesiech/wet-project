@@ -9,9 +9,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Login</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+    <link rel="preload" as="image" href="{{ asset('images/milkyway.jpg') }}">
     <style>
         .bg-cover-section {
             background-image: url('{{ asset('images/milkyway.jpg') }}');
+            background-color: #0a0a1a;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -42,14 +44,15 @@
     </div>
 
    
-    <div class="w3-container w3-display-middle w3-animate-opacity formular-container" style="opacity: 1" >
+    <div class="w3-container w3-display-middle w3-animate-opacity " style="opacity: 1" >
         <div class="w3-col w3-center animation-container">
             <h1 class="title-target w3-xxxlarge w3-row w3-bold"
                 style="-webkit-text-stroke: 0.5px white;">Ynetwork</h1>
-
-            <h2 class="w3-row w3-xlarge w3-bold funky-animation-text">{{ $type }}</h2>
+            <div class="formular-container">
+            <h2 class="w3-row w3-xlarge w3-bold ">{{ $type }}</h2>
 
             {{ $slot }}
+            </div>
         </div>
     </div>
 
@@ -57,7 +60,10 @@
         <p>&copy;2025 Ynetwork | Contact: y@network.com</p>
     </footer>
 
+   
+
 </body>
+
 
 
 </html>

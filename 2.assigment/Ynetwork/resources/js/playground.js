@@ -5,6 +5,8 @@ const { chars } = splitText('.title-target', {
   debug: false,
  });
 
+const  charswithoutY  = chars.slice();
+charswithoutY.splice(0,1);
 const $formular = utils.$('.formular-container');
 const [ $path1, $path2 ] = utils.$('polygon');
 
@@ -49,39 +51,41 @@ const [ $path1, $path2 ] = utils.$('polygon');
 
  
 
-const zoom = () => animate(chars[0], {
-  x: [{to: ((window.innerWidth/2)-chars[0].getBoundingClientRect().x) - (chars[0].getBoundingClientRect().width/2), ease: 'inexpo'}], 
-  y: [{to: ((window.innerHeight/2)-chars[0].getBoundingClientRect().y) - (chars[0].getBoundingClientRect().height/2), ease: 'inexpo'}],
-  scale: [
-    { to: 4, ease: 'inexpo' },
-  ],
-  loop: false,
-  duration: 1000,
-  onComplete: () => { drawsvgY().play(); },
-  autoPlay: false,
-});
+//const zoom = () => animate(chars[0], {
+//  x: [{to: ((window.innerWidth/2)-chars[0].getBoundingClientRect().x) - (chars[0].getBoundingClientRect().width/2), ease: 'inexpo'}], 
+//  y: [{to: ((window.innerHeight/2)-chars[0].getBoundingClientRect().y) - (chars[0].getBoundingClientRect().height/2), ease: 'inexpo'}],
+//  scale: [
+//    { to: 4, ease: 'inexpo' },
+//  ],
+//  opacity: [ { to: 1, duration: 3 } ],
+//
+//  loop: false,
+//  duration: 1000,
+//  onComplete: () => { drawsvgY().play(); },
+//  autoPlay: false,
+//});
 
 const drawsvgY = () => animate($path1, {
   opacity: [{ to: 1 }],
   duration: 100,
   easing: 'linear',
-  onComplete: () => { deleteStuff().play(); },
+  onComplete: () => { deleteY().play(); },
 })
 
 
-const deleteStuff = () => animate(chars[0], {
+const deleteY = () => animate(chars[0], {
   opacity: 0,
   duration: 4,
   easing: 'linear',
   onComplete: () => { startWaitingAnimation(); },
 })
 
-const deleteBackground = () => animate($formular, {
-  opacity: 0,
-  duration: 1000,
-  easing: 'linear',
-  autoplay: false,
-})
+//const deleteBackground = () => animate({$formular}, {
+//  opacity: 0,
+//  duration: 1000,
+//  easing: 'linear',
+//  autoplay: false,
+//})
 
   const swarm = () => animate(chars, {
     y: [
@@ -147,12 +151,40 @@ function generatePoints() {
   return points;
 }
 
-function customComosition (){
 
-  sleep(3000).then(() => {zoom().play(), deleteBackground().play()});
-} 
-deleteBackground().play();
-//customComosition();
+const timeline = createTimeline({autoplay: false});
+timeline.label('start')
+.label('fade', 100)
+.add(chars[0], {
+  x: [{to: ((window.innerWidth/2)-chars[0].getBoundingClientRect().x) - (chars[0].getBoundingClientRect().width/2), ease: 'inexpo'}], 
+  y: [{to: ((window.innerHeight/2)-chars[0].getBoundingClientRect().y) - (chars[0].getBoundingClientRect().height/2), ease: 'inexpo'}],
+  scale: [
+    { to: 4, ease: 'inexpo' },
+  ],
+  loop: false,
+  composition: 'none',
+  duration: 1000,
+  onComplete: () => { drawsvgY().play(); },
+}, 'start')
+.add($formular, {
+  opacity: 0,
+  duration: 500,
+  easing: 'linear',
+  composition: 'replace',
+}, 'fade')
+.add(charswithoutY, {
+  opacity: 0,
+  duration: 500,
+  easing: 'linear',
+  composition: 'replace',
+}, 'fade');
+
+export function startAnimation() {
+  console.log("Entered startAnimation()");
+    timeline.play(); // or whatever starts your animation
+}
+window.startAnimation = startAnimation;
+//timeline.play();
 //swarm().play();
 //loopAnimation();
 //startWaitingAnimation();

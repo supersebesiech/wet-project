@@ -11,9 +11,21 @@ use App\Http\Controllers\FriendshipController;
 
 
 Route::get('/', [SessionController::class, 'create']);
-Route::post('/login', [SessionController::class, 'store']);
+Route::post('/', [SessionController::class, 'store'])->name('login');
 Route::post('/logout', [SessionController::class, 'destroy']);
 Route::get(uri: '/logout', action: [SessionController::class, 'destroy'])->name(name: 'logout');
+
+
+
+Route::get('/prepare-foryou', function() {
+    // heavy queries, personalization, etc.
+    // remove sleep in real app
+    sleep(2);
+    return ['ready' => true];
+})->middleware('auth');
+
+
+
 
 Route::get('/register', [RegisteredUserController::class, 'create']);
 Route::post('/register', [RegisteredUserController::class, 'store']);

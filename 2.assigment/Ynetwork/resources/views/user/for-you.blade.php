@@ -115,7 +115,7 @@
     <!-- Footer -->
 
 
-    <script src="../Scripts/LogoutPopup.js"></script>
+    
 </body>
 
 <footer>
