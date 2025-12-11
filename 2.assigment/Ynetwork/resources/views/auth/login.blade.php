@@ -9,7 +9,7 @@
 
                 <x-form-error name="email" class="w3-margin-bottom"></x-form-error>
 
-                <x-form-input class="w3-input w3-border w3-round-xxlarge w3-margin-bottom" id="password" name="password"
+                <x-form-input class="w3-input w3-border w3-round-xxlarge w3-margin-bottom password-input" id="password" name="password"
                     required type="password" placeholder="Password"></x-form-input>
 
                 <x-form-error name="password" class="w3-margin-bottom"></x-form-error>
@@ -87,6 +87,7 @@
             })
             .catch(error => {
                 console.error('Login error:', error);
+                sayNoAnimation();
                 const errorDiv = document.getElementById('error-message');
                 if (error.errors && error.errors.password) {
                     errorDiv.textContent = error.errors.password[0];

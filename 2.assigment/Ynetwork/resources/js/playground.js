@@ -11,27 +11,6 @@ const $formular = utils.$('.formular-container');
 const [ $path1, $path2 ] = utils.$('polygon');
 
 
-
-
-
-
-
-
-
-
-
-  const shift = () => animate(chars, {
-    y: [
-      { to: ['100%', '0%'] },
-      { to: '-100%', delay: 1000, ease: 'in(3)' },
-      { to: ['100%', '0%'] },
-    ],
-    duration: 750,
-    ease: 'out(3)',
-    delay: stagger(50),
-    
-  });
-
  const turn = () => animate(chars, {
   // Property keyframes
   y: [
@@ -45,25 +24,10 @@ const [ $path1, $path2 ] = utils.$('polygon');
   },
   delay: stagger(50),
   ease: 'inOutCirc',
-  loopDelay: 1000,
   loop: false
 });
 
  
-
-//const zoom = () => animate(chars[0], {
-//  x: [{to: ((window.innerWidth/2)-chars[0].getBoundingClientRect().x) - (chars[0].getBoundingClientRect().width/2), ease: 'inexpo'}], 
-//  y: [{to: ((window.innerHeight/2)-chars[0].getBoundingClientRect().y) - (chars[0].getBoundingClientRect().height/2), ease: 'inexpo'}],
-//  scale: [
-//    { to: 4, ease: 'inexpo' },
-//  ],
-//  opacity: [ { to: 1, duration: 3 } ],
-//
-//  loop: false,
-//  duration: 1000,
-//  onComplete: () => { drawsvgY().play(); },
-//  autoPlay: false,
-//});
 
 const drawsvgY = () => animate($path1, {
   opacity: [{ to: 1 }],
@@ -80,12 +44,6 @@ const deleteY = () => animate(chars[0], {
   onComplete: () => { startWaitingAnimation(); },
 })
 
-//const deleteBackground = () => animate({$formular}, {
-//  opacity: 0,
-//  duration: 1000,
-//  easing: 'linear',
-//  autoplay: false,
-//})
 
   const swarm = () => animate(chars, {
     y: [
@@ -94,10 +52,15 @@ const deleteY = () => animate(chars[0], {
     x: [
       { from: utils.random(-500, 500) },
     ],
+   
+    rotate: [
+      { from: 180 },
+    ],
     duration: () => utils.random(2000, 2800),
-    delay: () => utils.random(0, 400),
+    delay: () => 1000,
     ease: 'outElastic(1, .5)',
     autoplay : false,
+    onComplete: () => { turn().play(); }
   })
 
  function loopAnimation() {
@@ -125,16 +88,14 @@ function animateRandomPoints() {
   });
 }
 
-// Start the animation
 
 
 function startWaitingAnimation() {
-//$path1.style.opacity = '1';
+
 animateRandomPoints();
 }
 
-// A function to generate random points on #path-2 on each iteration
-// For demo purpose only
+
 function generatePoints() {
   const total = utils.random(4, 20);
   const r1 = utils.random(20, 60);
@@ -181,10 +142,34 @@ timeline.label('start')
 
 export function startAnimation() {
   console.log("Entered startAnimation()");
-    timeline.play(); // or whatever starts your animation
+    timeline.play(); 
 }
 window.startAnimation = startAnimation;
-//timeline.play();
-//swarm().play();
-//loopAnimation();
-//startWaitingAnimation();
+
+function welcomingAnimation() {
+swarm().play();
+}
+welcomingAnimation();
+
+const shiftleft = () => animate('.password-input', {
+  x: '-4rem',
+  ease: 'inExpo',
+  duration: 300,
+  onComplete: () => { shaker().play(); },
+});
+
+
+const shaker = () => animate('.password-input', {
+  x: '0rem',
+  ease: spring({
+    bounce: 0.9,
+    duration: 200
+  })
+
+
+});
+export function sayNoAnimation() {
+  console.log("Entered sayNo()");
+    shiftleft().play();
+}
+window.sayNoAnimation = sayNoAnimation;
