@@ -24,7 +24,7 @@
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="w3-button w3-xlarge w3-margin-bottom w3-circle"
-                        onclick="return confirm('Are you sure you want to delete this post?');">
+                        onclick="return confirm('{{ __('Are you sure you want to delete this post?') }}');">
                         <i class="fa fa-trash"></i>
                     </button>
                 </form>

@@ -39,6 +39,16 @@ class RegisteredUserController extends Controller
         }
         ;
 
+        // Get current session locale or default to 'en'
+        $current_locale = session('locale') ?? config('app.locale');
+        
+        // Validate if locale is an available locale
+        $available_locales = array_values(config('app.available_locales'));
+        if (!in_array($current_locale, $available_locales)) {
+            $current_locale = 'en';
+        }
+        
+        $attributes['locale'] = $current_locale;
         $user = User::create($attributes);
 
         Auth::login($user);
@@ -46,13 +56,13 @@ class RegisteredUserController extends Controller
         return redirect('/for-you');
     }
 
-    //User search function for the search bar (Profile_picture is commented out for now as it is not something within the database and we wanted to do it differently)
+    //User search function for the search bar
     public function search(Request $request)
     {
         $query = $request->get('query');
 
         $users = User::whereRaw("CONCAT(first_name, ' ', last_name) LIKE ?", ["%{$query}%"])
-            ->select('id', 'first_name', 'last_name'/*, 'profile_picture'*/)
+            ->select('id', 'first_name', 'last_name')
             ->get();
 
         return response()->json($users);
@@ -68,8 +78,10 @@ class RegisteredUserController extends Controller
             ->latest()
             ->get();
 
+        $available_locales = config('app.available_locales');
+        $current_locale = $profiledata->locale ?? config('app.locale');
 
-        return view('user.profile', compact('profiledata', 'posts'));
+        return view('user.profile', compact('profiledata', 'posts', 'available_locales', 'current_locale'));
     }
 
     public function destroy(User $user)

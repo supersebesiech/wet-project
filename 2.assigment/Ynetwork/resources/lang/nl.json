@@ -1,0 +1,67 @@
+{
+    "For you page": "Voor jou",
+
+    "Profile": "Profiel",
+    "Log out": "Uitloggen",
+    "Search...": "Zoeken...",
+
+    "Post title": "Post titel",
+    "What do you wanna post about?": "Waar wil je over posten?",
+
+    "Post": "Plaatsen",
+
+    "Chats": "Chats",
+    "Loading...": "Laden...",
+    "No unread messages.": "Geen ongelezen berichten.",
+    "Failed to load unread messages.": "Kon ongelezen berichten niet laden.",
+
+    "Friend requests": "Vriendschapsverzoeken",
+    "Accept": "Accepteren",
+    "Deny": "Weigeren",
+    "No friend requests at the moment.": "Geen vriendschapsverzoeken op dit moment.",
+    "Friends": "Vrienden",
+    "No friends yet.": "Nog geen vrienden.",
+
+    "Your posts": "Jouw posts",
+    "'s posts": "s posts",
+
+    "Edit Post": "Bewerk Post",
+    "Edit my post": "Bewerk mijn post",
+    "Update post": "Post bijwerken",
+
+    "2025 Ynetwork | Contact: y@network.com": "2025 Ynetwork | Contact: y@network.com",
+
+    "Unfriend": "Ontvriend",
+    "Accept friend request": "Accepteer vriendschapsverzoek",
+    "Request sent": "Verzoek verzonden",
+    "Add friend": "Voeg vriend toe",
+    "Submit": "Indienen",
+    "Language:": "Taal:",
+    "Email": "E-mail",
+    "Birthday:": "Geboortedatum:",
+    "Joined on:": "Lid sinds:",
+    "Save": "Opslaan",
+    "Delete this profile": "Verwijder dit profiel",
+    "Are you sure you want to delete this profile?": "Weet je zeker dat je dit profiel wilt verwijderen?",
+    "Are you sure you want to delete this post?": "Weet je zeker dat je deze post wilt verwijderen?",
+    
+    "Log in": "Inloggen",
+    "Ynetwork": "Ynetwork",
+
+    "Chat": "Chat",
+    "Messages": "Berichten",
+    "Type a message...": "Typ een bericht...",
+    "Send": "Verzenden",
+
+    "Log in to your profile": "Inloggen op je profiel",
+    "Password": "Wachtwoord",
+    "Reset password": "Wachtwoord opnieuw instellen",
+    "Register": "Registreren",
+
+    "Create new profile": "Nieuw profiel aanmaken",
+    "First name": "Voornaam",
+    "Last name": "Achternaam",
+    "Confirm email": "Bevestig e-mail",
+    "Confirm password": "Bevestig wachtwoord",
+    "You must be at least 18 years old.": "Je moet minstens 18 jaar oud zijn."
+}

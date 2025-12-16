@@ -29,7 +29,11 @@ class ProfileController extends Controller
             ->latest()
             ->get();
 
-        return view('user.profile', compact('posts', 'profiledata'));
+        $available_locales = config('app.available_locales');
+
+        $current_locale = $profiledata->locale ?? config('app.locale');
+
+        return view('user.profile', compact('posts', 'profiledata', 'available_locales', 'current_locale'));
     }
 
     public function editUser(Request $request)
@@ -39,10 +43,15 @@ class ProfileController extends Controller
         $validated = $request->validate([
             'email' => ['required', 'string', 'email', 'max:255'],
             'bio' => ['nullable', 'string'],
+            'locale' => ['nullable', 'string', 'in:' . implode(',', array_values(config('app.available_locales')))],
         ]);
 
         $user->email = $validated['email'];
         $user->bio   = $validated['bio'];
+        
+        if ($request->has('locale') && $validated['locale']) {
+            $user->locale = $validated['locale'];
+        }
 
         $user->save();
 

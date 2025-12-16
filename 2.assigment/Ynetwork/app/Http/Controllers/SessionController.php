@@ -33,4 +33,16 @@ class SessionController extends Controller
         Auth::logout();
         return redirect('/');
     }
+
+    public function setLocale($locale){
+        $available_locales = array_values(config('app.available_locales'));
+        
+        if (!in_array($locale, $available_locales)) {
+            $locale = 'en';
+        }
+        
+        session(['locale' => $locale]);
+        
+        return redirect('/');
+    }
 }

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>For you page</title>
+    <title>{{ __('For you page') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="../images/Logo2.png">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
@@ -57,7 +57,7 @@
         <div class="w3-cell w3-cell-middle">
             <form class="w3-container" style="position:relative; display:flex; align-items:center; margin:auto;">
                 <input class="w3-input w3-border w3-border-black w3-round-xxlarge" type="text" autocomplete="off"
-                    placeholder="Search users..." style="width:100%;" id="search">
+                    placeholder="{{ __('Search...') }}" style="width:100%;" id="search">
                 <button type="submit" class="w3-button w3-transparent" aria-label="Search"
                     style="position:absolute; right:10px; background:none; border:none; cursor:pointer; color:#000;">
                     <i class="fa fa-search"></i>
@@ -76,9 +76,9 @@
                 <div class="w3-dropdown-content w3-bar-block w3-border w3-border-black w3-round-xxlarge w3-animate-zoom"
                     style="right:0">
                     <a href="{{ route('user.profile') }}"
-                        class="w3-bar-item w3-button w3-transparent w3-round-xxlarge">Profile</a>
+                        class="w3-bar-item w3-button w3-transparent w3-round-xxlarge">{{ __('Profile') }}</a>
                     <a href="{{ route('logout') }}"
-                        class="w3-bar-item w3-button w3-transparent w3-round-xxlarge">Logout</a>
+                        class="w3-bar-item w3-button w3-transparent w3-round-xxlarge">{{ __('Log out') }}</a>
                 </div>
             </div>
             <div class="w3-clear"></div>
@@ -91,14 +91,10 @@
 </header>
 
 <body class="w3-paper">
-
-    <!-- Sticky Header -->
-
-
     <!-- Main Content -->
     <div class="main-content w3-animate-opacity">
         <div class="w3-container w3-center" style="max-width:800px; margin:auto;">
-            <h1 class="w3-xxxlarge w3-bold">For you page</h1>
+            <h1 class="w3-xxxlarge w3-bold">{{ __('For you page') }}</h1>
 
             <div class="w3-container">
                 @foreach ($posts as $post)
@@ -119,7 +115,7 @@
 </body>
 
 <footer>
-    <p>&copy; 2025 Ynetwork | Contact: y@network.com</p>
+    <p>&copy; {{ __('2025 Ynetwork | Contact: y@network.com') }}</p>
 </footer>
 
 </html>

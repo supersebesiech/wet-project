@@ -113,6 +113,7 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
-        return view('user.edit-post', compact('post'));
+        $profiledata = Auth::user();
+        return view('user.edit-post', compact('post', 'profiledata'));
     }
     }

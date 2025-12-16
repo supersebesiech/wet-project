@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Edit Post</title>
+    <title>{{ __('Edit Post') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="../Images/Logo2.png">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
@@ -57,7 +57,7 @@
         <div class="w3-cell w3-cell-middle">
             <form class="w3-container" style="position:relative; display:flex; align-items:center; margin:auto;">
                 <input class="w3-input w3-border w3-border-black w3-round-xxlarge" type="text" autocomplete="off"
-                    placeholder="Search users..." style="width:100%;" id="search">
+                    placeholder="{{ __('Search...') }}" style="width:100%;" id="search">
                 <button type="submit" class="w3-button w3-transparent" aria-label="Search"
                     style="position:absolute; right:10px; background:none; border:none; cursor:pointer; color:#000;">
                     <i class="fa fa-search"></i>
@@ -70,14 +70,14 @@
 
         <div class="w3-cell w3-cell-middle w3-right-align" style="width:25%;">
             <div class="w3-dropdown-hover w3-right w3-transparent">
-                <img data-user-id="{{ auth()->user()->id }}" src="{{ auth()->user()->profile_picture }}"
-                    alt="User profile" class="w3-image w3-circle"
-                    style="height:60px; object-fit:cover; vertical-align:middle;">
+                <img data-user-id="{{ auth()->user()->id }}" src="{{ asset(auth()->user()->profile_picture) }}"
+                     alt="User profile" class="w3-image w3-circle"
+                     style="height:60px; object-fit:cover; vertical-align:middle;">
                 <div class="w3-dropdown-content w3-bar-block w3-border w3-border-black w3-round-xxlarge w3-animate-zoom"
                     style="right:0">
                     <a href="{{ route('user.profile') }}"
-                        class="w3-bar-item w3-button w3-transparent w3-round-xxlarge">Profile</a>
-                    <a href="#" class="w3-bar-item w3-button w3-transparent w3-round-xxlarge">Logout</a>
+                        class="w3-bar-item w3-button w3-transparent w3-round-xxlarge">{{ __('Profile') }}</a>
+                    <a href="{{ route('logout') }}" class="w3-bar-item w3-button w3-transparent w3-round-xxlarge">{{ __('Log out') }}</a>
                 </div>
             </div>
             <div class="w3-clear"></div>
@@ -93,7 +93,7 @@
 
     <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
 
-        <h2 class="w3-bold w3-center">Edit my post</h2>
+        <h2 class="w3-bold w3-center">{{ __('Edit my post') }}</h2>
 
         <div class="w3-container w3-card w3-white w3-round-xlarge" style="max-width:800px; margin:40px auto;"><br>
 
@@ -105,7 +105,7 @@
                 <textarea class="w3-input w3-round-xxlarge w3-padding-large w3-border-black w3-border" name="body"
                     id="body" rows="3" required>{{ $post->body }}</textarea><br>
                 <button class="w3-button w3-black w3-round-xxlarge w3-padding-large w3-block w3-margin-bottom"
-                    type="submit">Update Post</button>
+                    type="submit">{{ __('Update post') }}</button>
 
             </form>
 
@@ -114,5 +114,5 @@
 </body>
 
 <footer>
-    <p>&copy; 2025 Ynetwork | Contact: y@network.com</p>
+    <p>&copy; {{ __('2025 Ynetwork | Contact: y@network.com') }}</p>
 </footer>

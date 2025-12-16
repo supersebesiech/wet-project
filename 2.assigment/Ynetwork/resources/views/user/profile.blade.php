@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Profile</title>
+    <title>{{ __('Profile') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="../images/Logo2.png">
     <link rel="stylesheet" href="{{ asset('css/Utils.css') }}">
@@ -58,7 +58,7 @@
         <div class="w3-cell w3-cell-middle">
             <form class="w3-container" style="position:relative; display:flex; align-items:center; margin:auto;">
                 <input class="w3-input w3-border w3-border-black w3-round-xxlarge" type="text"
-                    placeholder="Search Profile" style="width:100%;" id="search" autocomplete="off">
+                    placeholder="{{ __('Search...') }}" style="width:100%;" id="search" autocomplete="off">
                 <button type="submit" class="w3-button w3-transparent" aria-label="Search"
                     style="position:absolute; right:10px; background:none; border:none; cursor:pointer; color:#000;">
                     <i class="fa fa-search"></i>
@@ -76,9 +76,9 @@
                 <div class="w3-dropdown-content w3-bar-block w3-border w3-border-black w3-round-xxlarge w3-animate-zoom"
                     style="right:0">
                     <a href="{{ route('user.profile') }}"
-                        class="w3-bar-item w3-button w3-transparent w3-round-xxlarge">Profile</a>
+                        class="w3-bar-item w3-button w3-transparent w3-round-xxlarge">{{ __('Profile') }}</a>
                     <a href="{{ route('logout') }}"
-                        class="w3-bar-item w3-button w3-transparent w3-round-xxlarge">Logout</a>
+                        class="w3-bar-item w3-button w3-transparent w3-round-xxlarge">{{ __('Log out') }}</a>
                 </div>
             </div>
             <div class="w3-clear"></div>
@@ -103,7 +103,7 @@
             <div class="w3-col l12 m12 s12 center" style="margin: auto;">
          @endif
 
-            <x-profile-structure :profiledata="$profiledata"></x-profile-structure>
+            <x-profile-structure :profiledata="$profiledata" :available_locales="$available_locales" :current_locale="$current_locale"></x-profile-structure>
 
             </div>
             @if (auth()->user()->id === $profiledata->id)
@@ -121,13 +121,13 @@
 
                                     <input
                                         class="w3-input w3-bold w3-round-xxlarge w3-padding-large w3-border-black w3-border"
-                                        type="text" placeholder="Post Title" id="title" name="title" required><br>
+                                        type="text" placeholder="{{ __('Post title') }}" id="title" name="title" required><br>
                                     <textarea class="w3-input w3-round-xxlarge w3-padding-large w3-border-black w3-border"
                                         name="body" id="body" rows="3" required
-                                        placeholder="What do you wanna post about?"></textarea><br>
+                                        placeholder="{{ __('What do you wanna post about?') }}"></textarea><br>
                                     <button
                                         class="w3-button w3-black w3-round-xxlarge w3-padding-large w3-block w3-margin-bottom"
-                                        type="submit">Post</button>
+                                        type="submit">{{ __('Post') }}</button>
                                 </form>
                             </div><br>
                         </div>
@@ -141,16 +141,16 @@
                         <div class="w3-container w3-padding-small">
                             <!-- Chats Card -->
                             <div class="w3-container w3-card w3-white w3-round-xlarge w3-margin" id="chats-card"><br>
-                                <h4 class="w3-bold">Chats</h4>
+                                <h4 class="w3-bold">{{ __('Chats') }}</h4>
                                 <div id="unread-summary">
                                     <!-- Unread info will be inserted here -->
-                                    <p>Loading...</p>
+                                    <p class="w3-small w3-text-grey">{{ __('Loading...') }}</p>
                                 </div>
                             </div>
 
                             <!-- Friend Requests Card -->
                             <div class="w3-container w3-card w3-white w3-round-xlarge w3-margin"><br>
-                                <h4 class="w3-bold">Friend Requests</h4>
+                                <h4 class="w3-bold">{{ __('Friend requests') }}</h4>
 
                                 @php
                                     $friendRequests = \App\Models\Friendship::where('friend_id', auth()->user()->id)
@@ -167,23 +167,23 @@
                                                 style="width:48px; height:48px; object-fit:cover;">
                                             <form action="{{ route('friend.accept', $request->sender->id) }}" method="POST" style="display:inline;">
                                                 @csrf
-                                                <button class="w3-button w3-green w3-round-xxlarge w3-small">Accept</button>
+                                                <button class="w3-button w3-green w3-round-xxlarge w3-small">{{ __('Accept') }}</button>
                                             </form>
                                             <form action="{{ route('friend.remove', $request->sender->id) }}" method="POST" style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button class="w3-button w3-red w3-round-xxlarge w3-small">Deny</button>
+                                                <button class="w3-button w3-red w3-round-xxlarge w3-small">{{ __('Deny') }}</button>
                                             </form>
                                         </div>
                                     </div>
                                 @empty
-                                    <p>No friend requests at the moment.</p>
+                                    <p class="w3-small w3-text-grey">{{ __('No friend requests at the moment.') }}</p>
                                 @endforelse
                             </div>
 
                             <!-- Friends Card -->
                             <div class="w3-container w3-card w3-white w3-round-xlarge w3-margin"><br>
-                                <h4 class="w3-bold">Friends</h4>
+                                <h4 class="w3-bold">{{ __('Friends') }}</h4>
 
                                 @foreach (auth()->user()->friends() as $friend)
                                     <div class="w3-container w3-card w3-round-xlarge w3-padding-small w3-border-bottom w3-flex w3-margin-bottom" style="display:flex; align-items:center; gap:12px;">
@@ -205,7 +205,7 @@
                                 @endforeach
 
                                 @if ($profiledata->friends()->count() === 0)
-                                    <p class="w3-small w3-text-grey">No friends yet.</p>
+                                    <p class="w3-small w3-text-grey">{{ __('No friends yet.') }}</p>
                                 @endif
                             </div>
                         </div>
@@ -222,9 +222,9 @@
                 <div class="w3-col w3-center" style="max-width:800px; margin:auto;">
                     <div class="w3-container w3-padding-small"></div>
                     @if (auth()->user()->id === $profiledata->id)
-                        <h1 class="w3-xxxlarge w3-bold">Your Posts</h1>
+                        <h1 class="w3-xxxlarge w3-bold">{{ __('Your posts') }}</h1>
                     @else
-                        <h1 class="w3-xxxlarge w3-bold">{{ $profiledata->first_name }}'s Posts</h1>
+                        <h1 class="w3-xxxlarge w3-bold">{{ $profiledata->first_name }}{{ __("'s posts") }}</h1>
                     @endif
                     @foreach ($posts as $post)
                         <x-post-structure :post="$post" :showActions="auth()->user()->id === $profiledata->id" />
@@ -251,7 +251,7 @@
                     })
                     .then(data => {
                         if (!data.senders || data.senders.length === 0) {
-                            summaryContainer.innerHTML = '<p>No unread messages.</p>';
+                            summaryContainer.innerHTML = '<p class="w3-small w3-text-grey">{{ __('No unread messages.') }}</p>';
                             return;
                         }
 
@@ -265,7 +265,7 @@
                     })
                     .catch(err => {
                         console.error('Fetch error:', err);
-                        summaryContainer.innerHTML = '<p>Failed to load unread messages.</p>';
+                        summaryContainer.innerHTML = '<p class="w3-small w3-text-grey">{{ __('Failed to load unread messages.') }}</p>';
                     });
             });
         </script>
@@ -274,7 +274,7 @@
 </body>
 
 <footer>
-    <p>&copy; 2025 Ynetwork | Contact: y@network.com</p>
+    <p>&copy; {{ __('2025 Ynetwork | Contact: y@network.com') }}</p>
 </footer>
 
 @include('components.chat-bar')
