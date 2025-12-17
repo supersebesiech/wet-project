@@ -21,6 +21,8 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->string('profile_picture')->default('profilePictures/default.jpg');
+            $table->string('two_fa_code')->nullable();
+            $table->timestamp('two_fa_code_expires_at')->nullable();
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

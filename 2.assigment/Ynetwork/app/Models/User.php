@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -125,4 +126,19 @@ class User extends Authenticatable
         })->first();
     }
 
+    public function generateCode() {
+        $code = random_int(100000, 999999);
+        $this->update([
+            'two_fa_code' => Hash::make($code),
+            'two_fa_code_expires_at' => now()->addMinutes(15),
+        ]);
+        return $code;
+    }
+
+    public function resetCode() {
+        $this->update([
+            'two_fa_code' => null,
+            'two_fa_code_expires_at' => null,
+        ]);
+    }
 }

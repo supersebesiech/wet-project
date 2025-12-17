@@ -12,6 +12,8 @@ use App\Http\Controllers\FriendshipController;
 
 Route::get('/', [SessionController::class, 'create']);
 Route::post('/login', [SessionController::class, 'store']);
+Route::post('/sendTwoFA', [SessionController::class, 'send']);
+Route::get('authentification', [SessionController::class, 'authentificationView']);
 Route::post('/logout', [SessionController::class, 'destroy']);
 Route::get(uri: '/logout', action: [SessionController::class, 'destroy'])->name(name: 'logout');
 
