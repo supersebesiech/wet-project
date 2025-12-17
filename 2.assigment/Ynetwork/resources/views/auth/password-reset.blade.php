@@ -8,6 +8,7 @@
             </div>
             <div class="w3-padding-large">
                 <button class="w3-button w3-black w3-round-xxlarge w3-padding-large w3-block w3-margin-bottom" type="submit">Send</button>
+                <a href="/">Back</a>
             </div>
         </div>
     </form>

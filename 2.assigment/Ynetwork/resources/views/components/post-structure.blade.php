@@ -1,6 +1,6 @@
 @props(['showActions' => true])
 <div class="w3-container w3-card w3-white w3-round-xlarge w3-margin"><br>
-    <img src="{{ $post->user->profile_picture }}" alt="Avatar" class="w3-left w3-circle w3-margin-right"
+    <img src="{{ asset($post->user->profile_picture) }}" alt="Avatar" class="w3-left w3-circle w3-margin-right"
         style="width:60px">
     <span class="w3-right w3-opacity">- {{ $post->created_at->diffForHumans() }}</span>
     <a href="{{ route('users.show', $post->user->id) }}">

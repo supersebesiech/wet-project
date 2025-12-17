@@ -1,5 +1,5 @@
 <x-login-layout type="Password Reset">
-    <form method="POST" action="/reset" class="pt-14">
+    <form method="POST" action="/reset" class="flex flex-col gap-5">
         @csrf
         <input type="hidden" name="token" value="{{ $token }}">
         <input type="hidden" name="email" value="{{ $email }}">
