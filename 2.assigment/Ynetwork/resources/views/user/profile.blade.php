@@ -140,8 +140,12 @@
                     <div class="w3-col w3-center">
                         <div class="w3-container w3-padding-small">
                             <!-- Chats Card -->
-                            <div class="w3-container w3-card w3-white w3-round-xlarge w3-margin"><br>
+                            <div class="w3-container w3-card w3-white w3-round-xlarge w3-margin" id="chats-card"><br>
                                 <h4 class="w3-bold">Chats</h4>
+                                <div id="unread-summary">
+                                    <!-- Unread info will be inserted here -->
+                                    <p>Loading...</p>
+                                </div>
                             </div>
 
                             <!-- Friend Requests Card -->
@@ -230,6 +234,43 @@
         </div>
     </div>
     </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const summaryContainer = document.getElementById('unread-summary');
+
+                fetch('/api/chat/unread-summary', {
+                    headers: {
+                        'Accept': 'application/json'
+                    },
+                    credentials: 'same-origin'
+                })
+                    .then(response => {
+                        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (!data.senders || data.senders.length === 0) {
+                            summaryContainer.innerHTML = '<p>No unread messages.</p>';
+                            return;
+                        }
+
+                        let html = `<p><strong>Total unread messages:</strong> ${data.total_unread}</p>`;
+                        html += '<ul class="w3-ul">';
+                        data.senders.forEach(sender => {
+                            html += `<li>${sender.full_name} (${sender.unread_count} unread)</li>`;
+                        });
+                        html += '</ul>';
+                        summaryContainer.innerHTML = html;
+                    })
+                    .catch(err => {
+                        console.error('Fetch error:', err);
+                        summaryContainer.innerHTML = '<p>Failed to load unread messages.</p>';
+                    });
+            });
+        </script>
+
+
 </body>
 
 <footer>
