@@ -6,17 +6,16 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\URL;
 
-class EmailVerification extends Notification
+class NewEmailVerification extends Notification
 {
     use Queueable;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public function __construct(private string $email)
     {
         //
     }
@@ -36,20 +35,19 @@ class EmailVerification extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
-        $verificationUrl = URL::temporarySignedRoute(
-            'verification.verify',
-            Carbon::now()->addMinutes(60),
+        $url = URL::temporarySignedRoute(
+            'verification.verify.new-email',
+            now()->addMinutes(60),
             [
-                'id' => $notifiable->getKey(),
-                'hash' => sha1($notifiable->getEmailForVerification()),
+                'id' => $notifiable->id,
+                'email' => sha1($this->email),
             ]
         );
 
         return (new MailMessage)
-            ->subject('Verify email address')
-            ->line('Under you can find link to verify your email address.')
-            ->action('Verify Email', $verificationUrl)
-            ->line('This link is valid for 60 minutes.');
+            ->subject('Confirm new email address')
+            ->line('Under you can find link to confirm your new email address.')
+            ->action('Confirm  new email', $url);
     }
 
     /**

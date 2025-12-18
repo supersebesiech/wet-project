@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\NewEmailVerification;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
@@ -37,12 +38,14 @@ class ProfileController extends Controller
         $user = Auth::user();
 
         $validated = $request->validate([
-            'email' => ['required', 'string', 'email', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
             'bio' => ['nullable', 'string'],
         ]);
-        if (!$request->email == $user->email)
+        if ($request->email !== $user->email)
         {
-            $user->email = $validated['email'];
+            $user->new_email = $validated['email'];
+            $user->save();
+            $user->notify(new NewEmailVerification($user->new_email));
         }
 
         $user->bio   = $validated['bio'];
