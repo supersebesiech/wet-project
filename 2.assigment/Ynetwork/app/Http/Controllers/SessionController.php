@@ -36,7 +36,7 @@ class SessionController extends Controller
 
         if (!$user->hasVerifiedEmail()) {
             throw ValidationException::withMessages([
-                'password' => 'Please verify your email adress.'
+                'password' => 'Please verify your email address.'
             ]);
         }
 
