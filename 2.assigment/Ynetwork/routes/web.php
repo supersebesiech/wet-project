@@ -15,8 +15,8 @@ Route::get('/', [SessionController::class, 'create']);
 Route::post('/login', [SessionController::class, 'store']);
 Route::post('/sendTwoFA', [SessionController::class, 'send']);
 Route::get('authentification', [SessionController::class, 'authentificationView']);
-Route::post('/logout', [SessionController::class, 'destroy']);
-Route::get(uri: '/logout', action: [SessionController::class, 'destroy'])->name(name: 'logout');
+Route::post('/logout', [SessionController::class, 'destroy'])->middleware(['auth', 'verified']);
+Route::get(uri: '/logout', action: [SessionController::class, 'destroy'])->name(name: 'logout')->middleware(['auth', 'verified']);
 
 Route::get('/register', [RegisteredUserController::class, 'create']);
 Route::post('/register', [RegisteredUserController::class, 'store']);
@@ -29,34 +29,34 @@ Route::get('/resetPassword', [PasswordResetController::class, 'reset']);
 Route::post('/reset', [PasswordResetController::class, 'resetPassword']);
 
 //search bar
-Route::get('/search-users', [RegisteredUserController::class, 'search'])->name('search.users');
+Route::get('/search-users', [RegisteredUserController::class, 'search'])->name('search.users')->middleware(['auth', 'verified']);
 
 Route::get('/for-you', [PostController::class, 'foryou']
-)->name('user.for-you');
+)->name('user.for-you')->middleware(['auth', 'verified']);
 
 Route::get('/profile',[ProfileController::class, 'profile']
-)->name('user.profile');
-Route::post('/edit',[ProfileController::class, 'editUser']);
-Route::post('/upload',[ProfileController::class, 'upload']);
+)->name('user.profile')->middleware(['auth', 'verified']);
+Route::post('/edit',[ProfileController::class, 'editUser'])->middleware(['auth', 'verified']);
+Route::post('/upload',[ProfileController::class, 'upload'])->middleware(['auth', 'verified']);
 
 // searched users profile page
-Route::get('/users/{id}', [RegisteredUserController::class, 'show'])->name('users.show');
+Route::get('/users/{id}', [RegisteredUserController::class, 'show'])->name('users.show')->middleware(['auth', 'verified']);
 
-Route::delete('/users/{user}', [RegisteredUserController::class, 'destroy'])->name('users.destroy');
+Route::delete('/users/{user}', [RegisteredUserController::class, 'destroy'])->name('users.destroy')->middleware(['auth', 'verified']);
 
-Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
+Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create')->middleware(['auth', 'verified']);
 // adds a post to the database
-Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
+Route::post('/posts', [PostController::class, 'store'])->name('posts.store')->middleware(['auth', 'verified']);
 // returns a page that shows a full post
-Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
+Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show')->middleware(['auth', 'verified']);
 // returns the form for editing a post
-Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
+Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit')->middleware(['auth', 'verified']);
 // updates a post
-Route::put('/posts/{post}', [PostController::class, 'update'])->name('posts.update');
+Route::put('/posts/{post}', [PostController::class, 'update'])->name('posts.update')->middleware(['auth', 'verified']);
 // deletes a post
-Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
+Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy')->middleware(['auth', 'verified']);
 //msgs
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/messages', [MessageController::class, 'fetchMessages']);
     Route::post('/messages/send', [MessageController::class, 'sendMessage']);
     Route::get('/api/chat/history', [MessageController::class, 'getChatHistory']);
@@ -65,7 +65,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 //friendship routes
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/friend/send/{id}', [FriendshipController::class, 'send'])->name('friend.send');
     Route::post('/friend/accept/{id}', [FriendshipController::class, 'accept'])->name('friend.accept');
     Route::post('/friend/deny/{id}', [FriendshipController::class, 'deny'])->name('friend.deny');
