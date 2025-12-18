@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Notifications\EmailVerification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
@@ -40,10 +41,10 @@ class RegisteredUserController extends Controller
         ;
 
         $user = User::create($attributes);
+        $user->save();
+        $user->notify(new EmailVerification($user));
 
-        Auth::login($user);
-
-        return redirect('/for-you');
+        return redirect('/');
     }
 
     //User search function for the search bar (Profile_picture is commented out for now as it is not something within the database and we wanted to do it differently)

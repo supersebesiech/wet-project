@@ -28,12 +28,15 @@ class SessionController extends Controller
             'password' => ['required',Password::min(8)]
         ]);
         $user = Auth::getProvider()->retrieveByCredentials($attributes);
-        if (
-            !$user ||
-            !Auth::getProvider()->validateCredentials($user, $attributes)
-        ) {
+        if (!$user || !Auth::getProvider()->validateCredentials($user, $attributes)) {
             throw ValidationException::withMessages([
                 'password' => 'Provided email or password are incorrect.'
+            ]);
+        }
+
+        if (!$user->hasVerifiedEmail()) {
+            throw ValidationException::withMessages([
+                'password' => 'Please verify your email adress.'
             ]);
         }
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\VerificationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\RegisteredUserController;
@@ -19,6 +20,7 @@ Route::get(uri: '/logout', action: [SessionController::class, 'destroy'])->name(
 
 Route::get('/register', [RegisteredUserController::class, 'create']);
 Route::post('/register', [RegisteredUserController::class, 'store']);
+Route::get('/verify-email/{id}/{hash}', [VerificationController::class, 'verify'])->middleware('signed')->name('verification.verify');
 
 Route::get('/reset-request', [PasswordResetController::class, 'resetRequest']);
 Route::post('/send', [PasswordResetController::class, 'send']);

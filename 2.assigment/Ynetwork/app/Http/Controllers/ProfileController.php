@@ -40,8 +40,11 @@ class ProfileController extends Controller
             'email' => ['required', 'string', 'email', 'max:255'],
             'bio' => ['nullable', 'string'],
         ]);
+        if (!$request->email == $user->email)
+        {
+            $user->email = $validated['email'];
+        }
 
-        $user->email = $validated['email'];
         $user->bio   = $validated['bio'];
 
         $user->save();
