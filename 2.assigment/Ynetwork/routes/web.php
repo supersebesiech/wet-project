@@ -12,9 +12,9 @@ use App\Http\Controllers\FriendshipController;
 
 
 Route::get('/', [SessionController::class, 'create']);
-Route::post('/login', [SessionController::class, 'store']);
-Route::post('/sendTwoFA', [SessionController::class, 'send']);
-Route::get('authentification', [SessionController::class, 'authentificationView']);
+Route::post('/login', [SessionController::class, 'store'])->middleware('throttle:5,1');
+Route::post('/sendTwoFA', [SessionController::class, 'send'])->middleware('throttle:2,1');
+Route::get('authentification', [SessionController::class, 'authentificationView'])->middleware('throttle:5,1');
 Route::post('/logout', [SessionController::class, 'destroy'])->middleware(['auth', 'verified']);
 Route::get(uri: '/logout', action: [SessionController::class, 'destroy'])->name(name: 'logout')->middleware(['auth', 'verified']);
 
