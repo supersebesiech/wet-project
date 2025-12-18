@@ -46,8 +46,10 @@ class NewEmailVerification extends Notification
 
         return (new MailMessage)
             ->subject('Confirm new email address')
-            ->line('Under you can find link to confirm your new email address.')
-            ->action('Confirm  new email', $url);
+            ->view('mail.new-email-verification', [
+                'url' => $url,
+                'user' => $notifiable,
+            ]);
     }
 
     /**

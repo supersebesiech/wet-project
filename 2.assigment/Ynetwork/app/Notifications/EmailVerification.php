@@ -47,9 +47,10 @@ class EmailVerification extends Notification
 
         return (new MailMessage)
             ->subject('Verify email address')
-            ->line('Under you can find link to verify your email address.')
-            ->action('Verify Email', $verificationUrl)
-            ->line('This link is valid for 60 minutes.');
+            ->view('mail.email-verification', [
+                'verificationUrl' => $verificationUrl,
+                'user' => $notifiable,
+            ]);
     }
 
     /**
