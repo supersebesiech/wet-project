@@ -91,8 +91,6 @@
 
 
 <body>
-
-
     <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
 
         <div class="w3-row w3-margin-top ">
@@ -149,6 +147,8 @@
                             </div>
 
                             <!-- Friend Requests Card -->
+                            <script src="{{ asset('js/friendship.js') }}"></script>
+
                             <div class="w3-container w3-card w3-white w3-round-xlarge w3-margin"><br>
                                 <h4 class="w3-bold">Friend Requests</h4>
 
@@ -159,54 +159,19 @@
                                                     ->get();
                                 @endphp
 
-                                @forelse($friendRequests as $request)
-                                    <div class="w3-card w3-light-grey w3-round w3-margin-bottom w3-padding-small">
-                                        <span>{{ $request->sender->first_name }} {{ $request->sender->last_name }}</span>
-                                        <div class="w3-margin-top">
-                                            <img src="{{ asset($request->sender->profile_picture) }}" alt="Avatar" class="w3-circle w3-margin-right"
-                                                style="width:48px; height:48px; object-fit:cover;">
-                                            <form action="{{ route('friend.accept', $request->sender->id) }}" method="POST" style="display:inline;">
-                                                @csrf
-                                                <button class="w3-button w3-green w3-round-xxlarge w3-small">Accept</button>
-                                            </form>
-                                            <form action="{{ route('friend.remove', $request->sender->id) }}" method="POST" style="display:inline;">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button class="w3-button w3-red w3-round-xxlarge w3-small">Deny</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                @empty
-                                    <p>No friend requests at the moment.</p>
-                                @endforelse
+                                <div id="friend-requests">
+                                    @include('partials.friend-requests', ['friendRequests' => $friendRequests])
+                                </div>
                             </div>
 
                             <!-- Friends Card -->
                             <div class="w3-container w3-card w3-white w3-round-xlarge w3-margin"><br>
                                 <h4 class="w3-bold">Friends</h4>
 
-                                @foreach (auth()->user()->friends() as $friend)
-                                    <div class="w3-container w3-card w3-round-xlarge w3-padding-small w3-border-bottom w3-flex w3-margin-bottom" style="display:flex; align-items:center; gap:12px;">
+                                <div id="friends-list">
+                                    @include('partials.friends-list', ['friends' => auth()->user()->friends()])
+                                </div>
 
-                                        <!-- Avatar -->
-                                        <img src="{{ asset($friend->profile_picture) }}"
-                                            alt="Avatar"
-                                            class="w3-circle"
-                                            style="width:48px; height:48px; object-fit:cover;">
-
-                                        <!-- Name -->
-                                        <a href="{{ route('users.show', ['id' => $friend->id]) }}"
-                                        class="w3-text-black"
-                                        style="text-decoration:none; font-weight:600; font-size:15px;">
-                                            {{ $friend->first_name }} {{ $friend->last_name }}
-                                        </a>
-
-                                    </div>
-                                @endforeach
-
-                                @if ($profiledata->friends()->count() === 0)
-                                    <p class="w3-small w3-text-grey">No friends yet.</p>
-                                @endif
                             </div>
                         </div>
                     </div>
@@ -269,8 +234,6 @@
                     });
             });
         </script>
-
-
 </body>
 
 <footer>

@@ -28,7 +28,8 @@ class FriendshipController extends Controller
             'status' => 'pending'
         ]);
 
-        return back()->with('success', 'Friend request sent.');
+        #return back()->with('success', 'Friend request sent.');
+        return response()->json(['status' => 'sent', 'message' => 'Friend request sent']);    
     }
 
     public function accept($id)
@@ -40,7 +41,8 @@ class FriendshipController extends Controller
 
         $friendship->update(['status' => 'accepted']);
 
-        return back()->with('success', 'Friend request accepted.');
+        #return back()->with('success', 'Friend request accepted.');
+        return response()->json(['status' => 'accept', 'message' => 'Friend request accepted']);
     }
 
     public function deny($id)
@@ -52,7 +54,8 @@ class FriendshipController extends Controller
 
         $friendship->delete();
 
-        return back()->with('success', 'Friend request denied.');
+        #return back()->with('success', 'Friend request denied.');
+        return response()->json(['status' => 'deny', 'message' => 'Friend request denied']);
     }
 
     public function remove($id)
@@ -65,6 +68,7 @@ class FriendshipController extends Controller
 
         $friendship->delete();
 
-        return back()->with('success', 'Friend removed.');
+        #return back()->with('success', 'Friend removed.');
+        return response()->json(['status' => 'remove', 'message' => 'Friend removed']);
     }
 }

@@ -65,4 +65,18 @@ Route::middleware('auth')->group(function () {
     Route::post('/friend/accept/{id}', [FriendshipController::class, 'accept'])->name('friend.accept');
     Route::post('/friend/deny/{id}', [FriendshipController::class, 'deny'])->name('friend.deny');
     Route::delete('/friend/remove/{id}', [FriendshipController::class, 'remove'])->name('friend.remove');
+    Route::get('/friend/list', function () {
+        return view('partials.friends-list', ['friends' => auth()->user()->friends()]);
+    })->name('friend.list');
+    Route::get('/friend/button/{id}', function ($id) {
+        return view('partials.friend-button', ['profiledata' => \App\Models\User::findOrFail($id)]);
+    })->name('friend.button'); 
+    Route::get('/friend/requests', function () {
+    return view('partials.friend-requests', [
+        'friendRequests' => \App\Models\Friendship::where('friend_id', auth()->id())
+            ->where('status', 'pending')
+            ->with('sender')
+            ->get()
+    ]);
+    })->name('friend.requests'); 
 });

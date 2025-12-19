@@ -3,37 +3,14 @@
     <!-- Profile Picture -->
     <img class="w3-circle w3-border w3-margin-bottom " src="{{ asset($profiledata->profile_picture) }}"
          alt="Profile picture of User" style="width:150px; height:150px; object-fit:cover;">
-
+    <br>
     <!-- Friend Button (only show if viewing someone else's profile) -->
-            @if(auth()->user()->id !== $profiledata->id)
-                @php
-                    $friendship = \App\Models\Friendship::where(function($q) use ($profiledata) {
-                        $q->where('user_id', auth()->user()->id)
-                        ->where('friend_id', $profiledata->id);
-                    })->orWhere(function($q) use ($profiledata) {
-                        $q->where('user_id', $profiledata->id)
-                        ->where('friend_id', auth()->user()->id);
-                    })->first();
-                @endphp
-
-                <form action="@if($friendship && $friendship->status === 'pending' && $friendship->friend_id === auth()->user()->id) {{ route('friend.accept', $profiledata->id) }} @elseif($friendship && $friendship->status === 'accepted') {{ route('friend.remove', $profiledata->id) }} @else {{ route('friend.send', $profiledata->id) }} @endif" method="POST">
-                    @csrf
-                    @if($friendship)
-                        @if($friendship->status === 'accepted')
-                            @method('DELETE')
-                            <button type="submit" class="w3-button w3-red w3-round-xxlarge w3-margin-bottom">Unfriend</button>
-                        @elseif($friendship->status === 'pending')
-                            @if($friendship->friend_id === auth()->user()->id)
-                                <button type="submit" class="w3-button w3-green w3-round-xxlarge w3-margin-bottom">Accept Friend Request</button>
-                            @else
-                                <button type="button" class="w3-button w3-grey w3-round-xxlarge w3-margin-bottom" disabled>Request Sent</button>
-                            @endif
-                        @endif
-                    @else
-                        <button type="submit" class="w3-button w3-black w3-round-xxlarge w3-margin-bottom">Add Friend</button>
-                    @endif
-                </form>
-            @endif
+    <script src="{{ asset('js/friendship.js') }}"></script>
+    @if(auth()->user()->id !== $profiledata->id)
+        <div id="friend-button">
+            @include('partials.friend-button', ['profiledata' => $profiledata])
+        </div>
+    @endif
 
     <!-- Profile Info -->
     <section class="w3-container w3-padding-small">
