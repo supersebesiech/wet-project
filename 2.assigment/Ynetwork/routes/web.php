@@ -9,6 +9,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FriendshipController;
+use Illuminate\Support\Facades\Schedule;
 
 
 Route::get('/', [SessionController::class, 'create']);
@@ -71,3 +72,5 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/friend/deny/{id}', [FriendshipController::class, 'deny'])->name('friend.deny');
     Route::delete('/friend/remove/{id}', [FriendshipController::class, 'remove'])->name('friend.remove');
 });
+
+Schedule::command('users:delete-unverified-accounts')->hourly();
