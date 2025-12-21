@@ -42,6 +42,11 @@
             color: #555;
         }
     </style>
+    <script>
+    window.pendingFriendRequests = {{ $pendingFriendRequests ?? 0 }};
+</script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
 </head>
 
 <header class="w3-light-blue w3-padding-small w3-card w3-top w3-bottombar w3-border-black">
@@ -66,9 +71,20 @@
 
             </form>
         </div>
+        
 
 
         <div class="w3-cell w3-cell-middle w3-right-align" style="width:25%;">
+            <span class="notification-dot" style="position: absolute;
+                                        top: 55px;
+                                        right: 55px;
+                                        width: 17px;
+                                        height: 17px;
+                                        background-color: #f44336; 
+                                        border-radius: 50%;
+                                        border: 2px solid #a3cce8;
+                                        z-index: 1;
+                                        opacity: 0;"></span>
             <div class="w3-dropdown-hover w3-right w3-transparent">
                 <img data-user-id="{{ auth()->user()->id }}" src="{{ auth()->user()->profile_picture }}"
                     alt="User profile" class="w3-image w3-circle"

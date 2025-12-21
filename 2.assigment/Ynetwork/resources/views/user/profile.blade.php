@@ -87,6 +87,8 @@
 
     <script src="{{ asset('js/get-user-avatar.js') }}"></script>
     <script src="{{ asset('js/search-users.js') }}"></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
 </header>
 
 
@@ -156,7 +158,7 @@
                                 @endphp
 
                                 @forelse($friendRequests as $request)
-                                    <div class="w3-card w3-light-grey w3-round w3-margin-bottom w3-padding-small">
+                                    <div class="frcard w3-card w3-round w3-margin-bottom w3-padding-small">
                                         <span>{{ $request->sender->first_name }} {{ $request->sender->last_name }}</span>
                                         <div class="w3-margin-top">
                                             <img src="{{ asset($request->sender->profile_picture) }}" alt="Avatar" class="w3-circle w3-margin-right"

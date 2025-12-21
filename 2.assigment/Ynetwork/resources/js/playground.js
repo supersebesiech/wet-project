@@ -11,6 +11,32 @@ const $formular = utils.$('.formular-container');
 const [ $path1, $path2 ] = utils.$('polygon');
 
 
+    
+
+
+const newMessage = () =>animate('.notification-dot', {
+  opacity: [{from: 0.0, to: 1.0}],
+  scale: [{from: 0.0, to: 1.0}],
+  ease: spring({
+    bounce: 0.59,
+    duration: 358
+  }),
+  delay: 2000,
+});
+
+if (window.pendingFriendRequests   > 0){  
+newMessage().play();
+}
+animate('.frcard', {
+  scale: [{to: 1.2}, {to: 1}],
+  rotate: [{to: 3}, {to: 0}],
+  background: [{to: '#ff0202ff'}, {to: '#efefefff'}],
+  duration: 1000,
+  
+  easing: 'easeOutQuad',
+  delay: stagger(1000),
+});
+
  const turn = () => animate(chars, {
   // Property keyframes
   y: [
