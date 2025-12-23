@@ -39,7 +39,7 @@ Route::post('/reset', [PasswordResetController::class, 'resetPassword']);
 Route::get('/search-users', [RegisteredUserController::class, 'search'])->name('search.users');
 
 Route::get('/for-you', [PostController::class, 'foryou']
-)->name('user.for-you');
+)->name('user.for-you')->middleware('auth');
 
 Route::get('/profile',[ProfileController::class, 'profile']
 )->name('user.profile');
