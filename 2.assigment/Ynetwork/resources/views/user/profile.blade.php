@@ -87,6 +87,9 @@
 
     <script src="{{ asset('js/get-user-avatar.js') }}"></script>
     <script src="{{ asset('js/search-users.js') }}"></script>
+    <script src="{{ asset('js/friendship.js') }}"></script>
+    <script src="{{ asset('js/posts.js') }}" defer></script>
+
 </header>
 
 
@@ -114,18 +117,19 @@
                                 <h4 class="w3-left ">{{ $profiledata->first_name }} {{ $profiledata->last_name }}</h4>
                                 <br><br>
                                 <hr class="w3-clear">
-                                <form action="{{ route('posts.store') }}" method="post">
+                                <form id="create-post-form" onsubmit="event.preventDefault(); createPost(this);">
                                     @csrf
-
                                     <input
                                         class="w3-input w3-bold w3-round-xxlarge w3-padding-large w3-border-black w3-border"
-                                        type="text" placeholder="Post Title" id="title" name="title" required><br>
-                                    <textarea class="w3-input w3-round-xxlarge w3-padding-large w3-border-black w3-border"
-                                        name="body" id="body" rows="3" required
+                                        type="text" placeholder="Post Title" name="title" required><br>
+
+                                    <textarea
+                                        class="w3-input w3-round-xxlarge w3-padding-large w3-border-black w3-border"
+                                        name="body" rows="3" required
                                         placeholder="What do you wanna post about?"></textarea><br>
-                                    <button
-                                        class="w3-button w3-black w3-round-xxlarge w3-padding-large w3-block w3-margin-bottom"
-                                        type="submit">Post</button>
+
+                                    <button class="w3-button w3-black w3-round-xxlarge w3-padding-large w3-block w3-margin-bottom"
+                                            type="submit">Post</button>
                                 </form>
                             </div><br>
                         </div>
@@ -147,8 +151,6 @@
                             </div>
 
                             <!-- Friend Requests Card -->
-                            <script src="{{ asset('js/friendship.js') }}"></script>
-
                             <div class="w3-container w3-card w3-white w3-round-xlarge w3-margin"><br>
                                 <h4 class="w3-bold">Friend Requests</h4>
 
@@ -181,9 +183,8 @@
             @if (auth()->user()->id === $profiledata->id)
                 <div class="w3-col l12 m12 s12 center" >
             @else
-                    <div class="w3-col l12 m12 s12 center" >
-
-                @endif
+                <div class="w3-col l12 m12 s12 center" >
+            @endif
                 <div class="w3-col w3-center" style="max-width:800px; margin:auto;">
                     <div class="w3-container w3-padding-small"></div>
                     @if (auth()->user()->id === $profiledata->id)
@@ -191,9 +192,15 @@
                     @else
                         <h1 class="w3-xxxlarge w3-bold">{{ $profiledata->first_name }}'s Posts</h1>
                     @endif
-                    @foreach ($posts as $post)
-                        <x-post-structure :post="$post" :showActions="auth()->user()->id === $profiledata->id" />
-                    @endforeach
+                    <div id="posts-container">
+                        @foreach ($posts as $post)
+                            <x-post-structure
+                                :post="$post"
+                                :showActions="auth()->user()->id === $profiledata->id"
+                            />
+                        @endforeach
+                    </div>
+
                 </div>
             </div>
         </div>

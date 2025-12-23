@@ -35,16 +35,21 @@ class PostController extends Controller
         'body' => 'required|string',
         ]);
 
-        Post::create([
+        $post = Post::create([
             'user_id' => Auth::id(), 
             'title' => $validated['title'],
             'body' => $validated['body'],
         ]);
 
-        return redirect()->route('user.profile')
-        ->with('success','Post created successfully.');
+        $html = view('components.post-structure', [
+            'post' => $post,
+            'showActions' => true
+        ])->render();
+
+        return response()->json([
+            'html' => $html
+        ]);
     }
-    
 
     /**
      * Update the specified resource in storage.
@@ -80,8 +85,9 @@ class PostController extends Controller
         }
 
         $post->delete();
-        return redirect()->route('user.profile')
-        ->with('success','Post deleted successfully.');
+        return response()->json([
+            'success' => true
+        ]);
     }
     // routes functions
     /**

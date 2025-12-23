@@ -1,5 +1,6 @@
 @props(['showActions' => true])
-<div class="w3-container w3-card w3-white w3-round-xlarge w3-margin"><br>
+<div class="w3-container w3-card w3-white w3-round-xlarge w3-margin"
+     data-post-id="{{ $post->id }}"><br>
     <img src="{{ asset($post->user->profile_picture) }}" alt="Avatar" class="w3-left w3-circle w3-margin-right"
         style="width:60px">
     <span class="w3-right w3-opacity">- {{ $post->created_at->diffForHumans() }}</span>
@@ -20,16 +21,30 @@
             @endif
 
             @if ($showActions || auth()->user()->is_admin)
-                <form action="{{ route('posts.destroy', $post->id) }}" method="post" style="display:inline;">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="w3-button w3-xlarge w3-margin-bottom w3-circle"
-                        onclick="return confirm('Are you sure you want to delete this post?');">
-                        <i class="fa fa-trash"></i>
-                    </button>
-                </form>
+                <button class="w3-button w3-xlarge w3-margin-bottom w3-circle"
+                        onclick="deletePost({{ $post->id }})">
+                    <i class="fa fa-trash"></i>
+                </button>
             @endif
 
         </div>
+
+        <script>
+            async function deletePost(postId) {
+                if (!confirm('Are you sure you want to delete this post?')) return;
+
+                const response = await fetch(`/posts/${postId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (!response.ok) return;
+
+                document.querySelector(`[data-post-id="${postId}"]`)?.remove();
+            }
+        </script>
 
 </div>
